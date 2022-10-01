@@ -59,6 +59,7 @@ M.lspconfig = {
     ["<leader>le"] = { ":Telescope quickfix<CR>", "Telescope Quickfix" },
     ["<leader>lr"] = { vim.lsp.buf.rename, "Rename" },
     ["<leader>lq"] = { vim.diagnostic.setloclist, "Quickfix" },
+    ["K"] = { vim.lsp.buf.hover, "Show hover" },
 
     -- diagnostics
     ["<leader>lj"] = { vim.diagnostic.goto_next, "Next Diagnostic" },

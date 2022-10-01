@@ -72,6 +72,43 @@ local plugins = {
     end,
   },
   "jose-elias-alvarez/null-ls.nvim",
+
+  -- autocomplete/snippet
+  {
+    "hrsh7th/nvim-cmp",
+    config = function()
+      require("plugins.configs.cmp").config()
+    end,
+    requires = {
+      "L3MON4D3/LuaSnip",
+    },
+  },
+  {
+    "L3MON4D3/LuaSnip",
+  },
+  "hrsh7th/cmp-nvim-lsp",
+  "saadparwaiz1/cmp_luasnip",
+  "hrsh7th/cmp-buffer",
+  "hrsh7th/cmp-path",
+
+  -- treesitter
+  {
+    "nvim-treesitter/nvim-treesitter",
+    setup = function()
+      require("core.lazy_load").on_file_open("nvim-treesitter")
+    end,
+    config = function()
+      require("plugins.configs.treesitter").config()
+    end
+  },
+
+  -- theme
+  {
+    "rebelot/kanagawa.nvim",
+    config = function()
+      require("plugins.configs.theme").config()
+    end
+  },
 }
 
 local ensure_packer = function()
