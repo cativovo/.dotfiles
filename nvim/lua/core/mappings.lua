@@ -50,8 +50,9 @@ M.lspconfig = {
 
     ["<leader>la"] = { ":lua vim.lsp.buf.code_action()<CR>", "Code Action" },
     ["<leader>ld"] = { ":Telescope diagnostics bufnr=0 theme=get_ivy<CR>", "Buffer Diagnostics" },
-    -- TODO add formatting
-    -- ["<leader>lf"] = { require("lvim.lsp.utils").format, "Format" },
+    -- for not non mac os
+    -- ["<A-p>"] = { ":lua vim.lsp.buf.formatting_sync(nil, 5000)<CR>", "Format" },
+    ["π"] = { ":lua vim.lsp.buf.formatting_sync(nil, 5000)<CR>", "Format" },
     ["<leader>li"] = { ":LspInfo<CR>", "Info" },
     ["<leader>lI"] = { ":Mason<CR>", "Mason Info" },
     ["<leader>ls"] = { ":Telescope lsp_document_symbols<CR>", "Document Symbols" },
