@@ -11,26 +11,20 @@ local plugins = {
 
   {
     "kyazdani42/nvim-tree.lua",
-    ft = "alpha",
-    cmd = { "NvimTreeToggle" },
+    -- ft = "alpha",
+    -- cmd = { "NvimTreeToggle" },
     config = function()
       require("plugins.configs.nvimtree").config()
-    end,
-    setup = function()
-      require('core.utils').load_mappings("nvimtree")
     end,
   },
 
   {
     "nvim-telescope/telescope.nvim",
-    cmd = "Telescope",
-    module = "telescope",
+    -- cmd = "Telescope",
+    -- module = "telescope",
     config = function()
       require("plugins.configs.telescope").config()
     end,
-    setup = function()
-      require('core.utils').load_mappings("telescope")
-    end
   },
 
   -- TODO fix this
@@ -85,6 +79,9 @@ local plugins = {
   },
   {
     "L3MON4D3/LuaSnip",
+    config = function()
+      require("plugins.configs.luasnip").config()
+    end,
   },
   "hrsh7th/cmp-nvim-lsp",
   "saadparwaiz1/cmp_luasnip",
@@ -108,6 +105,12 @@ local plugins = {
     config = function()
       require("plugins.configs.theme").config()
     end
+  },
+
+  -- dev setup for init.lua and plugin development with full signature help, docs and completion for the nvim lua api
+  {
+    "folke/lua-dev.nvim",
+    module = "lua-dev",
   },
 }
 

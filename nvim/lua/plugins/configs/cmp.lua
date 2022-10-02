@@ -1,6 +1,6 @@
 local M = {}
 
-M.config = function()
+local function setup()
   local cmp_present, cmp = pcall(require, "cmp")
   local luasnip_present, luasnip = pcall(require, "luasnip")
 
@@ -118,7 +118,7 @@ M.config = function()
         i = cmp.mapping.abort(),
         c = cmp.mapping.close(),
       }),
-      ["<CR>"] = cmp.mapping.confirm({ select = true }),
+      ["<CR>"] = cmp.mapping.confirm({ select = false }),
       ["<Tab>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_next_item()
@@ -149,6 +149,10 @@ M.config = function()
   }
 
   cmp.setup(options)
+end
+
+M.config = function()
+  setup()
 end
 
 return M

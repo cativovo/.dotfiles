@@ -1,6 +1,6 @@
 local M = {}
 
-M.config = function()
+local function setup()
   local lspconfig_present, lspconfig = pcall(require, "lspconfig")
   local mason_lsp_present, mason_lsp = pcall(require, "mason-lspconfig");
 
@@ -10,8 +10,6 @@ M.config = function()
 
   local handlers = require("plugins.configs.lsp.handlers")
   local capabilities = require("plugins.configs.lsp.capabilities")
-  local diagnostics = require("plugins.configs.lsp.diagnostics")
-  local null_ls = require("plugins.configs.lsp.null_ls")
 
 
   local options = {
@@ -31,8 +29,16 @@ M.config = function()
     lspconfig[server].setup(options)
   end
 
+end
+
+M.config = function()
+  local diagnostics = require("plugins.configs.lsp.diagnostics")
+  local null_ls = require("plugins.configs.lsp.null_ls")
+
   diagnostics.setup()
   null_ls.setup()
+  setup()
+
 end
 
 return M

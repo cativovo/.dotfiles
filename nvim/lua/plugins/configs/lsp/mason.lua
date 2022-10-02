@@ -1,6 +1,6 @@
 local M = {}
 
-M.config = function()
+local function setup()
   local present, mason = pcall(require, "mason")
 
   if not present then
@@ -32,6 +32,10 @@ M.config = function()
   }
 
   mason.setup(options)
+end
+
+M.config = function()
+  setup()
 end
 
 return M

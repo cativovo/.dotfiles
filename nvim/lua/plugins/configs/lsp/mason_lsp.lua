@@ -1,6 +1,6 @@
 local M = {}
 
-M.config = function()
+local function setup()
   local present, mason_lsp = pcall(require, "mason-lspconfig");
 
   if not present then
@@ -12,6 +12,10 @@ M.config = function()
   }
 
   mason_lsp.setup(options)
+end
+
+M.config = function()
+  setup()
 end
 
 return M

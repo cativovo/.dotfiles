@@ -4,5 +4,5 @@ vim.env.PATH = vim.env.PATH .. ":" .. vim.fn.stdpath "data" .. "/mason/bin"
 require("plugins")
 require("core.options")
 require("core.settings")
-require("core.utils").load_mappings()
+require("core.utils").load_general_keymaps()
 require("core.autocmds").load()

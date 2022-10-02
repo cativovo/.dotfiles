@@ -1,6 +1,26 @@
 local M = {}
 
-M.config = function()
+local function load_keymaps()
+  local present, telescope_builtin = pcall(require, "telescope.builtin")
+
+  if not present then
+    return
+  end
+
+  local keymaps = {
+    n = {
+      ["<C-p>"] = { telescope_builtin.find_files, "Find Files" },
+      ["<leader>tl"] = { telescope_builtin.live_grep, "Live Grep" },
+      ["<leader>tg"] = { telescope_builtin.grep_string, "Grep String" },
+      ["<leader>tj"] = { telescope_builtin.jumplist, "Show Jumplist" },
+      ["<leader>ts"] = { telescope_builtin.search_history, "Show Search History" },
+    }
+  }
+
+  require("core.utils").load_keymaps(keymaps)
+end
+
+local function setup()
   local present, telescope = pcall(require, "telescope")
 
   if not present then
@@ -48,6 +68,11 @@ M.config = function()
   }
 
   telescope.setup(options)
+end
+
+M.config = function()
+  setup()
+  load_keymaps()
 end
 
 return M

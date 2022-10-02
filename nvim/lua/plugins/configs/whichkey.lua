@@ -1,6 +1,12 @@
 local M = {}
 
-M.register_keys = function(wk)
+local function register_keys()
+  local present, wk = pcall(require, "which-key")
+
+  if not present then
+    return
+  end
+
   -- add name to keymap group
   wk.register({
     -- LSP
@@ -18,7 +24,7 @@ M.register_keys = function(wk)
   })
 end
 
-M.config = function()
+local function setup()
   local present, wk = pcall(require, "which-key")
 
   if not present then
@@ -81,7 +87,11 @@ M.config = function()
 
   wk.setup(options)
 
-  M.register_keys(wk)
+end
+
+M.config = function()
+  setup()
+  register_keys()
 end
 
 return M

@@ -1,6 +1,6 @@
 local M = {}
 
-M.config = function()
+local function setup()
   local present, treesitter = pcall(require, "nvim-treesitter.configs")
 
   if not present then
@@ -47,6 +47,10 @@ M.config = function()
   }
 
   treesitter.setup(options)
+end
+
+M.config = function()
+  setup()
 end
 
 return M
