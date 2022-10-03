@@ -15,6 +15,10 @@ s.pcall = create_snippet(
   fmt(
     [[
         local {}, {} = pcall(require, "{}")
+        
+        if not {} then
+          return
+        end
     ]],
     {
       insert_node(2, "present"),
@@ -22,6 +26,7 @@ s.pcall = create_snippet(
         return arg[1][1]:gsub("%.", "_")
       end, { 1 }),
       insert_node(1),
+      rep(2)
     }
   )
 )
@@ -36,7 +41,7 @@ s.my_function = create_snippet(
     ]],
     {
       insert_node(1, "my_function"),
-      insert_node(2, "args"),
+      insert_node(2),
       insert_node(3, "-- TODO: something")
     }
   )

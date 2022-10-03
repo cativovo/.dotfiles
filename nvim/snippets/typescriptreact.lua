@@ -22,7 +22,7 @@ s.use_state = create_snippet(
   "us",
   fmt(
     [[
-        const [{}, {}] = useState({});
+        const [{}, {}] = useState({})
     ]],
     {
       insert_node(1, "state"),
@@ -39,7 +39,7 @@ s.use_state_with_type = create_snippet(
   "ust",
   fmt(
     [[
-      const [{}, {}] = useState<{}>({});
+      const [{}, {}] = useState<{}>({})
     ]],
     {
       insert_node(1, "state"),

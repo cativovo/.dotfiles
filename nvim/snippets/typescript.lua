@@ -18,7 +18,7 @@ s.console_log = create_snippet(
   "clg",
   fmt(
     [[
-        console.log({});
+        console.log({})
     ]],
     {
       insert_node(1, "'dito'"),
