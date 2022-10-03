@@ -22,8 +22,54 @@ M.load_keymaps = function(keymaps, mapping_opt)
 end
 
 M.load_general_keymaps = function()
-  local keymaps = require('core.general_keymaps')
+  local keymaps = require("core.general_keymaps")
   M.load_keymaps(keymaps)
+end
+
+-- https://github.com/LunarVim/LunarVim/blob/rolling/lua/lvim/lsp/utils.lua#L183
+-- https://github.com/jose-elias-alvarez/null-ls.nvim/wiki/Avoiding-LSP-formatting-conflicts
+M.disable_format_on_save = function(bufnr)
+  local autocmds = require("core.autocmds")
+  bufnr = bufnr or vim.api.nvim_get_current_buf()
+
+  vim.api.nvim_clear_autocmds({
+    group = autocmds.augroups.format_on_save,
+    buffer = bufnr
+  })
+end
+
+M.enable_format_on_save = function(bufnr)
+  local autocmds = require("core.autocmds")
+  bufnr = bufnr or vim.api.nvim_get_current_buf()
+
+  local clients = vim.lsp.get_active_clients({
+    bufnr = bufnr,
+  })
+
+  for _, client in ipairs(clients) do
+    if client.supports_method("textDocument/formatting") then
+      -- clear existing LspFormatOnSave augroup before creating new one
+      M.disable_format_on_save(bufnr)
+      autocmds.format_on_save(bufnr)
+    end
+  end
+
+end
+
+-- https://github.com/LunarVim/LunarVim/blob/rolling/lua/lvim/core/autocmds.lua#L178
+M.toggle_format_on_save = function()
+  local autocmds = require("core.autocmds")
+
+  local exists, current_autocmds = pcall(vim.api.nvim_get_autocmds, {
+    group = autocmds.augroups.format_on_save,
+    event = autocmds.events.format_on_save,
+  })
+
+  if not exists or #current_autocmds == 0 then
+    M.enable_format_on_save()
+  else
+    M.disable_format_on_save()
+  end
 end
 
 return M

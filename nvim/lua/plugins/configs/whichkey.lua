@@ -20,6 +20,11 @@ local function register_keys()
     -- Telescope
     ["<leader>t"] = {
       name = "Telescope"
+    },
+
+    -- Settings
+    ["<leader>S"] = {
+      name = "Settings"
     }
   })
 end

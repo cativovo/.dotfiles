@@ -1,6 +1,8 @@
 -- general mappings
 -- plugin mappings(except for lsp) are inside of their config
 -- example: plugins/configs/telescope.lua
+local utils = require("core.utils")
+
 return {
   n = {
     -- switch between windows
@@ -11,6 +13,9 @@ return {
 
     -- save
     ["<C-s>"] = { ":w<CR>", "Save File" },
+
+    -- settings
+    ["<leader>Sf"] = { utils.toggle_format_on_save, "Toggle format on save" }
   },
   v = {
     -- Move selected line / block of text in visual mode
