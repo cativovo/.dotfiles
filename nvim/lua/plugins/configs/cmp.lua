@@ -2,9 +2,10 @@ local M = {}
 
 local function setup()
   local cmp_present, cmp = pcall(require, "cmp")
+  local cmp_types_present, cmp_types = pcall(require, "cmp.types");
   local luasnip_present, luasnip = pcall(require, "luasnip")
 
-  if not cmp_present or not luasnip_present then
+  if not cmp_present or not cmp_types_present or not luasnip_present then
     return
   end
 
@@ -52,7 +53,7 @@ local function setup()
   local duplicates = {
     buffer = 1,
     path = 1,
-    nvim_lsp = 0,
+    nvim_lsp = 1,
     luasnip = 1,
   }
 
@@ -82,11 +83,10 @@ local function setup()
       end,
     },
     duplicates = {
-      nvim_lsp = 1,
-      luasnip = 1,
-      cmp_tabnine = 1,
       buffer = 1,
       path = 1,
+      nvim_lsp = 1,
+      luasnip = 1,
     },
     confirm_opts = {
       behavior = cmp.ConfirmBehavior.Replace,
@@ -105,7 +105,12 @@ local function setup()
       keyword_length = 1,
     },
     sources = {
-      { name = "nvim_lsp" },
+      {
+        name = "nvim_lsp",
+        entry_filter = function(entry)
+          return cmp_types.lsp.CompletionItemKind[entry:get_kind()] ~= 'Text'
+        end
+      },
       { name = "luasnip" },
       { name = "buffer" },
       { name = "path" },
@@ -118,7 +123,7 @@ local function setup()
         i = cmp.mapping.abort(),
         c = cmp.mapping.close(),
       }),
-      ["<CR>"] = cmp.mapping.confirm({ select = false }),
+      ["<CR>"] = cmp.mapping.confirm(),
       ["<Tab>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_next_item()

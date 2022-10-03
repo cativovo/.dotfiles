@@ -41,11 +41,11 @@ M.load = function(buffer)
 
       -- diagnostics
       -- non macbook mappings
-      -- ["<A-j>"] = { vim.diagnostic.goto_next, "Next Diagnostic" },
-      -- ["<A-k>"] = { vim.diagnostic.goto_prev, "Prev Diagnostic" },
+      -- ["<A-l>"] = { vim.diagnostic.goto_next, "Next Diagnostic" },
+      -- ["<A-h>"] = { vim.diagnostic.goto_prev, "Prev Diagnostic" },
       -- macbook mappings
-      ["∆"] = { vim.diagnostic.goto_next, "Next Diagnostic" },
-      ["˚"] = { vim.diagnostic.goto_prev, "Prev Diagnostic" },
+      ["¬"] = { vim.diagnostic.goto_next, "Next Diagnostic" },
+      ["˙"] = { vim.diagnostic.goto_prev, "Prev Diagnostic" },
       ["<leader>ll"] = {
         function()
           vim.diagnostic.open_float(0, { scope = 'line' })

@@ -107,6 +107,13 @@ local plugins = {
     end
   },
 
+  {
+    "mattn/emmet-vim",
+    config = function()
+      require("plugins.configs.emmet").config()
+    end
+  },
+
   -- dev setup for init.lua and plugin development with full signature help, docs and completion for the nvim lua api
   {
     "folke/lua-dev.nvim",
