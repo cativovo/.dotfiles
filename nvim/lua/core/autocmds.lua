@@ -11,7 +11,7 @@ M.load = function()
       pattern = "*",
       desc = "Highlight text on yank",
       callback = function()
-        require("vim.highlight").on_yank { higroup = "Search", timeout = 30 }
+        require("vim.highlight").on_yank({ higroup = "Search", timeout = 30 })
       end,
     }
   )

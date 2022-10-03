@@ -30,6 +30,15 @@ local options = {
   undofile = false,
   scrolloff = 0,
   timeoutlen = 500,
+  conceallevel = 0,
+  fileencoding = "utf-8",
+  foldmethod = "manual",
+  foldexpr = "",
+  showmode = false,
+  title = true,
+  numberwidth = 4,
+  ruler = false,
+  laststatus = 3,
 }
 
 

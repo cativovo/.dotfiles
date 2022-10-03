@@ -1,4 +1,3 @@
--- TODO add labels
 local plugins = {
   "wbthomason/packer.nvim",
 
@@ -9,6 +8,7 @@ local plugins = {
     module = "plenary"
   },
 
+  { "kyazdani42/nvim-web-devicons" },
   {
     "kyazdani42/nvim-tree.lua",
     -- ft = "alpha",
@@ -141,6 +141,10 @@ local plugins = {
     config = function()
       require("plugins.configs.git").config()
     end
+  },
+
+  {
+    "iamcco/markdown-preview.nvim",
   },
 
   -- dev setup for init.lua and plugin development with full signature help, docs and completion for the nvim lua api
