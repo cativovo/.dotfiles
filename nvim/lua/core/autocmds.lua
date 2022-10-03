@@ -55,7 +55,6 @@ M.format_on_save = function(bufnr)
       })
     end,
   })
-
 end
 
 return M

@@ -65,6 +65,12 @@ local plugins = {
       require("plugins.configs.lsp").config()
     end,
   },
+  {
+    "RRethy/vim-illuminate",
+    config = function()
+      require("plugins.configs.illuminate").config()
+    end
+  },
   "jose-elias-alvarez/null-ls.nvim",
 
   -- autocomplete/snippet
