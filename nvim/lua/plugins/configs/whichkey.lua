@@ -25,7 +25,12 @@ local function register_keys()
     -- Settings
     ["<leader>S"] = {
       name = "Settings"
-    }
+    },
+
+    -- Git
+    ["<leader>g"] = {
+      name = "Git"
+    },
   })
 end
 

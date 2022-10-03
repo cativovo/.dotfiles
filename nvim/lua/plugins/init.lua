@@ -132,6 +132,17 @@ local plugins = {
     event = "BufReadPost"
   },
 
+  -- git (all plugins related to git have their config in plugins/configs/git.lua)
+  {
+    "tpope/vim-fugitive",
+  },
+  {
+    "lewis6991/gitsigns.nvim",
+    config = function()
+      require("plugins.configs.git").config()
+    end
+  },
+
   -- dev setup for init.lua and plugin development with full signature help, docs and completion for the nvim lua api
   {
     "folke/lua-dev.nvim",
