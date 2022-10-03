@@ -14,6 +14,12 @@ local function load_keymaps()
       ["<leader>tg"] = { telescope_builtin.grep_string, "Grep String" },
       ["<leader>tj"] = { telescope_builtin.jumplist, "Show Jumplist" },
       ["<leader>ts"] = { telescope_builtin.search_history, "Show Search History" },
+      ["<leader>tb"] = { telescope_builtin.buffers, "Show Buffers" },
+      ["<leader>tC"] = { telescope_builtin.commands, "Show Available Commands" },
+      ["<leader>tc"] = { telescope_builtin.command_history, "Show Command History" },
+      ["<leader>tm"] = { telescope_builtin.marks, "Show Marks" },
+      ["<leader>tr"] = { telescope_builtin.registers, "Show Registers" },
+      ["<leader>tS"] = { telescope_builtin.spell_suggest, "Show Spell Suggestions" },
     }
   }
 
