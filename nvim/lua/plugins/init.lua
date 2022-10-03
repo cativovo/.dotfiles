@@ -120,6 +120,18 @@ local plugins = {
     end
   },
 
+  -- comment
+  {
+    "numToStr/Comment.nvim",
+    config = function()
+      require("plugins.configs.comment").config()
+    end
+  },
+  {
+    "JoosepAlviste/nvim-ts-context-commentstring",
+    event = "BufReadPost"
+  },
+
   -- dev setup for init.lua and plugin development with full signature help, docs and completion for the nvim lua api
   {
     "folke/lua-dev.nvim",

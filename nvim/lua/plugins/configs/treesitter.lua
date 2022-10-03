@@ -44,6 +44,10 @@ local function setup()
       -- Instead of true it can also be a list of languages
       additional_vim_regex_highlighting = false,
     },
+    -- https://github.com/JoosepAlviste/nvim-ts-context-commentstring
+    context_commentstring = {
+      enable = true
+    }
   }
 
   treesitter.setup(options)
