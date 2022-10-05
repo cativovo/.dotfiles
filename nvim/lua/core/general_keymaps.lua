@@ -15,11 +15,12 @@ return {
     ["<C-s>"] = { ":w<CR>", "Save File" },
 
     -- settings
-    ["<leader>Sf"] = { utils.toggle_format_on_save, "Toggle format on save" }
+    ["<leader>Sf"] = { utils.toggle_format_on_save, "Toggle Format On Save" }
   },
   v = {
     -- Move selected line / block of text in visual mode
-    ["K"] = { ":move '<-2<CR>gv-gv", "Move Line up" },
-    ["J"] = { ":move '>+1<CR>gv-gv", "Move Line down" },
+    ["K"] = { ":move '<-2<CR>gv-gv", "Move Line Up" },
+    ["J"] = { ":move '>+1<CR>gv-gv", "Move Line Down" },
+    ["<leader>y"] = { '"+y', "Copy To Clipboard" },
   }
 }

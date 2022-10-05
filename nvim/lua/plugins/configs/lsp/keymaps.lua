@@ -23,12 +23,27 @@ M.load = function(buffer)
         "Buffer Diagnostics"
       },
       -- for non mac os
-      -- ["<A-p>"] = { ":lua vim.lsp.buf.formatting_sync(nil, 5000)<CR>", "Format" },
+      -- ["<A-p>"] = {
+      --   function()
+      --     vim.lsp.buf.format({
+      --       filter = function(client)
+      --         -- block format on save if server is tsserver to use null-ls instead
+      --         return client.name ~= "tsserver"
+      --       end,
+      --     })
+      --   end,
+      --   "Format"
+      -- },
       ["π"] = {
         function()
-          local max_timeout = 5000
-          vim.lsp.buf.formatting_sync(nil, max_timeout)
-        end, "Format"
+          vim.lsp.buf.format({
+            filter = function(client)
+              -- block format on save if server is tsserver to use null-ls instead
+              return client.name ~= "tsserver"
+            end,
+          })
+        end,
+        "Format"
       },
       ["<leader>li"] = { ":LspInfo<CR>", "Info" },
       ["<leader>lI"] = { ":Mason<CR>", "Mason Info" },
