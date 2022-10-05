@@ -11,10 +11,16 @@ local function make_transparent()
     "EndOfBuffer",
     "MsgArea",
     "Pmenu",
+    "WhichKeyFloat",
   }
 
   for _, name in ipairs(hl_groups) do
-    vim.cmd(string.format("highlight %s ctermbg=none guibg=none", name))
+    if name == "WhichKeyFloat" then
+      -- https://github.com/folke/which-key.nvim/issues/52#issuecomment-832570589
+      vim.cmd(string.format("highlight %s ctermbg=black guibg=black", name))
+    else
+      vim.cmd(string.format("highlight %s ctermbg=none guibg=none", name))
+    end
   end
 end
 
