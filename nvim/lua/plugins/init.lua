@@ -26,6 +26,11 @@ local plugins = {
       require("plugins.configs.telescope").config()
     end,
   },
+  {
+    "nvim-telescope/telescope-fzf-native.nvim",
+    run = "make"
+  },
+  "nvim-telescope/telescope-ui-select.nvim",
 
   -- TODO fix this
   -- Only load whichkey after all the gui

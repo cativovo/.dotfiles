@@ -39,6 +39,12 @@ local function setup()
     return
   end
 
+  local telescope_themes_present, themes = pcall(require, "telescope.themes")
+
+  if not telescope_themes_present then
+    return
+  end
+
   local options = {
     defaults = {
       file_ignore_patterns = { ".git" },
@@ -70,10 +76,21 @@ local function setup()
         -- the default case_mode is "smart_case"
         case_mode = "smart_case", -- or "ignore_case" or "respect_case"
       },
+      ["ui-select"] = {
+        themes.get_cursor({
+          layout_config = {
+            width = 0.80,
+          },
+        })
+      }
     },
   }
 
   telescope.setup(options)
+
+  -- load extensions
+  telescope.load_extension("ui-select")
+  telescope.load_extension("fzf")
 end
 
 M.config = function()
