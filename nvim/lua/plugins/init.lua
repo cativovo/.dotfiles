@@ -110,6 +110,13 @@ local plugins = {
     end
   },
 
+  {
+    "nvim-lualine/lualine.nvim",
+    config = function()
+      require("plugins.configs.lualine").config()
+    end
+  },
+
   -- theme
   {
     "rebelot/kanagawa.nvim",
