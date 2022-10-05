@@ -53,6 +53,7 @@ local function setup()
       timeout = 200,
     },
     view = {
+      adaptive_size = true,
       width = 30,
       hide_root_folder = false,
       side = "right",
@@ -87,11 +88,11 @@ local function setup()
           symlink = "",
           git = {
             unstaged = "",
-            staged = "S",
+            staged = "+",
             unmerged = "",
             renamed = "➜",
-            deleted = "",
-            untracked = "U",
+            deleted = "✘",
+            untracked = "?",
             ignored = "◌",
           },
           folder = {
