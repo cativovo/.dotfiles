@@ -143,9 +143,16 @@ local plugins = {
     end
   },
 
+  -- utils for development
   {
     "iamcco/markdown-preview.nvim",
+    run = require("plugins.configs.markdown_preview").run,
+    setup = function()
+      require("plugins.configs.markdown_preview").setup()
+    end,
+    ft = require("plugins.configs.markdown_preview").ft,
   },
+  "tpope/vim-surround",
 
   -- dev setup for init.lua and plugin development with full signature help, docs and completion for the nvim lua api
   {
