@@ -1,25 +1,5 @@
 local M = {}
 
-local function load_keys()
-  local present, telescope_builtin = pcall(require, "telescope.builtin")
-
-  if not present then
-    return
-  end
-
-  local keymaps = {
-    n = {
-      -- toggle
-      ["<leader>gs"] = { ":Git<CR>", "Source control" },
-      ["<leader>gb"] = { ":Git blame<CR>", "Blame" },
-      ["<leader>gc"] = { telescope_builtin.git_commits, "Checkout commit" },
-      ["<leader>gC"] = { telescope_builtin.git_branches, "Checkout branch" },
-    }
-  }
-
-  require("core.utils").load_keymaps(keymaps)
-end
-
 local function setup()
   local present, gitsigns = pcall(require, "gitsigns")
 
@@ -72,9 +52,20 @@ local function setup()
   gitsigns.setup(options)
 end
 
+M.load_keymaps = function()
+  local keymaps = {
+    n = {
+      -- toggle
+      ["<leader>gs"] = { ":Git<CR>", "Source control" },
+      ["<leader>gb"] = { ":Git blame<CR>", "Blame" },
+    }
+  }
+
+  require("core.utils").load_keymaps(keymaps)
+end
+
 M.config = function()
   setup()
-  load_keys()
 end
 
 return M

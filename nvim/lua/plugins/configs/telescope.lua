@@ -1,51 +1,5 @@
 local M = {}
 
-local function load_keymaps()
-  local present, telescope_builtin = pcall(require, "telescope.builtin")
-
-  if not present then
-    return
-  end
-
-  local keymaps = {
-    n = {
-      ["<C-p>"] = { telescope_builtin.find_files, "Find Files" },
-      ["<leader>tl"] = { telescope_builtin.live_grep, "Live Grep" },
-      ["<leader>tg"] = { telescope_builtin.grep_string, "Grep String" },
-      ["<leader>tj"] = { telescope_builtin.jumplist, "Show Jumplist" },
-      ["<leader>ts"] = { telescope_builtin.search_history, "Show Search History" },
-      ["<leader>tC"] = { telescope_builtin.commands, "Show Available Commands" },
-      ["<leader>tc"] = { telescope_builtin.command_history, "Show Command History" },
-      ["<leader>tm"] = { telescope_builtin.marks, "Show Marks" },
-      ["<leader>tr"] = { telescope_builtin.registers, "Show Registers" },
-      ["<leader>tS"] = { telescope_builtin.spell_suggest, "Show Spell Suggestions" },
-      ["<leader>b"] = { telescope_builtin.buffers, "Show Buffers" },
-
-      -- lsp stuff
-      -- go to
-      ["<leader>lgd"] = { telescope_builtin.lsp_definitions, "Definition" },
-      ["<leader>lgt"] = { telescope_builtin.lsp_type_definitions, "Type Definition" },
-      ["<leader>lgi"] = { telescope_builtin.lsp_implementations, "Implementation" },
-      ["<leader>lgr"] = { telescope_builtin.lsp_references, "Reference" },
-
-      ["<leader>ld"] = {
-        function()
-          telescope_builtin.diagnostics({ bufnr = 0, theme = "get_ivy" })
-        end,
-        "Buffer Diagnostics"
-      },
-      ["<leader>lw"] = { telescope_builtin.diagnostics, "Diagnostics" },
-
-      ["<leader>ls"] = { telescope_builtin.lsp_document_symbols, "Document Symbols" },
-      ["<leader>lS"] = { telescope_builtin.lsp_dynamic_workspace_symbols, "Workspace Symbols" },
-      ["<leader>le"] = { telescope_builtin.quickfix, "Telescope Quickfix" },
-
-    }
-  }
-
-  require("core.utils").load_keymaps(keymaps)
-end
-
 local function setup()
   local present, telescope = pcall(require, "telescope")
 
@@ -113,9 +67,58 @@ local function setup()
   telescope.load_extension("fzf")
 end
 
+M.load_keymaps = function()
+  local present, telescope_builtin = pcall(require, "telescope.builtin")
+
+  if not present then
+    return
+  end
+
+  local keymaps = {
+    n = {
+      ["<C-p>"] = { telescope_builtin.find_files, "Find Files" },
+      ["<leader>tl"] = { telescope_builtin.live_grep, "Live Grep" },
+      ["<leader>tg"] = { telescope_builtin.grep_string, "Grep String" },
+      ["<leader>tj"] = { telescope_builtin.jumplist, "Show Jumplist" },
+      ["<leader>ts"] = { telescope_builtin.search_history, "Show Search History" },
+      ["<leader>tC"] = { telescope_builtin.commands, "Show Available Commands" },
+      ["<leader>tc"] = { telescope_builtin.command_history, "Show Command History" },
+      ["<leader>tm"] = { telescope_builtin.marks, "Show Marks" },
+      ["<leader>tr"] = { telescope_builtin.registers, "Show Registers" },
+      ["<leader>tS"] = { telescope_builtin.spell_suggest, "Show Spell Suggestions" },
+      ["<leader>b"] = { telescope_builtin.buffers, "Show Buffers" },
+
+      -- lsp stuff
+      -- go to
+      ["<leader>lgd"] = { telescope_builtin.lsp_definitions, "Definition" },
+      ["<leader>lgt"] = { telescope_builtin.lsp_type_definitions, "Type Definition" },
+      ["<leader>lgi"] = { telescope_builtin.lsp_implementations, "Implementation" },
+      ["<leader>lgr"] = { telescope_builtin.lsp_references, "Reference" },
+
+      ["<leader>ld"] = {
+        function()
+          telescope_builtin.diagnostics({ bufnr = 0, theme = "get_ivy" })
+        end,
+        "Buffer Diagnostics"
+      },
+      ["<leader>lw"] = { telescope_builtin.diagnostics, "Diagnostics" },
+
+      ["<leader>ls"] = { telescope_builtin.lsp_document_symbols, "Document Symbols" },
+      ["<leader>lS"] = { telescope_builtin.lsp_dynamic_workspace_symbols, "Workspace Symbols" },
+      ["<leader>le"] = { telescope_builtin.quickfix, "Telescope Quickfix" },
+
+      -- git
+      ["<leader>gc"] = { telescope_builtin.git_commits, "Checkout commit" },
+      ["<leader>gC"] = { telescope_builtin.git_branches, "Checkout branch" },
+    }
+  }
+
+  require("core.utils").load_keymaps(keymaps)
+end
+
+
 M.config = function()
   setup()
-  load_keymaps()
 end
 
 return M
