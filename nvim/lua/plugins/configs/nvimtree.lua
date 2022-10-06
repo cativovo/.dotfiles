@@ -148,7 +148,7 @@ M.load_keymaps = function()
   local keymaps = {
     n = {
       -- toggle
-      ["<leader>e"] = { ":NvimTreeToggle<CR>", "Toggle Nvimtree", opts = { silent = false } }
+      ["<leader>e"] = { ":NvimTreeToggle<CR>", "Toggle Nvimtree" }
     }
   }
 
