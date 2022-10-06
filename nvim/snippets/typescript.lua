@@ -40,6 +40,22 @@ s.arrow_function = create_snippet(
   )
 )
 
+s.arrow_function_empty = create_snippet(
+  "afe",
+  fmt(
+    [[
+        const {} = ({}) => {{
+          {}
+        }}
+    ]],
+    {
+      insert_node(1, "myFunction"),
+      insert_node(2),
+      insert_node(3, "// TODO: do something here"),
+    }
+  )
+)
+
 s.arrow_function_with_return = create_snippet(
   "afr",
   fmt(
