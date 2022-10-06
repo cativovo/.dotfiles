@@ -89,24 +89,57 @@ local plugins = {
 
   -- autocomplete/snippet
   {
+    "L3MON4D3/LuaSnip",
+    opt = true,
+    setup = function()
+      require("core.lazy_load").on_file_open("LuaSnip")
+    end,
+    config = function()
+      require("plugins.configs.luasnip").config()
+    end,
+  },
+  {
     "hrsh7th/nvim-cmp",
+    opt = true,
+    setup = function()
+      require("core.lazy_load").on_file_open("nvim-cmp")
+    end,
     config = function()
       require("plugins.configs.cmp").config()
     end,
+    after = "LuaSnip",
     requires = {
       "L3MON4D3/LuaSnip",
     },
   },
   {
-    "L3MON4D3/LuaSnip",
-    config = function()
-      require("plugins.configs.luasnip").config()
+    "hrsh7th/cmp-nvim-lsp",
+    opt = true,
+    setup = function()
+      require("core.lazy_load").on_file_open("cmp-nvim-lsp")
     end,
   },
-  "hrsh7th/cmp-nvim-lsp",
-  "saadparwaiz1/cmp_luasnip",
-  "hrsh7th/cmp-buffer",
-  "hrsh7th/cmp-path",
+  {
+    "saadparwaiz1/cmp_luasnip",
+    opt = true,
+    setup = function()
+      require("core.lazy_load").on_file_open("cmp_luasnip")
+    end,
+  },
+  {
+    "hrsh7th/cmp-buffer",
+    opt = true,
+    setup = function()
+      require("core.lazy_load").on_file_open("cmp-buffer")
+    end
+  },
+  {
+    "hrsh7th/cmp-path",
+    opt = true,
+    setup = function()
+      require("core.lazy_load").on_file_open("cmp-path")
+    end
+  },
 
   -- treesitter
   {
