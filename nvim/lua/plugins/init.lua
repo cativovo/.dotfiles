@@ -20,8 +20,12 @@ local plugins = {
 
   {
     "nvim-telescope/telescope.nvim",
-    -- cmd = "Telescope",
-    -- module = "telescope",
+    opt = true,
+    cmd = "Telescope",
+    module = "telescope",
+    setup = function()
+      require("core.lazy_load").on_file_open("telescope.nvim")
+    end,
     config = function()
       require("plugins.configs.telescope").config()
     end,
@@ -36,15 +40,12 @@ local plugins = {
   -- Only load whichkey after all the gui
   {
     "folke/which-key.nvim",
-    -- disable = true,
-    -- module = "which-key",
-    -- keys = { "<leader>", '"', "'", "`" },
+    opt = true,
+    module = "which-key",
+    keys = { "<leader>" },
     config = function()
       require("plugins.configs.whichkey").config()
     end,
-    -- setup = function()
-    -- require("core.utils").load_mappings("whichkey")
-    -- end,
   },
 
   -- lsp stuff
@@ -72,6 +73,8 @@ local plugins = {
   },
   {
     "RRethy/vim-illuminate",
+    opt = true,
+    event = "BufReadPost",
     config = function()
       require("plugins.configs.illuminate").config()
     end
@@ -127,6 +130,10 @@ local plugins = {
 
   {
     "mattn/emmet-vim",
+    opt = true,
+    setup = function()
+      require("core.lazy_load").on_file_open("emmet-vim")
+    end,
     config = function()
       require("plugins.configs.emmet").config()
     end
@@ -135,21 +142,36 @@ local plugins = {
   -- comment
   {
     "numToStr/Comment.nvim",
+    opt = true,
+    setup = function()
+      require("core.lazy_load").on_file_open("Comment.nvim")
+    end,
     config = function()
       require("plugins.configs.comment").config()
     end
   },
   {
     "JoosepAlviste/nvim-ts-context-commentstring",
-    event = "BufReadPost"
+    opt = true,
+    setup = function()
+      require("core.lazy_load").on_file_open("nvim-ts-context-commentstring")
+    end
   },
 
   -- git (all plugins related to git have their config in plugins/configs/git.lua)
   {
     "tpope/vim-fugitive",
+    opt = true,
+    cmd = "Git",
+    setup = function()
+      require("core.lazy_load").on_file_open("vim-fugitive")
+    end,
   },
   {
     "lewis6991/gitsigns.nvim",
+    setup = function()
+      require("core.lazy_load").on_file_open("gitsigns.nvim")
+    end,
     config = function()
       require("plugins.configs.git").config()
     end
@@ -158,18 +180,28 @@ local plugins = {
   -- utils for development
   {
     "iamcco/markdown-preview.nvim",
+    opt = true,
     run = require("plugins.configs.markdown_preview").run,
     setup = function()
+      require("core.lazy_load").on_file_open("markdown-preview.nvim")
       require("plugins.configs.markdown_preview").setup()
     end,
     ft = require("plugins.configs.markdown_preview").ft,
   },
-  "tpope/vim-surround",
+  {
+    "tpope/vim-surround",
+    opt = true,
+    setup = function()
+      require("core.lazy_load").on_file_open("vim-surround")
+    end,
+
+  },
 
   -- dev setup for init.lua and plugin development with full signature help, docs and completion for the nvim lua api
   {
     "folke/lua-dev.nvim",
     module = "lua-dev",
+    ft = { "lua" },
   },
 }
 
