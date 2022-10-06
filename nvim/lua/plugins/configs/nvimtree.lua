@@ -1,17 +1,6 @@
 local M = {}
 
 
-local function load_keymaps()
-  local keymaps = {
-    n = {
-      -- toggle
-      ["<leader>e"] = { ":NvimTreeToggle<CR>", "Toggle Nvimtree" }
-    }
-  }
-
-  require("core.utils").load_keymaps(keymaps)
-end
-
 local function setup()
   local present, nvimtree = pcall(require, "nvim-tree")
 
@@ -155,9 +144,19 @@ local function setup()
   nvimtree.setup(options)
 end
 
+M.load_keymaps = function()
+  local keymaps = {
+    n = {
+      -- toggle
+      ["<leader>e"] = { ":NvimTreeToggle<CR>", "Toggle Nvimtree", opts = { silent = false } }
+    }
+  }
+
+  require("core.utils").load_keymaps(keymaps)
+end
+
 M.config = function()
   setup()
-  load_keymaps()
 end
 
 return M

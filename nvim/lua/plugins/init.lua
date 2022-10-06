@@ -11,8 +11,11 @@ local plugins = {
   { "kyazdani42/nvim-web-devicons" },
   {
     "kyazdani42/nvim-tree.lua",
-    -- ft = "alpha",
-    -- cmd = { "NvimTreeToggle" },
+    opt = true,
+    cmd = "NvimTreeToggle",
+    setup = function()
+      require("plugins.configs.nvimtree").load_keymaps()
+    end,
     config = function()
       require("plugins.configs.nvimtree").config()
     end,
@@ -24,11 +27,12 @@ local plugins = {
     cmd = "Telescope",
     module = "telescope",
     setup = function()
-      require("core.lazy_load").on_file_open("telescope.nvim")
+      require("plugins.configs.telescope").load_keymaps()
     end,
     config = function()
       require("plugins.configs.telescope").config()
     end,
+    requires = { "telescope-fzf-native.nvim", "telescope-ui-select.nvim" }
   },
   {
     "nvim-telescope/telescope-fzf-native.nvim",
@@ -74,7 +78,9 @@ local plugins = {
   {
     "RRethy/vim-illuminate",
     opt = true,
-    event = "BufReadPost",
+    setup = function()
+      require("core.lazy_load").on_file_open("vim-illuminate")
+    end,
     config = function()
       require("plugins.configs.illuminate").config()
     end
@@ -164,11 +170,12 @@ local plugins = {
     opt = true,
     cmd = "Git",
     setup = function()
-      require("core.lazy_load").on_file_open("vim-fugitive")
+      require("plugins.configs.git").load_keymaps()
     end,
   },
   {
     "lewis6991/gitsigns.nvim",
+    opt = true,
     setup = function()
       require("core.lazy_load").on_file_open("gitsigns.nvim")
     end,
