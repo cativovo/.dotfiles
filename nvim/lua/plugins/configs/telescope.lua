@@ -20,6 +20,26 @@ local function load_keymaps()
       ["<leader>tr"] = { telescope_builtin.registers, "Show Registers" },
       ["<leader>tS"] = { telescope_builtin.spell_suggest, "Show Spell Suggestions" },
       ["<leader>b"] = { telescope_builtin.buffers, "Show Buffers" },
+
+      -- lsp stuff
+      -- go to
+      ["<leader>lgd"] = { telescope_builtin.lsp_definitions, "Definition" },
+      ["<leader>lgt"] = { telescope_builtin.lsp_type_definitions, "Type Definition" },
+      ["<leader>lgi"] = { telescope_builtin.lsp_implementations, "Implementation" },
+      ["<leader>lgr"] = { telescope_builtin.lsp_references, "Reference" },
+
+      ["<leader>ld"] = {
+        function()
+          telescope_builtin.diagnostics({ bufnr = 0, theme = "get_ivy" })
+        end,
+        "Buffer Diagnostics"
+      },
+      ["<leader>lw"] = { telescope_builtin.diagnostics, "Diagnostics" },
+
+      ["<leader>ls"] = { telescope_builtin.lsp_document_symbols, "Document Symbols" },
+      ["<leader>lS"] = { telescope_builtin.lsp_dynamic_workspace_symbols, "Workspace Symbols" },
+      ["<leader>le"] = { telescope_builtin.quickfix, "Telescope Quickfix" },
+
     }
   }
 
