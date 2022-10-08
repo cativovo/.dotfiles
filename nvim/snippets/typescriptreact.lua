@@ -164,6 +164,27 @@ s.use_callback = create_snippet("uc", fmt(
   }
 ))
 
+s.use_ref = create_snippet("ur", fmt(
+  [[
+    const {} = useRef({})
+  ]],
+  {
+    insert_node(1, "ref"),
+    insert_node(2),
+  }
+))
+
+s.use_ref_with_type = create_snippet("urt", fmt(
+  [[
+    const {} = useRef<{}>({})
+  ]],
+  {
+    insert_node(1, "ref"),
+    insert_node(2),
+    insert_node(3),
+  }
+))
+
 -- components
 s.react_functional_component = create_snippet(
   "rfc",
