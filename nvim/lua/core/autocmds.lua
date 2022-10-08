@@ -47,6 +47,7 @@ M.format_on_save = function(bufnr)
     buffer = bufnr,
     callback = function()
       vim.lsp.buf.format({
+        timeout_ms = 10000,
         filter = function(client)
           -- block format on save if server is tsserver to use null-ls instead
           return client.name ~= "tsserver"
