@@ -108,8 +108,9 @@ M.load_keymaps = function()
       ["<leader>le"] = { telescope_builtin.quickfix, "Telescope Quickfix" },
 
       -- git
-      ["<leader>gc"] = { telescope_builtin.git_commits, "Checkout commit" },
-      ["<leader>gC"] = { telescope_builtin.git_branches, "Checkout branch" },
+      ["<leader>gc"] = { telescope_builtin.git_commits, "Commits" },
+      ["<leader>gC"] = { telescope_builtin.git_branches, "Branches" },
+      ["<leader>gS"] = { telescope_builtin.git_stash, "Stash" },
     }
   }
 
