@@ -26,11 +26,16 @@ M.load = function()
 
   autocmd("InsertEnter",
     {
-      pattern = "*.*",
+      pattern = "*",
       desc = "Set to nornu",
       command = "set nornu",
     }
   )
+
+  autocmd({ "BufWinEnter", "BufRead", "BufNewFile" }, {
+    pattern = "*",
+    command = "setlocal formatoptions-=c formatoptions-=r formatoptions-=o"
+  })
 end
 
 M.augroups = {
