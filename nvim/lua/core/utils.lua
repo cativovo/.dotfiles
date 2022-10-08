@@ -26,6 +26,17 @@ M.load_general_keymaps = function()
   M.load_keymaps(keymaps)
 end
 
+M.format_on_save = function(bufnr)
+  vim.lsp.buf.format({
+    timeout_ms = 10000,
+    filter = function(client)
+      -- block format on save if server is tsserver to use null-ls instead
+      return client.name ~= "tsserver"
+    end,
+    bufnr = bufnr,
+  })
+end
+
 -- https://github.com/LunarVim/LunarVim/blob/rolling/lua/lvim/lsp/utils.lua#L183
 -- https://github.com/jose-elias-alvarez/null-ls.nvim/wiki/Avoiding-LSP-formatting-conflicts
 M.disable_format_on_save = function(bufnr)
@@ -50,7 +61,7 @@ M.enable_format_on_save = function(bufnr)
     if client.supports_method("textDocument/formatting") then
       -- clear existing LspFormatOnSave augroup before creating new one
       M.disable_format_on_save(bufnr)
-      autocmds.format_on_save(bufnr)
+      autocmds.format_on_save(bufnr, M.format_on_save)
     end
   end
 

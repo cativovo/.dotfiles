@@ -46,19 +46,12 @@ M.events = {
   format_on_save = "BufWritePre"
 }
 
-M.format_on_save = function(bufnr)
+M.format_on_save = function(bufnr, callback)
   vim.api.nvim_create_autocmd(M.events.format_on_save, {
     group = M.augroups.format_on_save,
     buffer = bufnr,
     callback = function()
-      vim.lsp.buf.format({
-        timeout_ms = 10000,
-        filter = function(client)
-          -- block format on save if server is tsserver to use null-ls instead
-          return client.name ~= "tsserver"
-        end,
-        bufnr = bufnr,
-      })
+      callback(bufnr)
     end,
   })
 end

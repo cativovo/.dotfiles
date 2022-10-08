@@ -1,30 +1,18 @@
 local M = {}
 
 M.load = function(buffer)
+  local utils = require("core.utils")
+
   local keymaps = {
     n = {
       ["<leader>la"] = { vim.lsp.buf.code_action, "Code Action" },
       -- for non mac os
       -- ["<A-p>"] = {
-      --   function()
-      --     vim.lsp.buf.format({
-      --       filter = function(client)
-      --         -- block format on save if server is tsserver to use null-ls instead
-      --         return client.name ~= "tsserver"
-      --       end,
-      --     })
-      --   end,
+      -- utils.format_on_save,
       --   "Format"
       -- },
       ["π"] = {
-        function()
-          vim.lsp.buf.format({
-            filter = function(client)
-              -- block format on save if server is tsserver to use null-ls instead
-              return client.name ~= "tsserver"
-            end,
-          })
-        end,
+        utils.format_on_save,
         "Format"
       },
       ["<leader>li"] = { ":LspInfo<CR>", "Info" },
