@@ -26,6 +26,7 @@ local function setup()
       layout_strategy = "vertical",
       layout_config = {
         vertical = {
+          preview_cutoff = 0,
           prompt_position = "top",
           mirror = true,
           preview_height = .60,
@@ -109,7 +110,7 @@ M.load_keymaps = function()
 
       -- git
       ["<leader>gc"] = { telescope_builtin.git_commits, "Commits" },
-      ["<leader>gC"] = { telescope_builtin.git_branches, "Branches" },
+      ["<leader>gB"] = { telescope_builtin.git_branches, "Branches" },
       ["<leader>gS"] = { telescope_builtin.git_stash, "Stash" },
     }
   }
