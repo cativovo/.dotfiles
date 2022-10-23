@@ -29,7 +29,7 @@ local function setup()
           preview_cutoff = 0,
           prompt_position = "top",
           mirror = true,
-          preview_height = .60,
+          preview_height = .70,
         },
         width = 0.90,
         height = 0.99,
