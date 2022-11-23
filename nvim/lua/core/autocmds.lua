@@ -5,6 +5,7 @@ local create_augroup = vim.api.nvim_create_augroup
 M.augroups = {
   format_on_save = create_augroup("LspFormatOnSave", {}),
   toggle_number = create_augroup("ToggleNumber", {}),
+  remember_folds = create_augroup("RememberFolds", {}),
 }
 
 M.events = {
@@ -41,6 +42,19 @@ M.toggle_number = function()
   )
 end
 
+M.remember_folds = function()
+  autocmd({ "BufLeave", M.events.format_on_save }, {
+    group = M.augroups.remember_folds,
+    pattern = "*.*",
+    command = "silent! mkview"
+  })
+  autocmd("BufWinEnter", {
+    group = M.augroups.remember_folds,
+    pattern = "*.*",
+    command = "silent! loadview"
+  })
+end
+
 M.load = function()
   -- general autocmds
   autocmd("TextYankPost",
@@ -59,6 +73,7 @@ M.load = function()
   })
 
   M.toggle_number()
+  M.remember_folds()
 end
 
 return M
