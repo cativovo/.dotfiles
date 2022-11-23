@@ -234,7 +234,13 @@ local plugins = {
     setup = function()
       require("core.lazy_load").on_file_open("vim-surround")
     end,
-
+  },
+  {
+    "editorconfig/editorconfig-vim",
+    opt = true,
+    setup = function()
+      require("core.lazy_load").on_file_open("editorconfig-vim")
+    end,
   },
 
   -- dev setup for init.lua and plugin development with full signature help, docs and completion for the nvim lua api
