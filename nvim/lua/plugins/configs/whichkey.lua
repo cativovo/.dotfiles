@@ -57,10 +57,13 @@ local register_keys = function(which_key)
   local keymaps = require("core.keymaps")
   local opts = { prefix = "<leader>" }
 
+  -- Builtin
+  which_key.register(keymaps.builtin.normal)
+  which_key.register(keymaps.builtin.visual, { mode = "v" })
   -- File Explorer
-  which_key.register(keymaps.file_explorer)
+  which_key.register(keymaps.file_explorer.normal)
   -- Git
-  which_key.register(keymaps.git, opts)
+  which_key.register(keymaps.git.normal, opts)
 end
 
 M.setup = function()
