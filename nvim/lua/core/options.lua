@@ -41,9 +41,10 @@ local options = {
   laststatus = 3,
 }
 
-
 local opt = vim.opt
 
 for key, value in pairs(options) do
   opt[key] = value
 end
+-- set leader key
+vim.g.mapleader = " "
