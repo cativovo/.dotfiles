@@ -27,7 +27,7 @@ keymaps.builtin = {
 -- File explorer
 keymaps.file_explorer = {
   normal = {
-    ["<leader>e"] = {
+    e = {
       "<cmd>NvimTreeToggle<cr>",
       "Toggle File Explorer"
     }
@@ -40,7 +40,29 @@ keymaps.git = {
     g = {
       name = "Git",
       s = {"<cmd>Git<cr>", "Source Control"},
-      b = {"<cmd>Git blame<cr>", "Blame"}
+      b = {"<cmd>Git blame<cr>", "Blame"},
+      c = { "<cmd>Telescope git_commits<cr>", "Commits" },
+      B = { "<cmd>Telescope git_branches<cr>", "Branches" },
+      S = { "<cmd>Telescope git_stash<cr>", "Stash" },
+    }
+  }
+}
+
+-- Telescope
+keymaps.telescope = {
+  normal = {
+    ["<C-p>"] = { "<cmd>Telescope find_files<cr>", "Find Files" },
+    ["<leader>t"] = {
+      name = "Telescope",
+      l = { "<cmd>Telescope live_grep<cr>", "Live Grep" },
+      g = { "<cmd>Telescope grep_string<cr>", "Grep String" },
+      j = { "<cmd>Telescope jumplist<cr>", "Show Jumplist" },
+      s = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Show Search History" },
+      C = { "<cmd>Telescope commands<cr>", "Show Available Commands" },
+      c = { "<cmd>Telescope command_history<cr>", "Show Command History" },
+      m = { "<cmd>Telescope marks<cr>", "Show Marks" },
+      r = { "<cmd>Telescope registers<cr>", "Show Registers" },
+      S = { "<cmd>Telescope spell_suggest<cr>", "Show Spell Suggestions" },
     }
   }
 }

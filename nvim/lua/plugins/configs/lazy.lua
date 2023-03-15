@@ -34,6 +34,22 @@ local plugins = {
 			require("plugins.configs.whichkey").setup()
 		end
 	},
+  -- telescope
+  {
+    "nvim-telescope/telescope.nvim",
+    config = function()
+			require("plugins.configs.telescope").setup()
+    end,
+    dependencies = {
+      {
+       -- https://github.com/nvim-telescope/telescope-fzf-native.nvim/issues/96v
+       "nvim-telescope/telescope-fzf-native.nvim",
+       build = "make",
+       lazy = false
+      },
+     "nvim-telescope/telescope-ui-select.nvim"
+    }
+  },
 
 
 	-- git integration
