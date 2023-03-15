@@ -40,7 +40,13 @@ local plugins = {
 	{
 		"tpope/vim-fugitive",
 		cmd = { "Git" },
-	}
+	},
+  {
+    "lewis6991/gitsigns.nvim",
+    config = function()
+      require("plugins.configs.gitsigns").setup()
+    end
+  }
 }
 
 local opts = {}
