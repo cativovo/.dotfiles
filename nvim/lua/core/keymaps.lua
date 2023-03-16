@@ -24,6 +24,9 @@ keymaps.builtin = {
 
 
 -- Plugins
+local telescope_builtin = require("telescope.builtin")
+local telescope_actions = require("telescope.actions")
+
 -- File explorer
 keymaps.file_explorer = {
   normal = {
@@ -41,9 +44,9 @@ keymaps.git = {
       name = "Git",
       s = {"<cmd>Git<cr>", "Source Control"},
       b = {"<cmd>Git blame<cr>", "Blame"},
-      c = { "<cmd>Telescope git_commits<cr>", "Commits" },
-      B = { "<cmd>Telescope git_branches<cr>", "Branches" },
-      S = { "<cmd>Telescope git_stash<cr>", "Stash" },
+      c = { telescope_builtin.git_commits, "Commits" },
+      B = { telescope_builtin.git_branches, "Branches" },
+      S = { telescope_builtin.git_stash, "Stash" },
     }
   }
 }
@@ -51,20 +54,28 @@ keymaps.git = {
 -- Telescope
 keymaps.telescope = {
   normal = {
-    ["<C-p>"] = { "<cmd>Telescope find_files<cr>", "Find Files" },
+    ["<C-p>"] = { telescope_builtin.find_files, "Find Files" },
     ["<leader>t"] = {
       name = "Telescope",
-      l = { "<cmd>Telescope live_grep<cr>", "Live Grep" },
-      g = { "<cmd>Telescope grep_string<cr>", "Grep String" },
-      j = { "<cmd>Telescope jumplist<cr>", "Show Jumplist" },
-      s = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Show Search History" },
-      C = { "<cmd>Telescope commands<cr>", "Show Available Commands" },
-      c = { "<cmd>Telescope command_history<cr>", "Show Command History" },
-      m = { "<cmd>Telescope marks<cr>", "Show Marks" },
-      r = { "<cmd>Telescope registers<cr>", "Show Registers" },
-      S = { "<cmd>Telescope spell_suggest<cr>", "Show Spell Suggestions" },
+      l = { telescope_builtin.live_grep, "Live Grep" },
+      g = { telescope_builtin.grep_string, "Grep String" },
+      j = { telescope_builtin.jumplist, "Show Jumplist" },
+      s = { telescope_builtin.current_buffer_fuzzy_find, "Show Search History" },
+      C = { telescope_builtin.commands, "Show Available Commands" },
+      c = { telescope_builtin.command_history, "Show Command History" },
+      m = { telescope_builtin.marks, "Show Marks" },
+      r = { telescope_builtin.registers, "Show Registers" },
+      S = { telescope_builtin.spell_suggest, "Show Spell Suggestions" },
     }
-  }
+  },
+  setup = {
+      i = {
+        ["<Tab>"] = telescope_actions.move_selection_next,
+        ["<S-Tab>"] = telescope_actions.move_selection_previous,
+        ["<Down>"] = telescope_actions.toggle_selection + telescope_actions.move_selection_worse,
+        ["<Up>"] = telescope_actions.toggle_selection + telescope_actions.move_selection_better,
+      },
+    }
 }
 
 return keymaps

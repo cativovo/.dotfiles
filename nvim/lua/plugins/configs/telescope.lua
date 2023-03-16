@@ -1,10 +1,9 @@
 local M = {}
 
-local get_opts = function()
-  local actions = require("telescope.actions")
-  local themes = require("telescope.themes")
+local themes = require("telescope.themes")
+local keymaps = require("core.keymaps")
 
-  return {
+local opts =  {
   defaults = {
     file_ignore_patterns = { ".git" },
     sorting_strategy = "ascending",
@@ -19,14 +18,7 @@ local get_opts = function()
       width = 0.90,
       height = 0.99,
     },
-    mappings = {
-      i = {
-        ["<Tab>"] = actions.move_selection_next,
-        ["<S-Tab>"] = actions.move_selection_previous,
-        ["<Down>"] = actions.toggle_selection + actions.move_selection_worse,
-        ["<Up>"] = actions.toggle_selection + actions.move_selection_better,
-      },
-    }
+    mappings = keymaps.telescope.setup
   },
   extensions = {
     fzf = {
@@ -45,13 +37,12 @@ local get_opts = function()
     }
   },
 }
-end
 
 M.setup = function()
   local telescope = require("telescope")
-  telescope.setup(get_opts())
+  telescope.setup(opts)
 
-    -- load extensions
+  -- load extensions
   telescope.load_extension("ui-select")
   telescope.load_extension("fzf")
 end
