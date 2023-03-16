@@ -66,16 +66,27 @@ keymaps.telescope = {
       m = { telescope_builtin.marks, "Show Marks" },
       r = { telescope_builtin.registers, "Show Registers" },
       S = { telescope_builtin.spell_suggest, "Show Spell Suggestions" },
-    }
+    },
+    ["<leader>b"] = { telescope_builtin.buffers, "Show Buffers" },
   },
   setup = {
-      i = {
-        ["<Tab>"] = telescope_actions.move_selection_next,
-        ["<S-Tab>"] = telescope_actions.move_selection_previous,
-        ["<Down>"] = telescope_actions.toggle_selection + telescope_actions.move_selection_worse,
-        ["<Up>"] = telescope_actions.toggle_selection + telescope_actions.move_selection_better,
-      },
-    }
+    i = {
+      ["<Tab>"] = telescope_actions.move_selection_next,
+      ["<S-Tab>"] = telescope_actions.move_selection_previous,
+      ["<Down>"] = telescope_actions.toggle_selection + telescope_actions.move_selection_worse,
+      ["<Up>"] = telescope_actions.toggle_selection + telescope_actions.move_selection_better,
+    },
+  }
+}
+
+-- Treesitter
+keymaps.treesitter = {
+  setup = {
+    init_selection = "<C-Space>",
+    node_incremental = "<C-Space>",
+    scope_incremental = "grc",
+    node_decremental = "<BS>",
+  }
 }
 
 return keymaps

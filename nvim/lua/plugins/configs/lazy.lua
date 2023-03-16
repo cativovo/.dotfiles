@@ -50,6 +50,15 @@ local plugins = {
      "nvim-telescope/telescope-ui-select.nvim"
     }
   },
+  -- treesitter
+  {
+    "nvim-treesitter/nvim-treesitter" ,
+    build = ":TSUpdate",
+    event = { "BufReadPost", "BufNewFile" },
+    config = function()
+			require("plugins.configs.treesitter").setup()
+    end,
+  },
 
 
 	-- git integration
