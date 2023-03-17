@@ -1,5 +1,5 @@
 local options = {
-  completeopt = { "menuone", "noselect" },
+  completeopt = "menuone,noselect",
   expandtab = true,
   tabstop = 2,
   softtabstop = 2,
@@ -41,10 +41,8 @@ local options = {
   laststatus = 3,
 }
 
-local opt = vim.opt
-
 for key, value in pairs(options) do
-  opt[key] = value
+  vim.opt[key] = value
 end
 -- set leader key
 vim.g.mapleader = " "

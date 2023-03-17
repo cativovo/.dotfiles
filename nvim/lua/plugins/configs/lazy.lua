@@ -3,51 +3,51 @@ local M = {}
 -- install lazy.nvim if not yet installed
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-	vim.fn.system({
-		"git",
-		"clone",
-		"--filter=blob:none",
-		"https://github.com/folke/lazy.nvim.git",
-		"--branch=stable", -- latest stable release
-		lazypath,
-	})
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
 end
 vim.opt.rtp:prepend(lazypath)
 
 local plugins = {
-	{
-		"nvim-lua/plenary.nvim",
-		lazy = true
-	},
-	-- file explorer
-	{
-		"nvim-tree/nvim-tree.lua",
-		cmd = { "NvimTreeToggle", "NvimTreeFocus" },
-		config = function()
-			require("plugins.configs.nvimtree").setup()
-		end
-	},
-	-- keymaps
-	{
-		"folke/which-key.nvim",
-		config = function()
-			require("plugins.configs.whichkey").setup()
-		end
-	},
+  {
+    "nvim-lua/plenary.nvim",
+    lazy = true
+  },
+  -- file explorer
+  {
+    "nvim-tree/nvim-tree.lua",
+    cmd = { "NvimTreeToggle", "NvimTreeFocus" },
+    config = function()
+      require("plugins.configs.nvimtree").setup()
+    end
+  },
+  -- keymaps
+  {
+    "folke/which-key.nvim",
+    config = function()
+      require("plugins.configs.whichkey").setup()
+    end
+  },
   -- telescope
   {
     "nvim-telescope/telescope.nvim",
     config = function()
-			require("plugins.configs.telescope").setup()
+      require("plugins.configs.telescope").setup()
     end,
     dependencies = {
       {
-       -- https://github.com/nvim-telescope/telescope-fzf-native.nvim/issues/96v
-       "nvim-telescope/telescope-fzf-native.nvim",
-       build = "make",
-       lazy = false
+        -- https://github.com/nvim-telescope/telescope-fzf-native.nvim/issues/96v
+        "nvim-telescope/telescope-fzf-native.nvim",
+        build = "make",
+        lazy = false
       },
-     "nvim-telescope/telescope-ui-select.nvim"
+      "nvim-telescope/telescope-ui-select.nvim"
     }
   },
   -- treesitter
@@ -56,28 +56,52 @@ local plugins = {
     build = ":TSUpdate",
     event = { "BufReadPost", "BufNewFile" },
     config = function()
-			require("plugins.configs.treesitter").setup()
+      require("plugins.configs.treesitter").setup()
     end,
   },
-
-
-	-- git integration
-	{
-		"tpope/vim-fugitive",
-		cmd = { "Git" },
-	},
+  -- LSP
   {
-    "lewis6991/gitsigns.nvim",
-    config = function()
-      require("plugins.configs.gitsigns").setup()
+    "neovim/nvim-lspconfig",
+    event = { "BufReadPre", "BufNewFile" },
+    dependencies = {
+      "mason.nvim",
+      "williamboman/mason-lspconfig.nvim",
+      --			{
+        --				"hrsh7th/cmp-nvim-lsp",
+        --				cond = function()
+          --					return require("lazyvim.util").has("nvim-cmp")
+          --				end,
+          --			},
+        },
+        config = function()
+          require("plugins.configs.lsp").setup()
+        end
+      },
+      {
+
+        "williamboman/mason.nvim",
+        cmd = "Mason",
+        config = true,
+      },
+
+
+      -- git integration
+      {
+        "tpope/vim-fugitive",
+        cmd = { "Git" },
+      },
+      {
+        "lewis6991/gitsigns.nvim",
+        config = function()
+          require("plugins.configs.gitsigns").setup()
+        end
+      }
+    }
+
+    local opts = {}
+
+    M.load_plugins = function() 
+      require("lazy").setup(plugins, opts)
     end
-  }
-}
 
-local opts = {}
-
-M.load_plugins = function() 
-	require("lazy").setup(plugins, opts)
-end
-
-return M
+    return M

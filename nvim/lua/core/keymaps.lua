@@ -89,4 +89,58 @@ keymaps.treesitter = {
   }
 }
 
+-- LSP
+keymaps.lsp = {
+  normal = {
+    ["<leader>l"] = {
+      name = "LSP",
+      g = {
+        name = "Go to",
+        d = { telescope_builtin.lsp_definitions, "Definition" },
+        t = { telescope_builtin.lsp_type_definitions, "Type Definition" },
+        i = { telescope_builtin.lsp_implementations, "Implementation" },
+        r = { telescope_builtin.lsp_references, "Reference" },
+      },
+      d = {
+        function()
+          telescope_builtin.diagnostics({ bufnr = 0, theme = "get_ivy" })
+        end,
+        "Buffer Diagnostics"
+      },
+      s = { telescope_builtin.lsp_document_symbols, "Document Symbols" },
+      S = { telescope_builtin.lsp_dynamic_workspace_symbols, "Workspace Symbols" },
+      {
+      a = { vim.lsp.buf.code_action, "Code Action" },
+      -- for non mac os
+      -- ["<A-p>"] = {
+      -- utils.format_on_save,
+      --   "Format"
+      -- },
+    --  ["π"] = {
+    --    utils.format_on_save,
+    --    "Format"
+    --  },
+      i = { ":LspInfo<CR>", "Info" },
+      I = { ":Mason<CR>", "Mason Info" },
+      r = { vim.lsp.buf.rename, "Rename" },
+      l = {
+        function()
+          vim.diagnostic.open_float(0, { scope = 'line' })
+        end,
+        "Show Current Line Diagnostic"
+      },
+    }
+    }, 
+    {
+      K = { vim.lsp.buf.hover, "Show hover" },
+      -- non macbook mappings
+      -- ["<A-l>"] = { vim.diagnostic.goto_next, "Next Diagnostic" },
+      -- ["<A-h>"] = { vim.diagnostic.goto_prev, "Prev Diagnostic" },
+      -- macbook mappings
+      ["¬"] = { vim.diagnostic.goto_next, "Next Diagnostic" },
+      ["˙"] = { vim.diagnostic.goto_prev, "Prev Diagnostic" },
+    }
+  }
+}
+
 return keymaps
