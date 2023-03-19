@@ -52,7 +52,7 @@ local plugins = {
   },
   -- treesitter
   {
-    "nvim-treesitter/nvim-treesitter" ,
+    "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     event = { "BufReadPost", "BufNewFile" },
     config = function()
@@ -67,41 +67,69 @@ local plugins = {
       "mason.nvim",
       "williamboman/mason-lspconfig.nvim",
       --			{
-        --				"hrsh7th/cmp-nvim-lsp",
-        --				cond = function()
-          --					return require("lazyvim.util").has("nvim-cmp")
-          --				end,
-          --			},
-        },
-        config = function()
-          require("plugins.configs.lsp").setup()
-        end
-      },
-      {
-
-        "williamboman/mason.nvim",
-        cmd = "Mason",
-        config = true,
-      },
-
-
-      -- git integration
-      {
-        "tpope/vim-fugitive",
-        cmd = { "Git" },
-      },
-      {
-        "lewis6991/gitsigns.nvim",
-        config = function()
-          require("plugins.configs.gitsigns").setup()
-        end
-      }
-    }
-
-    local opts = {}
-
-    M.load_plugins = function() 
-      require("lazy").setup(plugins, opts)
+      --				"hrsh7th/cmp-nvim-lsp",
+      --				cond = function()
+      --					return require("lazyvim.util").has("nvim-cmp")
+      --				end,
+      --			},
+    },
+    config = function()
+      require("plugins.configs.lsp").setup()
     end
+  },
+  {
+    "williamboman/mason.nvim",
+    cmd = "Mason",
+    config = true,
+  },
+  -- auto completion
+  {
+    "hrsh7th/nvim-cmp",
+    event = "InsertEnter",
+    dependencies = {
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path",
+      "saadparwaiz1/cmp_luasnip",
+      "LuaSnip"
+    },
+    config = function()
+      require("plugins.configs.cmp").setup()
+    end
+  },
+  -- snippets
+   -- snippets
+  {
+    "L3MON4D3/LuaSnip",
+    dependencies = {
+      "rafamadriz/friendly-snippets",
+      config = function()
+        require("luasnip.loaders.from_vscode").lazy_load()
+      end,
+    },
+    config = function ()
+     require("plugins.configs.luasnip").setup()
+    end
+  },
 
-    return M
+
+  -- git integration
+  {
+    "tpope/vim-fugitive",
+    cmd = { "Git" },
+  },
+  {
+    "lewis6991/gitsigns.nvim",
+    config = function()
+      require("plugins.configs.gitsigns").setup()
+    end
+  }
+}
+
+local opts = {}
+
+M.load_plugins = function()
+  require("lazy").setup(plugins, opts)
+end
+
+return M

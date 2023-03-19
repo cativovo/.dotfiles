@@ -1,9 +1,10 @@
 local M = {}
 
 local themes = require("telescope.themes")
-local keymaps = require("core.keymaps")
+local telescope_builtin = require("telescope.builtin")
+local telescope_actions = require("telescope.actions");
 
-local opts =  {
+local opts = {
   defaults = {
     file_ignore_patterns = { ".git" },
     sorting_strategy = "ascending",
@@ -18,15 +19,15 @@ local opts =  {
       width = 0.90,
       height = 0.99,
     },
-    mappings = keymaps.telescope.setup
+    mappings = require("core.keymaps").telescope.get("setup", telescope_actions)
   },
   extensions = {
     fzf = {
-      fuzzy = true, -- false will only do exact matching
+      fuzzy = true,                   -- false will only do exact matching
       override_generic_sorter = true, -- override the generic sorter
-      override_file_sorter = true, -- override the file sorter
+      override_file_sorter = true,    -- override the file sorter
       -- the default case_mode is "smart_case"
-      case_mode = "smart_case", -- or "ignore_case" or "respect_case"
+      case_mode = "smart_case",       -- or "ignore_case" or "respect_case"
     },
     ["ui-select"] = {
       themes.get_cursor({
