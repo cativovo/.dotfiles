@@ -14,4 +14,54 @@ M.autoformat = function(buf)
 	})
 end
 
+M.toggle_number = function()
+	local group = vim.api.nvim_create_augroup("ToggleNumber", {})
+
+	vim.api.nvim_create_autocmd("InsertLeave", {
+		group = group,
+		pattern = "*.*",
+		desc = "Set to rnu",
+		command = "set rnu",
+	})
+	vim.api.nvim_create_autocmd("InsertEnter", {
+		group = group,
+		pattern = "*.*",
+		desc = "Set to nornu",
+		command = "set nornu",
+	})
+end
+
+M.remember_folds = function()
+	local group = vim.api.nvim_create_augroup("RememberFolds", {})
+
+	vim.api.nvim_create_autocmd({ "BufLeave", "BufWritePre" }, {
+		group = group,
+		pattern = "*.*",
+		command = "silent! mkview",
+	})
+
+	vim.api.nvim_create_autocmd("BufWinEnter", {
+		group = group,
+		pattern = "*.*",
+		command = "silent! loadview",
+	})
+end
+
+M.highlight_on_yank = function()
+	vim.api.nvim_create_autocmd("TextYankPost", {
+		pattern = "*",
+		desc = "Highlight text on yank",
+		callback = function()
+			vim.highlight.on_yank({ higroup = "Search", timeout = 30 })
+		end,
+	})
+end
+
+M.disable_comment_copy = function()
+	vim.api.nvim_create_autocmd({ "BufWinEnter", "BufRead", "BufNewFile" }, {
+		pattern = "*",
+		command = "setlocal formatoptions-=c formatoptions-=r formatoptions-=o",
+	})
+end
+
 return M
