@@ -66,15 +66,17 @@ local plugins = {
     dependencies = {
       "mason.nvim",
       "williamboman/mason-lspconfig.nvim",
-      --			{
-      --				"hrsh7th/cmp-nvim-lsp",
-      --				cond = function()
-      --					return require("lazyvim.util").has("nvim-cmp")
-      --				end,
-      --			},
     },
     config = function()
       require("plugins.configs.lsp").setup()
+    end
+  },
+  {
+    "jose-elias-alvarez/null-ls.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    dependencies = { "mason.nvim" },
+    config = function()
+      require("plugins.configs.lsp.null_ls").setup()
     end
   },
   {
@@ -98,7 +100,7 @@ local plugins = {
     end
   },
   -- snippets
-   -- snippets
+  -- snippets
   {
     "L3MON4D3/LuaSnip",
     dependencies = {
@@ -107,8 +109,8 @@ local plugins = {
         require("luasnip.loaders.from_vscode").lazy_load()
       end,
     },
-    config = function ()
-     require("plugins.configs.luasnip").setup()
+    config = function()
+      require("plugins.configs.luasnip").setup()
     end
   },
 
