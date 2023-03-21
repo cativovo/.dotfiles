@@ -158,9 +158,6 @@ keymaps.lsp = {
 			},
 		}
 	end,
-	eslint = {
-		["<leader>lf"] = { "<cmd>EslintFixAll<cr>", "Eslint Fix All" },
-	},
 	get = function(prop, source)
 		return keymaps.lsp[prop](source)
 	end,
@@ -299,6 +296,14 @@ keymaps.snippet = {
 	get = function(prop, source)
 		return keymaps.snippet[prop](source)
 	end,
+}
+
+keymaps.comment = {
+	setup = {
+		comment = "",
+		comment_line = "",
+		textobject = "gc",
+	},
 }
 
 return keymaps
