@@ -1,8 +1,8 @@
-local autofix = function()
-	if vim.fn.exists(":EslintFixAll") > 0 then
-		vim.cmd("EslintFixAll")
-	end
-end
+--local autofix = function()
+--	if vim.fn.exists(":EslintFixAll") > 0 then
+--		vim.cmd("EslintFixAll")
+--	end
+--end
 
 -- https://github.dev/LazyVim/LazyVim/blob/main/lua/lazyvim/plugins/lsp/format.lua#L22
 return function()
@@ -23,7 +23,7 @@ return function()
 		end,
 	})
 
-	autofix()
+	--	autofix()
 
 	print("Formating done")
 end
