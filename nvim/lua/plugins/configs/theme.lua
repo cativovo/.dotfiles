@@ -48,6 +48,9 @@ M.setup = function()
 
 	-- setup must be called before loading
 	vim.cmd.colorscheme("catppuccin")
+	-- catppuccin doesn't have color for CursorLine line
+	-- use CursorColumn instead
+	vim.api.nvim_set_hl(0, "CursorLine", { link = "CursorColumn" })
 end
 
 return M

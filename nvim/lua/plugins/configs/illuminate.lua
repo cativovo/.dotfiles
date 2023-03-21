@@ -50,19 +50,16 @@ local opts = {
 }
 
 local set_hl = function()
-	-- set highlight
-	-- use the same color of CursorLine highlight
-	-- :hi to see all highlights
-	vim.api.nvim_set_hl(0, "IlluminatedWordText", { link = "CursorLine" })
-	vim.api.nvim_set_hl(0, "IlluminatedWordRead", { link = "CursorLine" })
-	vim.api.nvim_set_hl(0, "IlluminatedWordWrite", { link = "CursorLine" })
+	vim.api.nvim_set_hl(0, "IlluminatedWordText", { link = "ColorColumn" })
+	vim.api.nvim_set_hl(0, "IlluminatedWordRead", { link = "ColorColumn" })
+	vim.api.nvim_set_hl(0, "IlluminatedWordWrite", { link = "ColorColumn" })
 end
 
 M.setup = function()
-	require("illuminate").setup(opts)
+	local illuminate = require("illuminate")
+	illuminate.configure(opts)
+	require("which-key").register(require("core.keymaps").illuminate.get("normal", illuminate))
 	set_hl()
-
-	require("which-key").register(require("core.keymaps").illuminate.get("normal", require("illuminate")))
 end
 
 return M
