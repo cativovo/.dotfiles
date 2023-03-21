@@ -27,7 +27,8 @@ M.setup = function()
 			}),
 			-- formatters
 			null_ls.builtins.formatting.stylua,
-			null_ls.builtins.formatting.prettier,
+			-- if prettierd is not working - https://github.com/jose-elias-alvarez/null-ls.nvim/issues/1119
+			null_ls.builtins.formatting.prettierd,
 			null_ls.builtins.formatting.eslint_d.with({
 				condition = eslint_condition,
 			}),
