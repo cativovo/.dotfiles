@@ -1,4 +1,6 @@
 return function()
+	-- this will register keys of builtin and plugins that are not lazy loaded using events
+	-- the keymaps of lazy loaded plugins via events are registered in their config files
 	local which_key = require("which-key")
 	local telescope_builtin = require("telescope.builtin")
 	local keymaps = require("core.keymaps")
@@ -13,6 +15,4 @@ return function()
 	which_key.register(keymaps.telescope.get("normal", telescope_builtin))
 	-- Git
 	which_key.register(keymaps.git.get("normal", telescope_builtin), register_opts)
-	-- Illuminate
-	which_key.register(keymaps.illuminate.get("normal", require("illuminate")))
 end

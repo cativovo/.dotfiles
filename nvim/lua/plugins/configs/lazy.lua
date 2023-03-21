@@ -102,6 +102,7 @@ local plugins = {
 	-- snippets
 	{
 		"L3MON4D3/LuaSnip",
+		event = "InsertEnter",
 		dependencies = {
 			"rafamadriz/friendly-snippets",
 			config = function()
@@ -138,6 +139,7 @@ local plugins = {
 	},
 	{
 		"lewis6991/gitsigns.nvim",
+		event = { "BufReadPost", "BufNewFile" },
 		config = function()
 			require("plugins.configs.gitsigns").setup()
 		end,

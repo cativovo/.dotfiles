@@ -61,6 +61,8 @@ end
 M.setup = function()
 	require("illuminate").setup(opts)
 	set_hl()
+
+	require("which-key").register(require("core.keymaps").illuminate.get("normal", require("illuminate")))
 end
 
 return M
