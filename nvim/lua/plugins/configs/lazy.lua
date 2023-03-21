@@ -123,6 +123,13 @@ local plugins = {
 			require("plugins.configs.mini_comment").setup()
 		end,
 	},
+	{
+		"RRethy/vim-illuminate",
+		event = { "BufReadPost", "BufNewFile" },
+		config = function()
+			require("plugins.configs.illuminate")
+		end,
+	},
 
 	-- git integration
 	{

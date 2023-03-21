@@ -306,4 +306,16 @@ keymaps.comment = {
 	},
 }
 
+keymaps.illuminate = {
+	normal = function(illuminate)
+		return {
+			["<C-Right>"] = { illuminate.goto_next_reference, "Go to next reference" },
+			["<C-Left>"] = { illuminate.goto_prev_reference, "Go to prev reference" },
+		}
+	end,
+	get = function(prop, source)
+		return keymaps.illuminate[prop](source)
+	end,
+}
+
 return keymaps
