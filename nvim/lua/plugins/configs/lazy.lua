@@ -131,7 +131,6 @@ local plugins = {
 			require("plugins.configs.illuminate")
 		end,
 	},
-
 	-- git integration
 	{
 		"tpope/vim-fugitive",
@@ -142,6 +141,14 @@ local plugins = {
 		event = { "BufReadPost", "BufNewFile" },
 		config = function()
 			require("plugins.configs.gitsigns").setup()
+		end,
+	},
+	-- theme
+	{
+		"catppuccin/nvim",
+		name = "catppuccin",
+		config = function()
+			require("plugins.configs.theme").setup()
 		end,
 	},
 }
