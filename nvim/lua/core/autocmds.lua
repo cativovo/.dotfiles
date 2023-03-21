@@ -19,13 +19,13 @@ M.toggle_number = function()
 
 	vim.api.nvim_create_autocmd("InsertLeave", {
 		group = group,
-		pattern = "*.*",
+		pattern = "*",
 		desc = "Set to rnu",
 		command = "set rnu",
 	})
 	vim.api.nvim_create_autocmd("InsertEnter", {
 		group = group,
-		pattern = "*.*",
+		pattern = "*",
 		desc = "Set to nornu",
 		command = "set nornu",
 	})
@@ -42,7 +42,7 @@ M.remember_folds = function()
 
 	vim.api.nvim_create_autocmd("BufWinEnter", {
 		group = group,
-		pattern = "*.*",
+		pattern = "*",
 		command = "silent! loadview",
 	})
 end
@@ -61,6 +61,17 @@ M.disable_comment_copy = function()
 	vim.api.nvim_create_autocmd({ "BufWinEnter", "BufRead", "BufNewFile" }, {
 		pattern = "*",
 		command = "setlocal formatoptions-=c formatoptions-=r formatoptions-=o",
+	})
+end
+
+M.json_to_jsonc = function()
+	vim.api.nvim_create_autocmd({ "BufWinEnter", "BufRead", "BufNewFile" }, {
+		pattern = "*",
+		callback = function()
+			if vim.bo.ft == "json" then
+				vim.cmd("setlocal filetype=jsonc")
+			end
+		end,
 	})
 end
 

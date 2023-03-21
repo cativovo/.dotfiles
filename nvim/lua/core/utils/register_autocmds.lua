@@ -5,4 +5,5 @@ return function()
 	autocmds.remember_folds()
 	autocmds.highlight_on_yank()
 	autocmds.disable_comment_copy()
+	autocmds.json_to_jsonc()
 end
