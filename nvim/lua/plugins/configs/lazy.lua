@@ -159,6 +159,24 @@ local plugins = {
 			require("plugins.configs.theme").setup()
 		end,
 	},
+	-- icons
+	{ "nvim-tree/nvim-web-devicons", lazy = true },
+	-- utils
+	{
+		"tpope/vim-surround",
+		event = { "BufReadPre", "BufNewFile" },
+	},
+	{
+		"editorconfig/editorconfig-vim",
+		event = { "BufReadPre", "BufNewFile" },
+	},
+	{
+		"mattn/emmet-vim",
+		event = { "BufReadPre", "BufNewFile" },
+		config = function()
+			require("plugins.configs.emmet").setup()
+		end,
+	},
 }
 
 local opts = {}
