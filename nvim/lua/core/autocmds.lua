@@ -16,18 +16,30 @@ end
 
 M.toggle_number = function()
 	local group = vim.api.nvim_create_augroup("ToggleNumber", {})
+	local is_valid = function()
+		return vim.bo.ft ~= "TelescopePrompt"
+	end
 
 	vim.api.nvim_create_autocmd("InsertLeave", {
 		group = group,
 		pattern = "*",
 		desc = "Set to rnu",
-		command = "set rnu",
+		callback = function()
+			if is_valid() then
+				vim.cmd("setlocal rnu")
+			end
+		end,
 	})
+
 	vim.api.nvim_create_autocmd("InsertEnter", {
 		group = group,
 		pattern = "*",
 		desc = "Set to nornu",
-		command = "set nornu",
+		callback = function()
+			if is_valid() then
+				vim.cmd("setlocal nornu")
+			end
+		end,
 	})
 end
 
