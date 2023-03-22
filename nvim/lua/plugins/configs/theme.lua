@@ -1,63 +1,56 @@
 local M = {}
 
-local function make_transparent()
-  local hl_groups = {
-    "Normal",
-    -- "NormalFloat",
-    "SignColumn",
-    "NormalNC",
-    "TelescopeBorder",
-    "NvimTreeNormal",
-    "EndOfBuffer",
-    "MsgArea",
-    "Pmenu",
-    "WhichKeyFloat",
-  }
+local opts = {
+	flavour = "frappe", -- latte, frappe, macchiato, mocha
+	background = { -- :h background
+		light = "latte",
+		dark = "mocha",
+	},
+	transparent_background = true,
+	show_end_of_buffer = false, -- show the '~' characters after the end of buffers
+	term_colors = false,
+	dim_inactive = {
+		enabled = false,
+		shade = "dark",
+		percentage = 0.15,
+	},
+	no_italic = false, -- Force no italic
+	no_bold = false, -- Force no bold
+	styles = {
+		comments = { "italic" },
+		conditionals = { "italic" },
+		loops = {},
+		functions = {},
+		keywords = {},
+		strings = {},
+		variables = {},
+		numbers = {},
+		booleans = {},
+		properties = {},
+		types = {},
+		operators = {},
+	},
+	color_overrides = {},
+	custom_highlights = {},
+	integrations = {
+		cmp = true,
+		gitsigns = true,
+		nvimtree = true,
+		telescope = true,
+		notify = false,
+		mini = false,
+		-- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
+	},
+}
 
-  for _, name in ipairs(hl_groups) do
-    if name == "WhichKeyFloat" then
-      -- https://github.com/folke/which-key.nvim/issues/52#issuecomment-832570589
-      vim.cmd(string.format("highlight %s ctermbg=black guibg=black", name))
-    else
-      vim.cmd(string.format("highlight %s ctermbg=none guibg=none", name))
-    end
-  end
-end
+M.setup = function()
+	require("catppuccin").setup(opts)
 
-local function kanagawa_setup()
-  local present, kanagawa = pcall(require, "kanagawa")
-
-  if not present then
-    return
-  end
-
-  kanagawa.setup({
-    undercurl = true, -- enable undercurls
-    commentStyle = { italic = true },
-    functionStyle = {},
-    keywordStyle = { italic = true },
-    statementStyle = { bold = true },
-    typeStyle = {},
-    variablebuiltinStyle = { italic = true },
-    specialReturn = true, -- special highlight for the return keyword
-    specialException = true, -- special highlight for exception handling keywords
-    transparent = true, -- do not set background color
-    dimInactive = false, -- dim inactive window `:h hl-NormalNC`
-    globalStatus = false, -- adjust window separators highlight for laststatus=3
-    terminalColors = true, -- define vim.g.terminal_color_{0,17}
-    colors = {},
-    overrides = {},
-    theme = "default" -- Load "default" theme or the experimental "light" theme
-  })
-
-  vim.cmd("colorscheme kanagawa")
-end
-
-M.config = function()
-  -- call theme setup here
-  kanagawa_setup()
-  -- use this instead of builtin transparent support to make cmp menu transparent
-  make_transparent()
+	-- setup must be called before loading
+	vim.cmd.colorscheme("catppuccin")
+	-- catppuccin doesn't have color for CursorLine line
+	-- use CursorColumn instead
+	vim.api.nvim_set_hl(0, "CursorLine", { link = "CursorColumn" })
 end
 
 return M

@@ -1,79 +1,90 @@
+local config = require("core.config")
+local format = require("plugins.configs.lsp.format")
 local M = {}
-local autocmd = vim.api.nvim_create_autocmd
-local create_augroup = vim.api.nvim_create_augroup
 
-M.augroups = {
-  format_on_save = create_augroup("LspFormatOnSave", {}),
-  toggle_number = create_augroup("ToggleNumber", {}),
-  remember_folds = create_augroup("RememberFolds", {}),
-}
-
-M.events = {
-  format_on_save = "BufWritePre"
-}
-
--- augroups
-M.format_on_save = function(bufnr, callback)
-  autocmd(M.events.format_on_save, {
-    group = M.augroups.format_on_save,
-    buffer = bufnr,
-    callback = function()
-      callback(bufnr)
-    end,
-  })
+M.autoformat = function(buf)
+	vim.api.nvim_create_autocmd("BufWritePre", {
+		group = vim.api.nvim_create_augroup("LspFormat." .. buf, {}),
+		buffer = buf,
+		callback = function()
+			if config.autoformat then
+				format()
+			end
+		end,
+	})
 end
 
 M.toggle_number = function()
-  autocmd("InsertLeave",
-    {
-      group = M.augroups.toggle_number,
-      pattern = "*.*",
-      desc = "Set to rnu",
-      command = "set rnu",
-    }
-  )
-  autocmd("InsertEnter",
-    {
-      group = M.augroups.toggle_number,
-      pattern = "*.*",
-      desc = "Set to nornu",
-      command = "set nornu",
-    }
-  )
+	local group = vim.api.nvim_create_augroup("ToggleNumber", {})
+	local is_valid = function()
+		return vim.bo.ft ~= "TelescopePrompt"
+	end
+
+	vim.api.nvim_create_autocmd("InsertLeave", {
+		group = group,
+		pattern = "*",
+		desc = "Set to rnu",
+		callback = function()
+			if is_valid() then
+				vim.cmd("setlocal rnu")
+			end
+		end,
+	})
+
+	vim.api.nvim_create_autocmd("InsertEnter", {
+		group = group,
+		pattern = "*",
+		desc = "Set to nornu",
+		callback = function()
+			if is_valid() then
+				vim.cmd("setlocal nornu")
+			end
+		end,
+	})
 end
 
 M.remember_folds = function()
-  autocmd({ "BufLeave", M.events.format_on_save }, {
-    group = M.augroups.remember_folds,
-    pattern = "*.*",
-    command = "silent! mkview"
-  })
-  autocmd("BufWinEnter", {
-    group = M.augroups.remember_folds,
-    pattern = "*.*",
-    command = "silent! loadview"
-  })
+	local group = vim.api.nvim_create_augroup("RememberFolds", {})
+
+	vim.api.nvim_create_autocmd({ "BufLeave", "BufWritePre" }, {
+		group = group,
+		pattern = "*.*",
+		command = "silent! mkview",
+	})
+
+	vim.api.nvim_create_autocmd("BufWinEnter", {
+		group = group,
+		pattern = "*",
+		command = "silent! loadview",
+	})
 end
 
-M.load = function()
-  -- general autocmds
-  autocmd("TextYankPost",
-    {
-      pattern = "*",
-      desc = "Highlight text on yank",
-      callback = function()
-        require("vim.highlight").on_yank({ higroup = "Search", timeout = 30 })
-      end,
-    }
-  )
+M.highlight_on_yank = function()
+	vim.api.nvim_create_autocmd("TextYankPost", {
+		pattern = "*",
+		desc = "Highlight text on yank",
+		callback = function()
+			vim.highlight.on_yank({ higroup = "Search", timeout = 30 })
+		end,
+	})
+end
 
-  autocmd({ "BufWinEnter", "BufRead", "BufNewFile" }, {
-    pattern = "*",
-    command = "setlocal formatoptions-=c formatoptions-=r formatoptions-=o"
-  })
+M.disable_comment_copy = function()
+	vim.api.nvim_create_autocmd({ "BufWinEnter", "BufRead", "BufNewFile" }, {
+		pattern = "*",
+		command = "setlocal formatoptions-=c formatoptions-=r formatoptions-=o",
+	})
+end
 
-  M.toggle_number()
-  M.remember_folds()
+M.json_to_jsonc = function()
+	vim.api.nvim_create_autocmd({ "BufWinEnter", "BufRead", "BufNewFile" }, {
+		pattern = "*",
+		callback = function()
+			if vim.bo.ft == "json" then
+				vim.cmd("setlocal filetype=jsonc")
+			end
+		end,
+	})
 end
 
 return M

@@ -1,36 +1,39 @@
 local M = {}
 
 M.setup = function()
-  local signs = {
-    { name = "DiagnosticSignError", text = "" },
-    { name = "DiagnosticSignWarn", text = "" },
-    { name = "DiagnosticSignHint", text = "" },
-    { name = "DiagnosticSignInfo", text = "" },
-  }
+	local icons = require("core.config").icons
+	local diagnostics = icons.diagnostics
 
-  for _, sign in ipairs(signs) do
-    vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
-  end
+	local signs = {
+		{ name = "DiagnosticSignWarn", text = diagnostics.warning },
+		{ name = "DiagnosticSignError", text = diagnostics.error },
+		{ name = "DiagnosticSignHint", text = diagnostics.hint },
+		{ name = "DiagnosticSignInfo", text = diagnostics.info },
+	}
 
-  local options = {
-    virtual_text = false,
-    signs = {
-      active = signs,
-    },
-    update_in_insert = true,
-    underline = true,
-    severity_sort = true,
-    float = {
-      focusable = true,
-      style = "minimal",
-      border = "rounded",
-      source = "always",
-      header = "",
-      prefix = "",
-    },
-  }
+	for _, sign in ipairs(signs) do
+		vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
+	end
 
-  vim.diagnostic.config(options)
+	local opts = {
+		virtual_text = false,
+		signs = {
+			active = signs,
+		},
+		update_in_insert = true,
+		underline = true,
+		severity_sort = true,
+		float = {
+			focusable = true,
+			style = "minimal",
+			border = "rounded",
+			source = "always",
+			header = "",
+			prefix = "",
+		},
+	}
+
+	vim.diagnostic.config(opts)
 end
 
 return M
