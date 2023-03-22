@@ -40,6 +40,7 @@ keymaps.git = {
 				s = { "<cmd>Git<cr>", "Source Control" },
 				b = { "<cmd>Git blame<cr>", "Blame" },
 				c = { telescope_builtin.git_commits, "Commits" },
+				C = { telescope_builtin.git_bcommits, "Buffer Commits" },
 				B = { telescope_builtin.git_branches, "Branches" },
 				S = { telescope_builtin.git_stash, "Stash" },
 			},
