@@ -13,7 +13,7 @@ M.setup = function()
 			disabled_filetypes = { statusline = { "dashboard", "lazy", "alpha" } },
 		},
 		sections = {
-			lualine_a = { "mode" },
+			lualine_a = {},
 			lualine_b = { "branch" },
 			lualine_c = {
 				{ "filename", path = 1, symbols = { modified = "  ", readonly = "", unnamed = "" } },
