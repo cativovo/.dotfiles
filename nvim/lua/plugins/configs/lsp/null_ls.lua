@@ -20,6 +20,8 @@ M.setup = function()
 			-- diagnostics
 			null_ls.builtins.diagnostics.eslint_d.with({
 				condition = eslint_condition,
+				-- https://github.com/jose-elias-alvarez/null-ls.nvim/issues/226
+				timeout = 1000000,
 			}),
 			-- code actions
 			null_ls.builtins.code_actions.eslint_d.with({
