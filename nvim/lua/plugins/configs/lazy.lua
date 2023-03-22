@@ -143,6 +143,14 @@ local plugins = {
 			require("plugins.configs.gitsigns").setup()
 		end,
 	},
+	-- line
+	{
+		"nvim-lualine/lualine.nvim",
+		event = "VeryLazy",
+		config = function()
+			require("plugins.configs.lualine").setup()
+		end,
+	},
 	-- theme
 	{
 		"catppuccin/nvim",
