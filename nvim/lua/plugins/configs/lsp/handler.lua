@@ -6,7 +6,8 @@ end
 
 M.on_attach = function(_, buffer)
 	register_keys(buffer)
-	require("core.autocmds").autoformat(buffer)
+	local autocmds = require("core.autocmds")
+	autocmds.autoformat(buffer)
 end
 
 return M
