@@ -2,10 +2,10 @@ local config = require("core.config")
 local format = require("plugins.configs.lsp.format")
 local M = {}
 
-M.autoformat = function(buf)
+M.autoformat = function(buffer)
 	vim.api.nvim_create_autocmd("BufWritePre", {
-		group = vim.api.nvim_create_augroup("LspFormat." .. buf, {}),
-		buffer = buf,
+		group = vim.api.nvim_create_augroup("LspFormat." .. buffer, {}),
+		buffer = buffer,
 		callback = function()
 			if config.autoformat then
 				format()
@@ -83,6 +83,31 @@ M.json_to_jsonc = function()
 			if vim.bo.ft == "json" then
 				vim.cmd("setlocal filetype=jsonc")
 			end
+		end,
+	})
+end
+
+M.toggle_lsp_diagnostic = function()
+	local group = vim.api.nvim_create_augroup("ToggleDiagnostic", {})
+
+	vim.api.nvim_create_autocmd("InsertLeave", {
+		group = group,
+		buffer = buffer,
+		desc = "Enable LSP diagnostics",
+		callback = function()
+			vim.defer_fn(function()
+				if vim.fn.mode() == "n" then
+					vim.diagnostic.enable()
+				end
+			end, 350)
+		end,
+	})
+
+	vim.api.nvim_create_autocmd("InsertEnter", {
+		group = group,
+		desc = "Disable LSP diagnostics",
+		callback = function()
+			vim.diagnostic.disable()
 		end,
 	})
 end

@@ -17,9 +17,6 @@ M.setup = function()
 
 	local opts = {
 		virtual_text = false,
-		signs = {
-			active = signs,
-		},
 		update_in_insert = true,
 		underline = true,
 		severity_sort = true,
