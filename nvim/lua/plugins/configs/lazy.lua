@@ -36,6 +36,7 @@ local plugins = {
 	},
 	-- telescope
 	{
+		cmd = "Telescope",
 		"nvim-telescope/telescope.nvim",
 		config = function()
 			require("plugins.configs.telescope").setup()
@@ -179,9 +180,24 @@ local plugins = {
 	},
 }
 
-local opts = {}
-
 M.load_plugins = function()
+	local opts = {
+		performance = {
+			rtp = {
+				---@type string[] list any plugins you want to disable here
+				disabled_plugins = {
+					"gzip",
+					-- "matchit",
+					-- "matchparen",
+					"netrwPlugin",
+					"tarPlugin",
+					"tohtml",
+					"tutor",
+					"zipPlugin",
+				},
+			},
+		},
+	}
 	require("lazy").setup(plugins, opts)
 end
 
