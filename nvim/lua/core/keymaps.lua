@@ -33,19 +33,17 @@ keymaps.file_explorer = {
 
 -- Git
 keymaps.git = {
-	normal = function(telescope_builtin)
-		return {
-			g = {
-				name = "Git",
-				s = { "<cmd>Git<cr>", "Source Control" },
-				b = { "<cmd>Git blame<cr>", "Blame" },
-				c = { telescope_builtin.git_commits, "Commits" },
-				C = { telescope_builtin.git_bcommits, "Buffer Commits" },
-				B = { telescope_builtin.git_branches, "Branches" },
-				S = { telescope_builtin.git_stash, "Stash" },
-			},
-		}
-	end,
+	normal = {
+		g = {
+			name = "Git",
+			s = { "<cmd>Git<cr>", "Source Control" },
+			b = { "<cmd>Git blame<cr>", "Blame" },
+			c = { "<cmd>Telescope git_commits<cr>", "Commits" },
+			C = { "<cmd>Telescope git_bcommits<cr>", "Buffer Commits" },
+			B = { "<cmd>Telescope git_branches<cr>", "Branches" },
+			S = { "<cmd>Telescope git_stash<cr>", "Stash" },
+		},
+	},
 	signs = {
 		setup = function()
 			local gs = package.loaded.gitsigns
@@ -64,31 +62,26 @@ keymaps.git = {
 			}
 		end,
 	},
-	get = function(prop, source)
-		return keymaps.git[prop](source)
-	end,
 }
 
 -- Telescope
 keymaps.telescope = {
-	normal = function(telescope_builtin)
-		return {
-			["<C-p>"] = { telescope_builtin.find_files, "Find Files" },
-			["<leader>t"] = {
-				name = "Telescope",
-				l = { telescope_builtin.live_grep, "Live Grep" },
-				g = { telescope_builtin.grep_string, "Grep String" },
-				j = { telescope_builtin.jumplist, "Show Jumplist" },
-				s = { telescope_builtin.current_buffer_fuzzy_find, "Show Search History" },
-				C = { telescope_builtin.commands, "Show Available Commands" },
-				c = { telescope_builtin.command_history, "Show Command History" },
-				m = { telescope_builtin.marks, "Show Marks" },
-				r = { telescope_builtin.registers, "Show Registers" },
-				S = { telescope_builtin.spell_suggest, "Show Spell Suggestions" },
-			},
-			["<leader>b"] = { telescope_builtin.buffers, "Show Buffers" },
-		}
-	end,
+	normal = {
+		["<C-p>"] = { "<cmd>Telescope find_files<cr>", "Find Files" },
+		["<leader>t"] = {
+			name = "Telescope",
+			l = { "<cmd>Telescope live_grep<cr>", "Live Grep" },
+			g = { "<cmd>Telescope grep_string<cr>", "Grep String" },
+			j = { "<cmd>Telescope jumplist<cr>", "Show Jumplist" },
+			s = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Show Search History" },
+			C = { "<cmd>Telescope commands<cr>", "Show Available Commands" },
+			c = { "<cmd>Telescope command_history<cr>", "Show Command History" },
+			m = { "<cmd>Telescope marks<cr>", "Show Marks" },
+			r = { "<cmd>Telescope registers<cr>", "Show Registers" },
+			S = { "<cmd>Telescope spell_suggest<cr>", "Show Spell Suggestions" },
+		},
+		["<leader>b"] = { "<cmd>Telescope buffers<cr>", "Show Buffers" },
+	},
 	setup = function(telescope_actions)
 		return {
 			i = {
@@ -98,9 +91,6 @@ keymaps.telescope = {
 				["<Up>"] = telescope_actions.toggle_selection + telescope_actions.move_selection_better,
 			},
 		}
-	end,
-	get = function(prop, source)
-		return keymaps.telescope[prop](source)
 	end,
 }
 
@@ -177,9 +167,6 @@ keymaps.lsp = {
 			},
 		}
 	end,
-	get = function(prop, source)
-		return keymaps.lsp[prop](source)
-	end,
 }
 
 -- Auto completion
@@ -215,9 +202,6 @@ keymaps.cmp = {
 				"s",
 			}),
 		}
-	end,
-	get = function(prop, source)
-		return keymaps.cmp[prop](source)
 	end,
 }
 
@@ -312,9 +296,6 @@ keymaps.snippet = {
 			-- },
 		}
 	end,
-	get = function(prop, source)
-		return keymaps.snippet[prop](source)
-	end,
 }
 
 keymaps.comment = {
@@ -331,9 +312,6 @@ keymaps.illuminate = {
 			["<C-Right>"] = { illuminate.goto_next_reference, "Go to next reference" },
 			["<C-Left>"] = { illuminate.goto_prev_reference, "Go to prev reference" },
 		}
-	end,
-	get = function(prop, source)
-		return keymaps.illuminate[prop](source)
 	end,
 }
 

@@ -19,7 +19,7 @@ M.setup = function()
 				width = 0.90,
 				height = 0.99,
 			},
-			mappings = require("core.keymaps").telescope.get("setup", telescope_actions),
+			mappings = require("core.keymaps").telescope.setup(telescope_actions),
 		},
 		extensions = {
 			fzf = {

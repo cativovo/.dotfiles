@@ -120,7 +120,7 @@ M.setup = function()
 			{ name = "buffer" },
 			{ name = "path" },
 		},
-		mapping = require("core.keymaps").cmp.get("setup", cmp),
+		mapping = require("core.keymaps").cmp.setup(cmp),
 	}
 
 	cmp.setup(opts)

@@ -1,7 +1,7 @@
 local M = {}
 
 local function load_keymaps(luasnip)
-	require("which-key").register(require("core.keymaps").snippet.get("insert", luasnip), { mode = "i" })
+	require("which-key").register(require("core.keymaps").snippet.insert(luasnip), { mode = "i" })
 end
 
 M.setup = function()
