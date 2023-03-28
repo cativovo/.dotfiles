@@ -1,4 +1,4 @@
-local luasnip = require('luasnip')
+local luasnip = require("luasnip")
 local fmt = require("luasnip.extras.fmt").fmt
 local rep = require("luasnip.extras").rep
 
@@ -9,80 +9,67 @@ local function_node = luasnip.function_node
 
 -- helpers
 local function capitalize(str)
-  return str:gsub("^%l", string.upper)
+	return str:gsub("^%l", string.upper)
 end
 
 local s, as = {}, {}
 
-s.console_log = create_snippet(
-  "clg",
-  fmt(
-    [[
-        console.log({})
-    ]],
-    {
-      insert_node(1, "'dito'"),
-    }
-  )
-)
-
 s.arrow_function = create_snippet(
-  "af",
-  fmt(
-    [[
+	"af",
+	fmt(
+		[[
         const {} = ({}) => {}
     ]],
-    {
-      insert_node(1, "myFunction"),
-      insert_node(2),
-      insert_node(3),
-    }
-  )
+		{
+			insert_node(1, "myFunction"),
+			insert_node(2),
+			insert_node(3),
+		}
+	)
 )
 
 s.arrow_function_empty = create_snippet(
-  "afe",
-  fmt(
-    [[
+	"afe",
+	fmt(
+		[[
         const {} = ({}) => {{
           {}
         }}
     ]],
-    {
-      insert_node(1, "myFunction"),
-      insert_node(2),
-      insert_node(3, "// TODO: do something here"),
-    }
-  )
+		{
+			insert_node(1, "myFunction"),
+			insert_node(2),
+			insert_node(3, "// TODO: do something here"),
+		}
+	)
 )
 
 s.arrow_function_with_return = create_snippet(
-  "afr",
-  fmt(
-    [[
+	"afr",
+	fmt(
+		[[
         const {} = ({}) => {{
           {}
           return {}
         }}
     ]],
-    {
-      insert_node(1, "myFunction"),
-      insert_node(2),
-      insert_node(3, "// TODO: do something here"),
-      insert_node(4),
-    }
-  )
+		{
+			insert_node(1, "myFunction"),
+			insert_node(2),
+			insert_node(3, "// TODO: do something here"),
+			insert_node(4),
+		}
+	)
 )
-
 
 local snippets, autosnippets = {}, {}
 
 for _, value in pairs(s) do
-  table.insert(snippets, value)
+	table.insert(snippets, value)
 end
 
 for _, value in pairs(as) do
-  table.insert(autosnippets, value)
+	table.insert(autosnippets, value)
 end
 
 return snippets, autosnippets
