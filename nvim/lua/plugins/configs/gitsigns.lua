@@ -46,6 +46,9 @@ M.setup = function()
 		yadm = {
 			enable = false,
 		},
+		on_attach = function(buffer)
+			require("which-key").register(require("core.keymaps").git.signs.setup(), { buffer, prefix = "<leader>" })
+		end,
 	}
 
 	require("gitsigns").setup(opts)

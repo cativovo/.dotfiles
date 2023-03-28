@@ -46,6 +46,24 @@ keymaps.git = {
 			},
 		}
 	end,
+	signs = {
+		setup = function()
+			local gs = package.loaded.gitsigns
+
+			return {
+				g = {
+					n = {
+						gs.next_hunk,
+						"Next Hunk",
+					},
+					p = {
+						gs.prev_hunk,
+						"Previous Hunk",
+					},
+				},
+			}
+		end,
+	},
 	get = function(prop, source)
 		return keymaps.git[prop](source)
 	end,
