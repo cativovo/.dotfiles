@@ -43,7 +43,7 @@ local plugins = {
 		end,
 		dependencies = {
 			{
-				-- https://github.com/nvim-telescope/telescope-fzf-native.nvim/issues/96v
+				-- https://github.com/nvim-telescope/telescope-fzf-native.nvim/issues/96
 				"nvim-telescope/telescope-fzf-native.nvim",
 				build = "make",
 				lazy = false,
