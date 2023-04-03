@@ -106,67 +106,65 @@ keymaps.treesitter = {
 
 -- LSP
 keymaps.lsp = {
-	normal = function(telescope_builtin)
-		return {
-			["<leader>l"] = {
-				name = "LSP",
-				g = {
-					name = "Go to",
-					d = { telescope_builtin.lsp_definitions, "Definition" },
-					t = { telescope_builtin.lsp_type_definitions, "Type Definition" },
-					i = { telescope_builtin.lsp_implementations, "Implementation" },
-					r = { telescope_builtin.lsp_references, "Reference" },
-				},
-				d = {
-					function()
-						telescope_builtin.diagnostics({ bufnr = 0, theme = "get_ivy" })
-					end,
-					"Buffer Diagnostics",
-				},
-				s = { telescope_builtin.lsp_document_symbols, "Document Symbols" },
-				S = { telescope_builtin.lsp_dynamic_workspace_symbols, "Workspace Symbols" },
-				{
-					a = { vim.lsp.buf.code_action, "Code Action" },
-					-- for non mac os
-					-- ["<A-p>"] = {
-					-- utils.format_on_save,
-					--   "Format"
-					-- },
-					--  ["π"] = {
-					--    utils.format_on_save,
-					--    "Format"
-					--  },
-					i = { ":LspInfo<CR>", "Info" },
-					I = { ":Mason<CR>", "Mason Info" },
-					r = { vim.lsp.buf.rename, "Rename" },
-					l = {
-						function()
-							vim.diagnostic.open_float(0, { scope = "line" })
-						end,
-						"Show Current Line Diagnostic",
-					},
-				},
-				t = {
-					function()
-						local config = require("core.config")
-						config.autoformat = not config.autoformat
-					end,
-					"Toggle Autoformat",
-				},
+	normal = {
+		["<leader>l"] = {
+			name = "LSP",
+			g = {
+				name = "Go to",
+				d = { "<cmd>Telescope lsp_definitions<cr>", "Definition" },
+				t = { "<cmd>Telescope lsp_type_definitions<cr>", "Type Definition" },
+				i = { "<cmd>Telescope lsp_implementations<cr>", "Implementation" },
+				r = { "<cmd>Telescope lsp_references<cr>", "Reference" },
 			},
+			d = {
+				function()
+					require("telescope.builtin").diagnostics({ bufnr = 0, theme = "get_ivy" })
+				end,
+				"Buffer Diagnostics",
+			},
+			s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
+			S = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Workspace Symbols" },
 			{
-				K = { vim.lsp.buf.hover, "Show hover" },
-				-- non macbook mappings
-				-- ["<A-l>"] = { vim.diagnostic.goto_next, "Next Diagnostic" },
-				-- ["<A-h>"] = { vim.diagnostic.goto_prev, "Prev Diagnostic" },
-				-- ["<A-p>"] = { require("plugins.configs.lsp.format"), "Format" },
-				-- macbook mappings
-				["¬"] = { vim.diagnostic.goto_next, "Next Diagnostic" },
-				["˙"] = { vim.diagnostic.goto_prev, "Prev Diagnostic" },
-				["π"] = { require("plugins.configs.lsp.format"), "Format" },
+				a = { vim.lsp.buf.code_action, "Code Action" },
+				-- for non mac os
+				-- ["<A-p>"] = {
+				-- utils.format_on_save,
+				--   "Format"
+				-- },
+				--  ["π"] = {
+				--    utils.format_on_save,
+				--    "Format"
+				--  },
+				i = { ":LspInfo<CR>", "Info" },
+				I = { ":Mason<CR>", "Mason Info" },
+				r = { vim.lsp.buf.rename, "Rename" },
+				l = {
+					function()
+						vim.diagnostic.open_float(0, { scope = "line" })
+					end,
+					"Show Current Line Diagnostic",
+				},
 			},
-		}
-	end,
+			t = {
+				function()
+					local config = require("core.config")
+					config.autoformat = not config.autoformat
+				end,
+				"Toggle Autoformat",
+			},
+		},
+		{
+			K = { vim.lsp.buf.hover, "Show hover" },
+			-- non macbook mappings
+			-- ["<A-l>"] = { vim.diagnostic.goto_next, "Next Diagnostic" },
+			-- ["<A-h>"] = { vim.diagnostic.goto_prev, "Prev Diagnostic" },
+			-- ["<A-p>"] = { require("plugins.configs.lsp.format"), "Format" },
+			-- macbook mappings
+			["¬"] = { vim.diagnostic.goto_next, "Next Diagnostic" },
+			["˙"] = { vim.diagnostic.goto_prev, "Prev Diagnostic" },
+			["π"] = { require("plugins.configs.lsp.format"), "Format" },
+		},
+	},
 }
 
 -- Auto completion
