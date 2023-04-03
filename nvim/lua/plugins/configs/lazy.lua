@@ -42,6 +42,7 @@ local plugins = {
 			require("plugins.configs.telescope").setup()
 		end,
 		dependencies = {
+			-- extensions
 			{
 				-- https://github.com/nvim-telescope/telescope-fzf-native.nvim/issues/96
 				"nvim-telescope/telescope-fzf-native.nvim",
@@ -49,6 +50,7 @@ local plugins = {
 				lazy = false,
 			},
 			"nvim-telescope/telescope-ui-select.nvim",
+			"debugloop/telescope-undo.nvim",
 		},
 	},
 	-- treesitter

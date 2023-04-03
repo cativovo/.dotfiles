@@ -79,6 +79,7 @@ keymaps.telescope = {
 			m = { "<cmd>Telescope marks<cr>", "Show Marks" },
 			r = { "<cmd>Telescope registers<cr>", "Show Registers" },
 			S = { "<cmd>Telescope spell_suggest<cr>", "Show Spell Suggestions" },
+			u = { "<cmd>Telescope undo<cr>", "Show Undo History" },
 		},
 		["<leader>b"] = { "<cmd>Telescope buffers<cr>", "Show Buffers" },
 	},
@@ -90,6 +91,18 @@ keymaps.telescope = {
 				["<Down>"] = telescope_actions.toggle_selection + telescope_actions.move_selection_worse,
 				["<Up>"] = telescope_actions.toggle_selection + telescope_actions.move_selection_better,
 			},
+		}
+	end,
+	undo_setup = function(telescope_undo_actions)
+		local maps = {
+			-- ["<C-cr>"] = telescope_undo_actions.yank_additions,
+			-- ["<S-cr>"] = telescope_undo_actions.yank_deletions,
+			["<cr>"] = telescope_undo_actions.restore,
+		}
+
+		return {
+			i = maps,
+			n = maps,
 		}
 	end,
 }

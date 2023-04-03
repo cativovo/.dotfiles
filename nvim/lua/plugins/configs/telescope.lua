@@ -36,6 +36,9 @@ M.setup = function()
 					},
 				}),
 			},
+			undo = {
+				mappings = require("core.keymaps").telescope.undo_setup(require("telescope-undo.actions")),
+			},
 		},
 	}
 
@@ -45,6 +48,7 @@ M.setup = function()
 	-- load extensions
 	telescope.load_extension("ui-select")
 	telescope.load_extension("fzf")
+	telescope.load_extension("undo")
 end
 
 return M
