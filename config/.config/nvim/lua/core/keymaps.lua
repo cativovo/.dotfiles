@@ -67,7 +67,7 @@ keymaps.git = {
 -- Telescope
 keymaps.telescope = {
 	normal = {
-		["<C-p>"] = { "<cmd>Telescope find_files<cr>", "Find Files" },
+		["<C-p>"] = { "<cmd>Telescope find_files hidden=true<cr>", "Find Files" },
 		["<leader>t"] = {
 			name = "Telescope",
 			l = { "<cmd>Telescope live_grep<cr>", "Live Grep" },
