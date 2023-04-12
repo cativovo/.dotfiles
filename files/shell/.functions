@@ -1,5 +1,5 @@
 cdx() {
   if cd "$1"; then 
-    exa "$2";
+    exa -a;
   fi
 }
