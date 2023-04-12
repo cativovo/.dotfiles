@@ -2,7 +2,10 @@ local M = {}
 
 local lsp_setup = function()
 	local on_attach = require("plugins.configs.lsp.handler").on_attach
-	local opts = {}
+	local opts = {
+		capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities()),
+		on_attach = on_attach,
+	}
 
 	for _, server in ipairs(require("mason-lspconfig").get_installed_servers()) do
 		local path = "plugins.configs.lsp.server_options." .. server
@@ -11,15 +14,6 @@ local lsp_setup = function()
 		if server_opts_present then
 			-- merge server options to common options
 			opts = vim.tbl_deep_extend("force", opts, server_opts)
-		end
-
-		if server_opts.on_attach then
-			opts.on_attach = function(client, buffer)
-				server_opts.on_attach(client, buffer)
-				on_attach(client, buffer)
-			end
-		else
-			opts.on_attach = on_attach
 		end
 
 		require("lspconfig")[server].setup(opts)
