@@ -326,4 +326,14 @@ keymaps.illuminate = {
 	end,
 }
 
+-- Language Specific keymaps
+keymaps.rust = {
+	normal = {
+		["<leader>r"] = {
+			name = "Rust",
+			r = { "<cmd>RustRun<cr>", "Run" },
+		},
+	},
+}
+
 return keymaps
