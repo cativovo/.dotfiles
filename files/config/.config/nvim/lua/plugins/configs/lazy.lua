@@ -170,10 +170,6 @@ local plugins = {
 		event = { "BufReadPre", "BufNewFile" },
 	},
 	{
-		"editorconfig/editorconfig-vim",
-		event = { "BufReadPre", "BufNewFile" },
-	},
-	{
 		"mattn/emmet-vim",
 		event = { "BufReadPre", "BufNewFile" },
 		config = function()
