@@ -38,6 +38,11 @@ load-nvmrc() {
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
 
+# Case insensitive tab autocomplete
+# https://superuser.com/a/1092328
+autoload -Uz compinit && compinit
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+
 set -o vi
 setopt noincappendhistory
 setopt nosharehistory
