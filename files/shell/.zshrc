@@ -48,5 +48,8 @@ setopt noincappendhistory
 setopt nosharehistory
 unsetopt BEEP
 
+# autocompletion 
+source ~/.zsh/lib/completion.zsh
+
 # Start starship
 eval "$(starship init zsh)"
