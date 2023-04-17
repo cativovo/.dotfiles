@@ -6,3 +6,8 @@ bindkey '^e' edit-command-line
 
 zle -N fzf-directory
 bindkey '^o' fzf-directory
+
+# workaround to call fzf-tmux-new-session function
+bindkey -s "^t" 'tfn\n'
+# workaround to call fzf-tmux-attach function
+bindkey -s "^a" 'tfa\n'
