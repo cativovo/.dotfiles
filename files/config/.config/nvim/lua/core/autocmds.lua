@@ -43,22 +43,6 @@ M.toggle_number = function()
 	})
 end
 
-M.remember_folds = function()
-	local group = vim.api.nvim_create_augroup("RememberFolds", {})
-
-	vim.api.nvim_create_autocmd({ "BufLeave", "BufWritePre" }, {
-		group = group,
-		pattern = "*.*",
-		command = "silent! mkview",
-	})
-
-	vim.api.nvim_create_autocmd("BufWinEnter", {
-		group = group,
-		pattern = "*",
-		command = "silent! loadview",
-	})
-end
-
 M.highlight_on_yank = function()
 	vim.api.nvim_create_autocmd("TextYankPost", {
 		pattern = "*",
