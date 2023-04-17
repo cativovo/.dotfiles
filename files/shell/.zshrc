@@ -16,5 +16,8 @@ source $HOME/.zsh/lib/options.zsh
 # LOAD HOOKS
 source $HOME/.zsh/lib/hooks.zsh
 
+# LOAD KEYMAPS
+source $HOME/.zsh/lib/keymaps.zsh
+
 # Start starship
 eval "$(starship init zsh)"
