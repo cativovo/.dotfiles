@@ -1,3 +1,5 @@
+#!/bin/zsh
+
 cdx() {
   if cd "$1"; then 
     exa -a;
