@@ -6,6 +6,17 @@ cdx() {
   fi
 }
 
+cdu() {
+  local LOCATION=""
+
+  for i in {1..${1:=1}}
+  do
+    LOCATION+="../"
+  done
+
+  cd $LOCATION
+}
+
 cdf() {
   local DIRECTORY=$(fd . ${1:=.} --type d --hidden --exclude '.git' | fzf);
 
@@ -17,7 +28,7 @@ cdf() {
   cd $DIRECTORY;
 }
 
-cdu() {
+cduf() {
   local LOCATION=""
 
   for i in {1..${1:=1}}
