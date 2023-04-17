@@ -6,14 +6,42 @@ cdx() {
   fi
 }
 
-fzf-directory() {
-  local DIRECTORY=$(fd . --type d --hidden --exclude '.git' | fzf);
+cdu() {
+  local LOCATION=""
 
-    # if $DIRECTORY is not an empty string
-    if [[ -n "${DIRECTORY}" ]]; then
-      cd $DIRECTORY;
-      zle reset-prompt;
-    fi
+  for i in {1..${1:=1}}
+  do
+    LOCATION+="../"
+  done
+
+  cd $LOCATION
+}
+
+cdf() {
+  local DIRECTORY=$(fd . ${1:=.} --type d --hidden --exclude '.git' | fzf);
+
+    # if $DIRECTORY is an empty string
+  if [[ -z "${DIRECTORY}" ]]; then
+    DIRECTORY=${1:=.}
+  fi
+
+  cd $DIRECTORY;
+}
+
+cduf() {
+  local LOCATION=""
+
+  for i in {1..${1:=1}}
+  do
+    LOCATION+="../"
+  done
+
+  cdf $LOCATION
+}
+
+fzf-directory() {
+  cdf
+  zle reset-prompt;
 }
 
 fzf-tmux-new-session() {
