@@ -1,11 +1,43 @@
 #!/bin/zsh
 
+# nvm helpers
+find-nvmrc() {
+  # find .nvmrc
+  # https://github.com/nvm-sh/nvm/blob/master/nvm.sh#L428
+  # https://github.com/nvm-sh/nvm/blob/master/nvm.sh#L437
+  local dir
+  local path_
+  path_="${PWD}"
+
+  while [ "${path_}" != "" ] && [ "${path_}" != '.' ] && [ ! -f "${path_}/.nvmrc" ]; do
+    path_=${path_%/*}
+  done
+
+  dir="${path_}"
+
+  if [ -e "${dir}/.nvmrc" ]; then
+    echo "${dir}/.nvmrc"
+  fi
+}
+
+load-nvm() {
+   echo "Loading nvm...";
+   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh";  # This loads nvm
+   [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion";  # This loads nvm bash_completion
+}
+
+nvm() {
+    unset -f nvm
+    load-nvm
+    nvm "$@"
+}
+
 # https://github.com/nvm-sh/nvm#zsh
-# place this after nvm initialization!
 autoload -U add-zsh-hook
+
 load-nvmrc() {
   local nvmrc_path
-  nvmrc_path="$(nvm_find_nvmrc)"
+  nvmrc_path="$(find-nvmrc)"
 
   if [ -n "$nvmrc_path" ]; then
     local nvmrc_node_version
@@ -16,11 +48,12 @@ load-nvmrc() {
     elif [ "$nvmrc_node_version" != "$(nvm version)" ]; then
       nvm use
     fi
-  elif [ -n "$(PWD=$OLDPWD nvm_find_nvmrc)" ] && [ "$(nvm version)" != "$(nvm version default)" ]; then
+  elif [ -n "$(PWD=$OLDPWD find-nvmrc)" ] && [ "$(nvm version)" != "$(nvm version default)" ]; then
     echo "Reverting to nvm default version"
     nvm use default
   fi
 }
+
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
 
