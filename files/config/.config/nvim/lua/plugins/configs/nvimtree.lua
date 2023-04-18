@@ -37,12 +37,7 @@ M.setup = function()
 		view = {
 			adaptive_size = true,
 			width = 30,
-			hide_root_folder = false,
 			side = "right",
-			mappings = {
-				custom_only = false,
-				list = {},
-			},
 			number = true,
 			relativenumber = true,
 			signcolumn = "yes",
