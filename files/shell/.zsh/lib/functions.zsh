@@ -68,3 +68,54 @@ fzf-tmux-attach() {
     tmux a -t $SESSION_NAME;
   fi
 }
+
+# nvm helpers
+find-nvmrc() {
+  # find .nvmrc
+  # https://github.com/nvm-sh/nvm/blob/master/nvm.sh#L428
+  # https://github.com/nvm-sh/nvm/blob/master/nvm.sh#L437
+  local dir
+  local path_
+  path_="${PWD}"
+
+  while [ "${path_}" != "" ] && [ "${path_}" != '.' ] && [ ! -f "${path_}/.nvmrc" ]; do
+    path_=${path_%/*}
+  done
+
+  dir="${path_}"
+
+  if [ -e "${dir}/.nvmrc" ]; then
+    echo "${dir}/.nvmrc"
+  fi
+}
+
+# lazy load nvm
+load-nvm() {
+   echo "Loading nvm...";
+   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh";  # This loads nvm
+   [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion";  # This loads nvm bash_completion
+}
+
+nvm() {
+    unset -f nvm
+    load-nvm
+    nvm $@
+}
+
+node() {
+    unset -f node
+    load-nvm
+    node $@
+}
+
+npm() {
+    unset -f npm
+    load-nvm
+    npm $@
+}
+
+yarn() {
+    unset -f yarn
+    load-nvm
+    yarn $@
+}
