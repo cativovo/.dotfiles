@@ -44,6 +44,26 @@ keymaps.git = {
 			S = { "<cmd>Telescope git_stash<cr>", "Stash" },
 		},
 	},
+	visual = {
+		["<leader>g"] = {
+			"Git",
+			h = {
+				"Hunk",
+				s = {
+					function()
+						package.loaded.gitsigns.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
+					end,
+					"Stage Hunk",
+				},
+				r = {
+					function()
+						package.loaded.gitsigns.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
+					end,
+					"Reset Hunk",
+				},
+			},
+		},
+	},
 	signs = {
 		setup = function()
 			local gs = package.loaded.gitsigns
@@ -57,6 +77,29 @@ keymaps.git = {
 					p = {
 						gs.prev_hunk,
 						"Previous Hunk",
+					},
+					h = {
+						"Hunk",
+						s = {
+							gs.stage_hunk,
+							"Stage hunk",
+						},
+						S = {
+							gs.select_hunk,
+							"Select hunk",
+						},
+						u = {
+							gs.undo_stage_hunk,
+							"Stage hunk",
+						},
+						p = {
+							gs.preview_hunk,
+							"Preview hunk",
+						},
+						r = {
+							gs.reset_hunk,
+							"Reset hunk",
+						},
 					},
 				},
 			}
