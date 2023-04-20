@@ -14,4 +14,5 @@ return function()
 	which_key.register(keymaps.telescope.normal)
 	-- Git
 	which_key.register(keymaps.git.normal, register_opts)
+	which_key.register(keymaps.git.visual, { mode = "v" })
 end
