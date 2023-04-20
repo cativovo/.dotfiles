@@ -11,3 +11,6 @@ bindkey '^o' fzf-directory
 bindkey -s "^t" 'tfn\n'
 # workaround to call fzf-tmux-attach function
 bindkey -s "^a" 'tfa\n'
+
+# https://github.com/spaceship-prompt/spaceship-prompt/issues/91#issuecomment-327996599
+bindkey "^?" backward-delete-char
