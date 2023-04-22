@@ -9,7 +9,7 @@ M.autoformat = function(buffer)
 		silent = true,
 		callback = function()
 			if config.autoformat then
-				format()
+				format({ silent = true })
 			end
 		end,
 	})

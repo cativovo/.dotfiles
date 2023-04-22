@@ -5,8 +5,12 @@
 --end
 
 -- https://github.dev/LazyVim/LazyVim/blob/main/lua/lazyvim/plugins/lsp/format.lua#L22
-return function()
-	print("Formating...")
+return function(opts)
+	opts = opts or {}
+
+	if opts.silent == nil then
+		print("Formating...")
+	end
 
 	local buf = vim.api.nvim_get_current_buf()
 	local ft = vim.bo[buf].filetype
@@ -25,5 +29,7 @@ return function()
 
 	--	autofix()
 
-	print("Formating done")
+	if opts.silent == nil then
+		print("Formating done")
+	end
 end
