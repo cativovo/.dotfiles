@@ -40,6 +40,7 @@ local options = {
 	ruler = false,
 	laststatus = 3,
 	shortmess = vim.opt.shortmess + "c",
+	mouse = "", -- disable mouse
 }
 
 for key, value in pairs(options) do
