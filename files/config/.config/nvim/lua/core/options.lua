@@ -39,7 +39,7 @@ local options = {
 	numberwidth = 4,
 	ruler = false,
 	laststatus = 3,
-	shortmess = vim.opt.shortmess + "c",
+	shortmess = vim.opt.shortmess + "c" + "I",
 	mouse = "", -- disable mouse
 }
 
