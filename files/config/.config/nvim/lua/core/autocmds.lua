@@ -78,21 +78,21 @@ M.toggle_lsp_diagnostic = function()
 	vim.api.nvim_create_autocmd("InsertLeave", {
 		group = group,
 		buffer = buffer,
-		desc = "Enable LSP diagnostics",
+		desc = "Show LSP diagnostics",
 		callback = function()
-			vim.defer_fn(function()
-				if vim.fn.mode() == "n" then
-					vim.diagnostic.enable()
-				end
-			end, 350)
+			-- vim.defer_fn(function()
+			-- if vim.fn.mode() == "n" then
+			vim.diagnostic.show()
+			-- end
+			-- end, 350)
 		end,
 	})
 
 	vim.api.nvim_create_autocmd("InsertEnter", {
 		group = group,
-		desc = "Disable LSP diagnostics",
+		desc = "Hide LSP diagnostics",
 		callback = function()
-			vim.diagnostic.disable()
+			vim.diagnostic.hide()
 		end,
 	})
 end
