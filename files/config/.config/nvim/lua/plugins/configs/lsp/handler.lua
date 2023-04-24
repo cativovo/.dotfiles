@@ -10,7 +10,10 @@ M.common_on_attach = function(client, buffer)
 
 	register_keys(buffer)
 	local autocmds = require("core.autocmds")
-	autocmds.autoformat(buffer)
+
+	if client.supports_method("textDocument/formatting") then
+		autocmds.autoformat(buffer)
+	end
 end
 
 return M
