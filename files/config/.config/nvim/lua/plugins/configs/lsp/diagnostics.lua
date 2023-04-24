@@ -17,7 +17,7 @@ M.setup = function()
 
 	local opts = {
 		virtual_text = false,
-		update_in_insert = true,
+		update_in_insert = false,
 		underline = true,
 		severity_sort = true,
 		float = {

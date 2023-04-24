@@ -71,29 +71,4 @@ M.json_to_jsonc = function()
 	})
 end
 
-M.toggle_lsp_diagnostic = function()
-	local group = vim.api.nvim_create_augroup("ToggleDiagnostic", {})
-
-	vim.api.nvim_create_autocmd("InsertLeave", {
-		group = group,
-		buffer = buffer,
-		desc = "Show LSP diagnostics",
-		callback = function()
-			-- vim.defer_fn(function()
-			-- if vim.fn.mode() == "n" then
-			vim.diagnostic.show()
-			-- end
-			-- end, 350)
-		end,
-	})
-
-	vim.api.nvim_create_autocmd("InsertEnter", {
-		group = group,
-		desc = "Hide LSP diagnostics",
-		callback = function()
-			vim.diagnostic.hide()
-		end,
-	})
-end
-
 return M
