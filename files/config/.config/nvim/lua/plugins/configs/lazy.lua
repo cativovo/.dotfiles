@@ -174,11 +174,11 @@ local plugins = {
 	-- utils
 	{
 		"tpope/vim-surround",
-		event = { "BufReadPre", "BufNewFile" },
+		event = { "BufReadPost", "BufNewFile" },
 	},
 	{
 		"mattn/emmet-vim",
-		event = { "BufReadPre", "BufNewFile" },
+		event = { "BufReadPost", "BufNewFile" },
 		config = function()
 			require("plugins.configs.emmet").setup()
 		end,
