@@ -25,12 +25,6 @@ M.setup = function()
 					color = utils.fg("Special"),
 				},
 				{
-					lsp.get_progress,
-					color = { gui = "none" },
-					padding = { left = 1, right = 1 },
-					cond = conditions.hide_in_width,
-				},
-				{
 					lsp.get_name,
 					color = { gui = "none" },
 					padding = { left = 1, right = 1 },

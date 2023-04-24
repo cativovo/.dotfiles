@@ -83,6 +83,13 @@ local plugins = {
 		end,
 	},
 	{
+		"j-hui/fidget.nvim",
+		event = { "BufReadPre", "BufNewFile" },
+		config = function()
+			require("plugins.configs.lsp.progress").setup()
+		end,
+	},
+	{
 		"williamboman/mason.nvim",
 		cmd = "Mason",
 		config = true,
