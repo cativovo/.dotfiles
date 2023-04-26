@@ -116,3 +116,15 @@ yarn() {
     load-nvm
     yarn $@
 }
+
+show-my-zsh-functions() {
+  rg '.*\(\)' -N -o $HOME/.dotfiles/files/shell/.zsh/lib/functions.zsh
+}
+
+show-my-zsh-aliases() {
+  rg 'alias .*' -N -o $HOME/.dotfiles/files/shell/.zsh/lib/aliases.zsh
+}
+
+show-my-zsh-keymaps() {
+  rg 'bindkey .*' -N -o $HOME/.dotfiles/files/shell/.zsh/lib/keymaps.zsh
+}
