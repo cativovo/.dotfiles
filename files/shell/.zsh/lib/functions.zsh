@@ -91,31 +91,28 @@ find-nvmrc() {
 
 # lazy load nvm
 load-nvm() {
+   unset -f nvm node yarn npm
    echo "Loading nvm...";
    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh";  # This loads nvm
    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion";  # This loads nvm bash_completion
 }
 
 nvm() {
-    unset -f nvm
     load-nvm
     nvm $@
 }
 
 node() {
-    unset -f node
     load-nvm
     node $@
 }
 
 npm() {
-    unset -f npm
     load-nvm
     npm $@
 }
 
 yarn() {
-    unset -f yarn
     load-nvm
     yarn $@
 }
