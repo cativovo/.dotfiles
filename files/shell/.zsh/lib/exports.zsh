@@ -12,8 +12,5 @@ export PATH="$PATH:/Users/markleocativo/.local/bin:/Applications/Visual Studio C
 # change default config path of starship
 export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
 
-# change default config path of lazygit
-export XDG_CONFIG_HOME="$HOME/.config"
-
 # for vi mode
 export KEYTIMEOUT=1
