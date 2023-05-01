@@ -184,6 +184,23 @@ local plugins = {
 		end,
 	},
 	{
+		"lukas-reineke/indent-blankline.nvim",
+		event = { "BufReadPost", "BufNewFile" },
+		config = function()
+			require("plugins.configs.indent_blankline").setup()
+		end,
+	},
+	{
+		"echasnovski/mini.indentscope",
+		event = { "BufReadPre", "BufNewFile" },
+		init = function()
+			require("plugins.configs.mini_indentscope").init()
+		end,
+		config = function()
+			require("plugins.configs.mini_indentscope").setup()
+		end,
+	},
+	{
 		"iamcco/markdown-preview.nvim",
 		ft = "markdown",
 		build = function()
