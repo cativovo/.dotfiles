@@ -153,6 +153,7 @@ keymaps.telescope = {
 		return { -- extend mappings
 			i = {
 				["<C-k>"] = lga_actions.quote_prompt(),
+				["<C-j>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),
 			},
 		}
 	end,
