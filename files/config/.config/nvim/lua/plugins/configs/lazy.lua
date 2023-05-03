@@ -51,6 +51,7 @@ local plugins = {
 			},
 			"nvim-telescope/telescope-ui-select.nvim",
 			"debugloop/telescope-undo.nvim",
+			"nvim-telescope/telescope-live-grep-args.nvim",
 		},
 	},
 	-- treesitter

@@ -36,6 +36,13 @@ M.setup = function()
 					},
 				}),
 			},
+			live_grep_args = {
+				-- auto_quoting = true, -- enable/disable auto-quoting
+				-- define mappings, e.g.
+				mappings = require("core.keymaps").telescope.live_grep_args_setup(
+					require("telescope-live-grep-args.actions")
+				),
+			},
 			undo = {
 				mappings = require("core.keymaps").telescope.undo_setup(require("telescope-undo.actions")),
 			},
@@ -49,6 +56,7 @@ M.setup = function()
 	telescope.load_extension("ui-select")
 	telescope.load_extension("fzf")
 	telescope.load_extension("undo")
+	telescope.load_extension("live_grep_args")
 end
 
 return M
