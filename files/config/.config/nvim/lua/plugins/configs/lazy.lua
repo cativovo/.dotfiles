@@ -30,6 +30,7 @@ local plugins = {
 	-- keymaps
 	{
 		"folke/which-key.nvim",
+		lazy = true,
 		config = function()
 			require("plugins.configs.whichkey").setup()
 		end,
@@ -179,7 +180,7 @@ local plugins = {
 	},
 	{
 		"mattn/emmet-vim",
-		event = { "BufReadPost", "BufNewFile" },
+		event = "VeryLazy",
 		config = function()
 			require("plugins.configs.emmet").setup()
 		end,
@@ -203,6 +204,7 @@ local plugins = {
 	},
 	{
 		"iamcco/markdown-preview.nvim",
+		event = { "BufReadPre", "BufNewFile" },
 		ft = "markdown",
 		build = function()
 			vim.fn["mkdp#util#install"]()
