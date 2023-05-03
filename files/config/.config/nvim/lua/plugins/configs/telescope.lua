@@ -20,6 +20,12 @@ M.setup = function()
 				height = 0.99,
 			},
 			mappings = require("core.keymaps").telescope.setup(telescope_actions),
+			vimgrep_arguments = {
+				"rg",
+				"--vimgrep",
+				"--smart-case",
+				"--hidden",
+			},
 		},
 		extensions = {
 			fzf = {
