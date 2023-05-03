@@ -114,7 +114,8 @@ keymaps.telescope = {
 		["<leader>t"] = {
 			name = "Telescope",
 			l = { "<cmd>Telescope live_grep<cr>", "Live Grep" },
-			g = { "<cmd>Telescope grep_string<cr>", "Grep String" },
+			L = { "<cmd>Telescope live_grep_args live_grep_args<cr>", "Live Grep With Args" },
+			G = { "<cmd>Telescope grep_string<cr>", "Grep String" },
 			j = { "<cmd>Telescope jumplist<cr>", "Show Jumplist" },
 			s = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Show Search History" },
 			C = { "<cmd>Telescope commands<cr>", "Show Available Commands" },
@@ -146,6 +147,13 @@ keymaps.telescope = {
 		return {
 			i = maps,
 			n = maps,
+		}
+	end,
+	live_grep_args_setup = function(lga_actions)
+		return { -- extend mappings
+			i = {
+				["<C-k>"] = lga_actions.quote_prompt(),
+			},
 		}
 	end,
 }
