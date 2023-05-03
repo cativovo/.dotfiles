@@ -6,7 +6,7 @@ end
 
 M.common_on_attach = function(client, buffer)
 	-- disable custom sytax highlighting of each server
-	client.server_capabilities.semanticTokensProvider = nil
+	-- client.server_capabilities.semanticTokensProvider = nil
 
 	register_keys(buffer)
 	local autocmds = require("core.autocmds")
