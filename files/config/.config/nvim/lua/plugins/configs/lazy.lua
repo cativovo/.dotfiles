@@ -175,8 +175,9 @@ local plugins = {
 	{ "nvim-tree/nvim-web-devicons", lazy = true },
 	-- utils
 	{
-		"tpope/vim-surround",
-		event = { "BufReadPost", "BufNewFile" },
+		"kylechui/nvim-surround",
+		event = "VeryLazy",
+		config = true,
 	},
 	{
 		"mattn/emmet-vim",
