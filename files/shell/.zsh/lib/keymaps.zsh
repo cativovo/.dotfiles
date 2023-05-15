@@ -16,3 +16,6 @@ bindkey -s "^a" 'tfa\n'
 bindkey "^?" backward-delete-char
 
 bindkey -M menuselect '^[[Z' reverse-menu-complete
+
+zle -N clear-screen-and-tmux-history
+bindkey "^l" clear-screen-and-tmux-history
