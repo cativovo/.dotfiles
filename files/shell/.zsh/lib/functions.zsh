@@ -53,19 +53,31 @@ fzf-tmux-new-session() {
 
     # if $SESSION_NAME is an empty string
     if [[ -z "${SESSION_NAME}" ]]; then
-      SESSION_NAME=$(basename $DIRECTORY);
+      # get base directory and remove the dots(.)
+      SESSION_NAME=$(basename $DIRECTORY | tr -d '.');
     fi
 
-    tmux new -s $SESSION_NAME -c $DIRECTORY
+    # if $TMUX is an empty string
+    if [[ -z "$TMUX"  ]]; then
+      # create new session (outside of a session)
+      tmux new -s $SESSION_NAME -c $DIRECTORY
+    else
+      # create new session (inside of a session in detach mode) then switch to that session
+      tmux new -s $SESSION_NAME -c $DIRECTORY -d
+      tmux switch-client -t $SESSION_NAME
+    fi
   fi
 }
 
 fzf-tmux-attach() {
-  local SESSION_NAME=$(tmux ls | fzf | rg -o "^\w+");
+  # if $TMUX is an empty string
+  if [[ -z "$TMUX"  ]]; then
+    local SESSION_NAME=$(tmux ls | fzf | rg -o "^\w+");
 
-  # if $SESSION_NAME is not an empty string
-  if [[ -n "${SESSION_NAME}" ]]; then
-    tmux a -t $SESSION_NAME;
+    # if $SESSION_NAME is not an empty string
+    if [[ -n "${SESSION_NAME}" ]]; then
+      tmux a -t $SESSION_NAME;
+    fi
   fi
 }
 
