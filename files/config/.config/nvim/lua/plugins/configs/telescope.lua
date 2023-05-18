@@ -27,6 +27,12 @@ M.setup = function()
 				"--hidden",
 			},
 		},
+		pickers = {
+			git_status = {
+				previewer = false,
+				theme = "dropdown",
+			},
+		},
 		extensions = {
 			fzf = {
 				fuzzy = true, -- false will only do exact matching
