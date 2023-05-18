@@ -3,6 +3,7 @@ local M = {}
 M.setup = function()
 	local themes = require("telescope.themes")
 	local telescope_actions = require("telescope.actions")
+	local keymaps = require("core.keymaps").telescope.setup(telescope_actions)
 
 	local opts = {
 		defaults = {
@@ -19,7 +20,7 @@ M.setup = function()
 				width = 0.90,
 				height = 0.99,
 			},
-			mappings = require("core.keymaps").telescope.setup(telescope_actions),
+			mappings = keymaps.default,
 			vimgrep_arguments = {
 				"rg",
 				"--vimgrep",
@@ -29,6 +30,7 @@ M.setup = function()
 		},
 		pickers = {
 			git_status = {
+				mappings = keymaps.pickers.git_status,
 				previewer = false,
 				theme = "dropdown",
 			},
