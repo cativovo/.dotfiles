@@ -1,0 +1,7 @@
+gui:
+  sidePanelWidth: 0.25
+  scrollHeight: 4
+git:
+  paging:
+    colorArg: always
+    pager: delta --line-numbers --paging=never
