@@ -36,7 +36,8 @@ keymaps.git = {
 	normal = {
 		g = {
 			name = "Git",
-			s = { "<cmd>Git<cr>", "Source Control" },
+			s = { "<cmd>Telescope git_status<cr>", "Status" },
+			f = { "<cmd>Git<cr>", "Fugitive" },
 			b = { "<cmd>Git blame<cr>", "Blame" },
 			c = { "<cmd>Telescope git_commits<cr>", "Commits" },
 			C = { "<cmd>Telescope git_bcommits<cr>", "Buffer Commits" },
@@ -129,11 +130,21 @@ keymaps.telescope = {
 	},
 	setup = function(telescope_actions)
 		return {
-			i = {
-				["<Tab>"] = telescope_actions.move_selection_next,
-				["<S-Tab>"] = telescope_actions.move_selection_previous,
-				["<Down>"] = telescope_actions.toggle_selection + telescope_actions.move_selection_worse,
-				["<Up>"] = telescope_actions.toggle_selection + telescope_actions.move_selection_better,
+			default = {
+				i = {
+					["<Tab>"] = telescope_actions.move_selection_next,
+					["<S-Tab>"] = telescope_actions.move_selection_previous,
+					["<Down>"] = telescope_actions.toggle_selection + telescope_actions.move_selection_worse,
+					["<Up>"] = telescope_actions.toggle_selection + telescope_actions.move_selection_better,
+				},
+			},
+			pickers = {
+				git_status = {
+					i = {
+						["<Tab>"] = telescope_actions.move_selection_next,
+						["<S-Tab>"] = telescope_actions.move_selection_previous,
+					},
+				},
 			},
 		}
 	end,
