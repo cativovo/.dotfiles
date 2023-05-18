@@ -14,3 +14,6 @@ export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
 
 # for vi mode
 export KEYTIMEOUT=1
+
+# change lazygit config directory
+export XDG_CONFIG_HOME="$HOME/.config"
