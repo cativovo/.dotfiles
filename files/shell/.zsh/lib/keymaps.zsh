@@ -5,7 +5,7 @@ autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
 
 zle -N fzf-directory
-bindkey '^o' fzf-directory
+bindkey '^p' fzf-directory
 
 # workaround to call fzf-tmux-new-session function
 bindkey -s "^t" 'tfn\n'
