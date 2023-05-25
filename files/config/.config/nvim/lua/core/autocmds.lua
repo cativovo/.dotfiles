@@ -72,4 +72,17 @@ M.json_to_jsonc = function()
 	})
 end
 
+M.load_neorg_keymaps = function()
+	vim.api.nvim_create_autocmd("BufEnter", {
+		pattern = "*.norg",
+		desc = "Load Neorg Keymaps",
+		callback = function()
+			local which_key = require("which-key")
+			local keymaps = require("core.keymaps")
+
+			which_key.register(keymaps.neorg.autocmd, { prefix = "<leader>" })
+		end,
+	})
+end
+
 return M

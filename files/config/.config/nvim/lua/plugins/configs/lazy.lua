@@ -211,6 +211,14 @@ local plugins = {
 			vim.fn["mkdp#util#install"]()
 		end,
 	},
+	{
+		"nvim-neorg/neorg",
+		build = ":Neorg sync-parsers",
+		cmd = { "Neorg" },
+		config = function()
+			require("plugins.configs.neorg").setup()
+		end,
+	},
 }
 
 M.load_plugins = function()
