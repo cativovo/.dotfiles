@@ -434,6 +434,7 @@ keymaps.neorg = {
 					})
 				end,
 				"Find Note",
+				buffer = 0,
 			},
 			l = {
 				function()
