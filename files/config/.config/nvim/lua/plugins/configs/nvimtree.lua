@@ -108,7 +108,7 @@ M.setup = function()
 		actions = {
 			use_system_clipboard = true,
 			change_dir = {
-				enable = true,
+				enable = false,
 				global = false,
 				restrict_above_cwd = false,
 			},

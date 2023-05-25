@@ -15,4 +15,6 @@ return function()
 	-- Git
 	which_key.register(keymaps.git.normal, register_opts)
 	which_key.register(keymaps.git.visual, { mode = "v" })
+	-- Neorg
+	which_key.register(keymaps.neorg.normal, register_opts)
 end

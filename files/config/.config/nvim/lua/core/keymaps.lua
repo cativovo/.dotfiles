@@ -389,6 +389,65 @@ keymaps.illuminate = {
 	end,
 }
 
+-- Neorg
+keymaps.neorg = {
+	normal = {
+		n = {
+			name = "Neorg",
+			w = {
+				require("core.utils.telescope_custom_pickers").neorg.open_workspace,
+				"Workspaces",
+			},
+			o = { ":Neorg index<cr>", "Open Index" },
+		},
+	},
+	autocmd = {
+		n = {
+			x = {
+				name = "Export",
+				f = {
+					":Neorg export to-file ",
+					"To file",
+					silent = false,
+				},
+				d = {
+					":Neorg export directory ",
+					"Directory",
+					silent = false,
+				},
+				buffer = 0,
+			},
+			e = {
+				":NvimTreeToggle" .. require("plugins.configs.neorg").base_directory .. "<cr>",
+				"Explorer",
+				buffer = 0,
+			},
+			q = {
+				":Neorg return<cr>",
+				"Quit",
+				buffer = 0,
+			},
+			f = {
+				function()
+					require("telescope.builtin").find_files({
+						cwd = require("neorg").modules.get_module("core.dirman").get_current_workspace()[2],
+					})
+				end,
+				"Find Note",
+			},
+			l = {
+				function()
+					require("telescope.builtin").live_grep({
+						cwd = require("neorg").modules.get_module("core.dirman").get_current_workspace()[2],
+					})
+				end,
+				"Live Grep Notes",
+				buffer = 0,
+			},
+		},
+	},
+}
+
 -- Language Specific keymaps
 keymaps.rust = {
 	normal = {
