@@ -1,0 +1,12 @@
+node_modules
+.git
+target
+build
+dist
+*[Tt]emp
+debug
+*[Cc]ache*
+*com.*
+.cargo
+.nvm
+*npm
