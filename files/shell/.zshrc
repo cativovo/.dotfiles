@@ -19,5 +19,8 @@ source $HOME/.zsh/lib/hooks.zsh
 # LOAD KEYMAPS
 source $HOME/.zsh/lib/keymaps.zsh
 
+# AUTO INSTALL SOME OF DEPENDENCIES
+source $HOME/.zsh/lib/auto_install_dependencies.zsh
+
 # Start starship
 eval "$(starship init zsh)"
