@@ -77,7 +77,7 @@
 # ############################################################### #
 
 # restart yabai
-ctrl + alt + cmd - r : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
+ctrl + alt + cmd - r : yabai --restart-service
 
 # focus window
 cmd - h : yabai -m window --focus west
