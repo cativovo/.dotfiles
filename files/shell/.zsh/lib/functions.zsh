@@ -1,11 +1,5 @@
 #!/bin/zsh
 
-cdx() {
-  if cd "$1"; then 
-    exa -a;
-  fi
-}
-
 cdu() {
   local LOCATION=""
 
