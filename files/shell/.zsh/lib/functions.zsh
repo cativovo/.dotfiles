@@ -142,3 +142,13 @@ clear-screen-and-tmux-history() {
     tmux clear-history
   fi
 }
+
+# load dependencies for git hooks if there are any
+git-hooks-lazygit() {
+  # load nvm if there's husky
+  if [[ -d ".husky" ]]; then
+    load-nvm
+  fi
+
+  lazygit
+}
