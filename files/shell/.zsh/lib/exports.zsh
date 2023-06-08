@@ -7,7 +7,8 @@ export NVM_DIR="$HOME/.nvm"
 export VISUAL="nvim"
 export EDITOR="$VISUAL"
 
-export PATH="$PATH:/Users/markleocativo/.local/bin:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+# add something here if needed
+export PATH="$PATH"
 
 # change default config path of starship
 export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
