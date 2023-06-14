@@ -87,6 +87,7 @@ local plugins = {
 	{
 		"j-hui/fidget.nvim",
 		event = { "BufReadPre", "BufNewFile" },
+		tag = "legacy",
 		config = function()
 			require("plugins.configs.lsp.progress").setup()
 		end,
