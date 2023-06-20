@@ -75,54 +75,6 @@ fzf-tmux-attach() {
   fi
 }
 
-# nvm helpers
-find-nvmrc() {
-  # find .nvmrc
-  # https://github.com/nvm-sh/nvm/blob/master/nvm.sh#L428
-  # https://github.com/nvm-sh/nvm/blob/master/nvm.sh#L437
-  local dir
-  local path_
-  path_="${PWD}"
-
-  while [ "${path_}" != "" ] && [ "${path_}" != '.' ] && [ ! -f "${path_}/.nvmrc" ]; do
-    path_=${path_%/*}
-  done
-
-  dir="${path_}"
-
-  if [ -e "${dir}/.nvmrc" ]; then
-    echo "${dir}/.nvmrc"
-  fi
-}
-
-# lazy load nvm
-load-nvm() {
-   unset -f nvm node yarn npm load-nvm
-   echo "Loading nvm...";
-   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh";  # This loads nvm
-   [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion";  # This loads nvm bash_completion
-}
-
-nvm() {
-    load-nvm
-    nvm $@
-}
-
-node() {
-    load-nvm
-    node $@
-}
-
-npm() {
-    load-nvm
-    npm $@
-}
-
-yarn() {
-    load-nvm
-    yarn $@
-}
-
 show-my-zsh-functions() {
   rg '.*\(\)' -N -o $HOME/.dotfiles/files/shell/.zsh/lib/functions.zsh
 }
@@ -145,10 +97,8 @@ clear-screen-and-tmux-history() {
 
 # load dependencies for git hooks if there are any
 git-hooks-lazygit() {
-  # load nvm if there's husky
-  if [[ -d ".husky" ]]; then
-    load-nvm
-  fi
+  eval "$(rtx activate zsh)"
+  eval "$(rtx hook-env)"
 
   lazygit
 }
