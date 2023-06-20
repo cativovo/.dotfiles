@@ -1,8 +1,5 @@
 #!/bin/zsh
 
-# Export here
-export NVM_DIR="$HOME/.nvm"
-
 # SET VIM AS DEFAULT EDITOR
 export VISUAL="nvim"
 export EDITOR="$VISUAL"
