@@ -220,6 +220,11 @@ local plugins = {
 			require("plugins.configs.neorg").setup()
 		end,
 	},
+	{
+		"m4xshen/hardtime.nvim",
+		event = "VeryLazy",
+		config = true,
+	},
 }
 
 M.load_plugins = function()
