@@ -19,3 +19,6 @@ bindkey -M menuselect '^[[Z' reverse-menu-complete
 
 zle -N clear-screen-and-tmux-history
 bindkey "^l" clear-screen-and-tmux-history
+
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
