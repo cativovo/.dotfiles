@@ -20,5 +20,8 @@ bindkey -M menuselect '^[[Z' reverse-menu-complete
 zle -N clear-screen-and-tmux-history
 bindkey "^l" clear-screen-and-tmux-history
 
+# https://github.com/zsh-users/zsh-history-substring-search#usage
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
