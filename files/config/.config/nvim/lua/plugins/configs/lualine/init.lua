@@ -10,7 +10,7 @@ M.setup = function()
 		options = {
 			theme = "auto",
 			globalstatus = true,
-			disabled_filetypes = { statusline = { "dashboard", "lazy", "alpha" } },
+			disabled_filetypes = { statusline = { "dashboard", "lazy", "alpha" }, winbar = { "NvimTree" } },
 		},
 		sections = {
 			lualine_a = {},
@@ -56,6 +56,7 @@ M.setup = function()
 			},
 		},
 		winbar = {
+			lualine_a = { "mode" },
 			lualine_c = {
 				{
 					"navic",
@@ -64,6 +65,9 @@ M.setup = function()
 					end,
 				},
 			},
+		},
+		inactive_winbar = {
+			lualine_a = { "mode" },
 		},
 		extensions = { "nvim-tree", "fugitive" },
 	}
