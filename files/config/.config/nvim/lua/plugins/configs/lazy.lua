@@ -97,6 +97,14 @@ local plugins = {
 		cmd = "Mason",
 		config = true,
 	},
+	{
+		"SmiteshP/nvim-navic",
+		lazy = true,
+		dependencies = { "neovim/nvim-lspconfig" },
+		config = function()
+			require("plugins.configs.navic").setup()
+		end,
+	},
 	-- auto completion
 	{
 		"hrsh7th/nvim-cmp",

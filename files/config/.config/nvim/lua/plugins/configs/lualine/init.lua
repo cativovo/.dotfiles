@@ -55,6 +55,16 @@ M.setup = function()
 				{ "location", padding = { left = 0, right = 1 } },
 			},
 		},
+		winbar = {
+			lualine_c = {
+				{
+					"navic",
+					cond = function()
+						return package.loaded["nvim-navic"] and require("nvim-navic").is_available()
+					end,
+				},
+			},
+		},
 		extensions = { "nvim-tree", "fugitive" },
 	}
 	require("lualine").setup(opts)

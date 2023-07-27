@@ -14,6 +14,10 @@ M.common_on_attach = function(client, buffer)
 	if client.supports_method("textDocument/formatting") then
 		autocmds.autoformat(buffer)
 	end
+
+	if client.server_capabilities.documentSymbolProvider then
+		require("nvim-navic").attach(client, buffer)
+	end
 end
 
 return M
