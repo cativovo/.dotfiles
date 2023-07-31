@@ -5,6 +5,7 @@ return function()
 	autocmds.highlight_on_yank()
 	autocmds.disable_comment_copy()
 	autocmds.json_to_jsonc()
+	autocmds.go_to_last_location()
 
 	-- load keymaps via autocmd
 	local keymaps = require("core.keymaps")
