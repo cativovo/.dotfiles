@@ -43,6 +43,7 @@ M.setup = function()
 			signcolumn = "yes",
 		},
 		renderer = {
+			group_empty = true,
 			indent_markers = {
 				enable = false,
 				icons = {
