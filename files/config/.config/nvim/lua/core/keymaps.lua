@@ -10,6 +10,17 @@ keymaps.builtin = {
 		["<C-k>"] = { "<C-w>k", "Window Up" },
 		-- Save
 		["<C-s>"] = { ":w<cr>", "Save File" },
+		["<leader>"] = {
+			-- quickfix list
+			q = {
+				o = { ":copen<cr>", "Open Quickfix list" },
+				c = { ":cclose<cr>", "Close Quickfix list" },
+				j = { ":cnext<cr>", "Next Item" },
+				k = { ":cprev<cr>", "Prev Item" },
+				d = { require("core.utils.quickfix_list").RemoveQuickfixItemByCursor, "Remove Item" },
+				"QuickFix List",
+			},
+		},
 	},
 	visual = {
 		-- Move selected line / block of text in visual mode
