@@ -34,6 +34,7 @@ M.setup = function()
 		color_overrides = {},
 		custom_highlights = {},
 		integrations = {
+			flash = true,
 			navic = true,
 			cmp = true,
 			gitsigns = true,

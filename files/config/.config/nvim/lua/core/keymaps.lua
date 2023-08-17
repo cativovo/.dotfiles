@@ -460,6 +460,51 @@ keymaps.neorg = {
 	},
 }
 
+keymaps.flash = {
+	setup = function(flash)
+		return {
+			["<leader>f"] = {
+				"Flash",
+				j = {
+					mode = { "n", "x", "o" },
+					function()
+						flash.jump()
+					end,
+					"Jump",
+				},
+				t = {
+					mode = { "n", "o", "x" },
+					function()
+						flash.treesitter()
+					end,
+					"Treesitter",
+				},
+				r = {
+					mode = "o",
+					function()
+						flash.remote()
+					end,
+					"Remote Flash",
+				},
+				R = {
+					mode = { "o", "x" },
+					function()
+						flash.treesitter_search()
+					end,
+					"Treesitter Search",
+				},
+			},
+			["<c-s>"] = {
+				mode = { "c" },
+				function()
+					flash.toggle()
+				end,
+				"Toggle Flash Search",
+			},
+		}
+	end,
+}
+
 -- Language Specific keymaps
 keymaps.rust = {
 	normal = {

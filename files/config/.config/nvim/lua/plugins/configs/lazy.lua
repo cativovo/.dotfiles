@@ -233,6 +233,13 @@ local plugins = {
 		event = "VeryLazy",
 		config = true,
 	},
+	{
+		"folke/flash.nvim",
+		event = "VeryLazy",
+		config = function()
+			require("plugins.configs.flash").setup()
+		end,
+	},
 }
 
 M.load_plugins = function()
