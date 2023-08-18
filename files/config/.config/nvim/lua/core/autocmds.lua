@@ -6,7 +6,6 @@ M.autoformat = function(buffer)
 	vim.api.nvim_create_autocmd("BufWritePre", {
 		group = vim.api.nvim_create_augroup("LspFormat." .. buffer, {}),
 		buffer = buffer,
-		silent = true,
 		callback = function()
 			if config.autoformat then
 				format({ silent = true })
