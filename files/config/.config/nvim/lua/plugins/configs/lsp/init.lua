@@ -33,6 +33,7 @@ end
 M.setup = function()
 	require("plugins.configs.lsp.diagnostics").setup()
 	lsp_setup()
+	require("core.autocmds").autoformat()
 end
 
 return M
