@@ -9,11 +9,6 @@ M.common_on_attach = function(client, buffer)
 	-- client.server_capabilities.semanticTokensProvider = nil
 
 	register_keys(buffer)
-	local autocmds = require("core.autocmds")
-
-	if client.supports_method("textDocument/formatting") then
-		autocmds.autoformat(buffer)
-	end
 
 	if client.server_capabilities.documentSymbolProvider then
 		require("nvim-navic").attach(client, buffer)

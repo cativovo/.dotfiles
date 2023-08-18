@@ -2,10 +2,9 @@ local config = require("core.config")
 local format = require("plugins.configs.lsp.format")
 local M = {}
 
-M.autoformat = function(buffer)
+M.autoformat = function()
 	vim.api.nvim_create_autocmd("BufWritePre", {
-		group = vim.api.nvim_create_augroup("LspFormat." .. buffer, {}),
-		buffer = buffer,
+		group = vim.api.nvim_create_augroup("LspFormat", {}),
 		callback = function()
 			if config.autoformat then
 				format({ silent = true })
