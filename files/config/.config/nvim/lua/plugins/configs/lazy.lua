@@ -190,7 +190,23 @@ local plugins = {
 	},
 	{
 		"mattn/emmet-vim",
-		event = "VeryLazy",
+		event = { "BufReadPost", "BufNewFile" },
+		ft = {
+			"css",
+			"sass",
+			"scss",
+			"less",
+			"stylus",
+			"postcss",
+			"javascript",
+			"javascriptreact",
+			"javascript.jsx",
+			"javascriptreact.jsx",
+			"typescript",
+			"typescriptreact",
+			"typescript.tsx",
+			"typescriptreact.tsx",
+		},
 		config = function()
 			require("plugins.configs.emmet").setup()
 		end,
