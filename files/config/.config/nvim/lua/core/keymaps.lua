@@ -515,4 +515,13 @@ keymaps.rust = {
 	},
 }
 
+-- Language Specific keymaps
+keymaps.typescript = {
+	normal = {
+		["<leader>l"] = {
+			o = { "<cmd>OrganizeImports<cr>", "Organize Imports" },
+		},
+	},
+}
+
 return keymaps
