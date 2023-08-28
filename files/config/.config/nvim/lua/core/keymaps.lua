@@ -460,6 +460,61 @@ keymaps.neorg = {
 	},
 }
 
+-- Harpoon
+keymaps.harpoon = {
+	h = {
+		"Harpoon",
+		a = {
+			function()
+				require("harpoon.mark").add_file()
+			end,
+			"Add File",
+		},
+		m = {
+			function()
+				require("harpoon.ui").toggle_quick_menu()
+			end,
+			"Menu",
+		},
+		n = {
+			function()
+				require("harpoon.ui").nav_next()
+			end,
+			"Next File",
+		},
+		p = {
+			function()
+				require("harpoon.ui").nav_prev()
+			end,
+			"Previous File",
+		},
+		j = {
+			function()
+				require("harpoon.ui").nav_file(1)
+			end,
+			"First File",
+		},
+		k = {
+			function()
+				require("harpoon.ui").nav_file(2)
+			end,
+			"Second File",
+		},
+		l = {
+			function()
+				require("harpoon.ui").nav_file(3)
+			end,
+			"Third File",
+		},
+		[";"] = {
+			function()
+				require("harpoon.ui").nav_file(4)
+			end,
+			"Fourth File",
+		},
+	},
+}
+
 -- Language Specific keymaps
 keymaps.rust = {
 	normal = {
