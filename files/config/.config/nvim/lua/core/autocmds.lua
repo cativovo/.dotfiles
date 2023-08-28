@@ -61,7 +61,7 @@ end
 
 M.json_to_jsonc = function()
 	vim.api.nvim_create_autocmd({ "BufWinEnter", "BufRead", "BufNewFile" }, {
-		pattern = "*",
+		pattern = "?*",
 		callback = function()
 			if vim.bo.ft == "json" then
 				vim.cmd("setlocal filetype=jsonc")
@@ -74,7 +74,10 @@ end
 -- go to last loc when opening a buffer
 M.go_to_last_location = function()
 	vim.api.nvim_create_autocmd("BufReadPost", {
+		pattern = "?*",
 		callback = function()
+			vim.cmd("silent! loadview")
+
 			local exclude = { "gitcommit" }
 			local buf = vim.api.nvim_get_current_buf()
 
@@ -87,8 +90,16 @@ M.go_to_last_location = function()
 
 			if mark[1] > 0 and mark[1] <= lcount then
 				pcall(vim.api.nvim_win_set_cursor, 0, mark)
+				vim.cmd("normal! zz")
 			end
 		end,
+	})
+end
+
+M.save_folds = function()
+	vim.api.nvim_create_autocmd("BufWinLeave", {
+		pattern = "?*",
+		command = "silent! mkview",
 	})
 end
 
