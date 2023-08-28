@@ -249,6 +249,13 @@ local plugins = {
 		event = "VeryLazy",
 		config = true,
 	},
+	{
+		"ThePrimeagen/harpoon",
+		event = "VeryLazy",
+		config = function()
+			require("plugins.configs.harpoon").setup()
+		end,
+	},
 }
 
 M.load_plugins = function()
