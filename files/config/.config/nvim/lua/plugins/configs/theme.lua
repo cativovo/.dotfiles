@@ -34,15 +34,14 @@ M.setup = function()
 		color_overrides = {},
 		custom_highlights = {},
 		integrations = {
-			flash = true,
 			navic = true,
 			cmp = true,
 			gitsigns = true,
 			nvimtree = true,
 			telescope = true,
-			notify = false,
-			mini = false,
-			-- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
+			harpoon = true,
+			fidget = true,
+			mason = true,
 		},
 	}
 
@@ -50,9 +49,6 @@ M.setup = function()
 
 	-- setup must be called before loading
 	vim.cmd.colorscheme("catppuccin")
-	-- catppuccin doesn't have color for CursorLine line
-	-- use CursorColumn instead
-	vim.api.nvim_set_hl(0, "CursorLine", { link = "CursorColumn" })
 end
 
 return M
