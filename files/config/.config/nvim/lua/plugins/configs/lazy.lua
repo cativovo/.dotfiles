@@ -236,6 +236,9 @@ local plugins = {
 		build = function()
 			vim.fn["mkdp#util#install"]()
 		end,
+		config = function()
+			require("plugins.configs.markdown_preview").setup()
+		end,
 	},
 	{
 		"nvim-neorg/neorg",
