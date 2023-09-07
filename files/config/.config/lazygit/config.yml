@@ -1,9 +1,9 @@
 gui:
   sidePanelWidth: 0.20
-  scrollHeight: 4
+  scrollHeight: 8
   mainPanelSplitMode: "horizontal"
 
 git:
   paging:
     colorArg: always
-    pager: delta --line-numbers --paging=never -s
+    pager: delta --line-numbers --paging=never
