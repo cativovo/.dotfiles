@@ -42,6 +42,7 @@ M.setup = function()
 			harpoon = true,
 			fidget = true,
 			mason = true,
+			flash = true,
 		},
 	}
 
