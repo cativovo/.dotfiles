@@ -2,9 +2,15 @@ local M = {}
 
 M.setup = function()
 	local opts = {
+		label = {
+			after = false,
+			before = true,
+		},
 		modes = {
 			search = {
-				enabled = false,
+				highlight = {
+					backdrop = true,
+				},
 			},
 			char = {
 				enabled = false,
