@@ -260,6 +260,13 @@ local plugins = {
 			require("plugins.configs.harpoon").setup()
 		end,
 	},
+	{
+		"folke/flash.nvim",
+		event = "VeryLazy",
+		config = function()
+			require("plugins.configs.flash").setup()
+		end,
+	},
 }
 
 M.load_plugins = function()
