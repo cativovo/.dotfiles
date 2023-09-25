@@ -519,36 +519,19 @@ keymaps.harpoon = {
 keymaps.flash = {
 	setup = function(flash)
 		return {
-			["<leader>f"] = {
-				"Flash",
-				j = {
-					mode = { "n", "x", "o" },
-					function()
-						flash.jump()
-					end,
-					"Jump",
-				},
-				t = {
-					mode = { "n", "o", "x" },
-					function()
-						flash.treesitter()
-					end,
-					"Treesitter",
-				},
-				r = {
-					mode = "o",
-					function()
-						flash.remote()
-					end,
-					"Remote Flash",
-				},
-				R = {
-					mode = { "o", "x" },
-					function()
-						flash.treesitter_search()
-					end,
-					"Treesitter Search",
-				},
+			s = {
+				mode = { "n", "x", "o" },
+				function()
+					flash.jump()
+				end,
+				"Flash Jump",
+			},
+			S = {
+				mode = { "n", "o", "x" },
+				function()
+					flash.treesitter()
+				end,
+				"Flash Treesitter",
 			},
 			["<c-s>"] = {
 				mode = { "c" },
@@ -556,6 +539,20 @@ keymaps.flash = {
 					flash.toggle()
 				end,
 				"Toggle Flash Search",
+			},
+			r = {
+				mode = "o",
+				function()
+					flash.remote()
+				end,
+				"Remote Flash",
+			},
+			R = {
+				mode = { "o", "x" },
+				function()
+					flash.treesitter_search()
+				end,
+				"Treesitter Search",
 			},
 		}
 	end,
