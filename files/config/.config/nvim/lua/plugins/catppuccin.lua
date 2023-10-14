@@ -16,6 +16,8 @@ return {
       telescope = true,
       harpoon = true,
       mason = true,
+      noice = true,
+      notify = true,
       fidget = true,
       flash = true,
     },
