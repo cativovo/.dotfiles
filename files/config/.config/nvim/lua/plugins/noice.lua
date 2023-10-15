@@ -1,35 +1,33 @@
 return {
   "folke/noice.nvim",
-  keys = {
-    -- DISABLED
-    { "<c-f>", false },
-    { "<c-b>", false },
-    -- MY KEYS
-    {
-      "<C-d>",
-      function()
-        if not require("noice.lsp").scroll(4) then
-          return "<c-d>"
-        end
-      end,
-      silent = true,
-      expr = true,
-      desc = "Scroll Down",
-      mode = { "i", "n", "s" },
-    },
-    {
-      "<C-u>",
-      function()
-        if not require("noice.lsp").scroll(-4) then
-          return "<c-u>"
-        end
-      end,
-      silent = true,
-      expr = true,
-      desc = "Scroll Up",
-      mode = { "i", "n", "s" },
-    },
-  },
+  keys = function()
+    return {
+      {
+        "<C-d>",
+        function()
+          if not require("noice.lsp").scroll(4) then
+            return "<c-d>"
+          end
+        end,
+        silent = true,
+        expr = true,
+        desc = "Scroll Down",
+        mode = { "i", "n", "s" },
+      },
+      {
+        "<C-u>",
+        function()
+          if not require("noice.lsp").scroll(-4) then
+            return "<c-u>"
+          end
+        end,
+        silent = true,
+        expr = true,
+        desc = "Scroll Up",
+        mode = { "i", "n", "s" },
+      },
+    }
+  end,
   opts = {
     cmdline = {
       view = "cmdline",

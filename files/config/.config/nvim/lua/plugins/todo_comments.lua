@@ -1,9 +1,6 @@
 return {
   "folke/todo-comments.nvim",
-  keys = {
-    { "]t", false },
-    { "[t", false },
-    { "<leader>xt", false },
-    { "<leader>xT", false },
-  },
+  keys = function()
+    return {}
+  end,
 }
