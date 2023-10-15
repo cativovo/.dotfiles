@@ -76,6 +76,12 @@ return {
           end,
         },
       },
+      vimgrep_arguments = {
+        "rg",
+        "--vimgrep",
+        "--smart-case",
+        "--hidden",
+      },
     },
     pickers = {
       git_status = {
