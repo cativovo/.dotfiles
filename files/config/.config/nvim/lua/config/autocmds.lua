@@ -45,7 +45,7 @@ register_keys({
         buffer = 0,
       },
       e = {
-        "<cmd>NvimTreeToggle" .. require("plugins.neorg").base_directory .. "<cr>",
+        "<cmd>Neotree" .. require("plugins.neorg").base_directory .. "<cr>",
         "Explorer",
         buffer = 0,
       },
