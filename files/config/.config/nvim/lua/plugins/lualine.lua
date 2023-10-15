@@ -4,10 +4,9 @@ return {
   "nvim-lualine/lualine.nvim",
   opts = {
     options = {
-      disabled_filetypes = { statusline = { "lazy" }, winbar = { "help", "neo-tree", "noice" } },
+      disabled_filetypes = { statusline = { "lazy" } },
     },
     sections = {
-      lualine_a = {},
       lualine_c = {
         { "filename", path = 1, symbols = { modified = " " } },
         {
@@ -31,20 +30,6 @@ return {
           end,
         },
       },
-    },
-    winbar = {
-      lualine_a = { "mode" },
-      lualine_c = {
-        {
-          "navic",
-          cond = function()
-            return package.loaded["nvim-navic"] and require("nvim-navic").is_available()
-          end,
-        },
-      },
-    },
-    inactive_winbar = {
-      lualine_a = { "mode" },
     },
     extensions = {
       "lazy",

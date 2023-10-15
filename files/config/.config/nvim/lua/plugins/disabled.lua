@@ -17,7 +17,6 @@ local disabled_plugins = {
   "folke/tokyonight.nvim",
   -- coding
   "echasnovski/mini.pairs",
-  "nvim-treesitter/nvim-treesitter-context",
 }
 
 for _, value in pairs(disabled_plugins) do
