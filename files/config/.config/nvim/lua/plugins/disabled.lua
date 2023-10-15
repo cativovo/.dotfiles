@@ -2,7 +2,7 @@ local M = {}
 
 local disabled_plugins = {
   -- ui
-  "glepnir/dashboard-nvim",
+  "nvimdev/dashboard-nvim",
   "akinsho/bufferline.nvim",
   "rcarriga/nvim-notify",
   -- editor
