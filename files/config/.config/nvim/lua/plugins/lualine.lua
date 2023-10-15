@@ -3,6 +3,9 @@ local icons = require("lazyvim.config").icons
 return {
   "nvim-lualine/lualine.nvim",
   opts = {
+    options = {
+      disabled_filetypes = { statusline = { "lazy" }, winbar = { "help", "neo-tree", "noice" } },
+    },
     sections = {
       lualine_a = {},
       lualine_c = {
@@ -42,6 +45,13 @@ return {
     },
     inactive_winbar = {
       lualine_a = { "mode" },
+    },
+    extensions = {
+      "lazy",
+      "man",
+      "neo-tree",
+      "nvim-dap-ui",
+      "quickfix",
     },
   },
 }
