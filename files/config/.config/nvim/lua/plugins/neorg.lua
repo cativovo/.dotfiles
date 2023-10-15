@@ -73,6 +73,9 @@ local M = {
       },
     }
   end,
+
+  -- used in tmux
+  open_workspace = open_workspace,
 }
 
 return M
