@@ -9,7 +9,6 @@ return {
     },
     transparent_background = true,
     integrations = {
-      navic = true,
       cmp = true,
       gitsigns = true,
       nvimtree = true,
