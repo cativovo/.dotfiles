@@ -9,3 +9,4 @@ vim.opt.scrolloff = 2
 vim.opt.winminwidth = 1
 vim.opt.splitbelow = false
 vim.opt.timeoutlen = 500
+vim.opt.conceallevel = 0
