@@ -17,6 +17,8 @@ local disabled_plugins = {
   "folke/tokyonight.nvim",
   -- coding
   "echasnovski/mini.pairs",
+  -- lang
+  "lukas-reineke/headlines.nvim",
 }
 
 for _, value in pairs(disabled_plugins) do
