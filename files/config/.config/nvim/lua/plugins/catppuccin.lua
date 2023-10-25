@@ -19,6 +19,7 @@ return {
       notify = true,
       fidget = true,
       flash = true,
+      trouble = false,
     },
   },
 }
