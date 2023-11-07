@@ -148,7 +148,7 @@ zf() {
 
 # list session then attach to it
 zs() {
-  local SESSION_NAME=$(zellij ls | fzf);
+  local SESSION_NAME=$(zellij ls -n | fzf | rg -o '^[^ ]+');
 
   # if $SESSION_NAME is not an empty string
   if [[ -n "${SESSION_NAME}" ]]; then
