@@ -6,41 +6,17 @@ keybinds {
     bind "Alt g" {
       Run "zsh" "-c" "git-hooks-lazygit" {
         close_on_exit true
+        in_place true
       };
-      ToggleFocusFullscreen;
-      SwitchToMode "normal";
     }
 
     bind "Alt n" {
+      NewTab { name "notes"; };
       Run "zsh" "-c" "open-notes" {
         name "notes"
         close_on_exit true
+        in_place true
       };
-      TogglePaneEmbedOrFloating;
-
-      // workaround to make the floating pane use the whole width
-      Resize "Increase";
-      Resize "Increase";
-      Resize "Increase";
-      Resize "Increase";
-      Resize "Increase";
-      Resize "Increase";
-      Resize "Increase";
-      Resize "Increase";
-      Resize "Increase";
-      Resize "Increase";
-      Resize "Increase";
-      Resize "Increase";
-      Resize "Increase";
-      Resize "Increase";
-      Resize "Increase";
-      Resize "Increase";
-      Resize "Increase";
-      Resize "Increase";
-      Resize "Increase";
-      Resize "Increase";
-      Resize "Increase";
-      Resize "Decrease";
     }
   }
 
