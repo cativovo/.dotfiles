@@ -71,6 +71,10 @@ keybinds {
     bind "Ctrl u" { HalfPageScrollUp; }
   }
 
+  session {
+    bind "q" { Quit; }
+  }
+
   shared_except "locked" {
     unbind "Ctrl q" "Alt n"
     bind "Alt p" { NewPane; }
