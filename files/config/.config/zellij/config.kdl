@@ -1,0 +1,65 @@
+theme "catppuccin-frappe"
+
+// default keybindings https://github.com/zellij-org/zellij/blob/main/zellij-utils/assets/config/default.kdl
+keybinds {
+  normal {
+    bind "Alt g" {
+      Run "zsh" "-c" "git-hooks-lazygit" {
+        close_on_exit true
+      };
+      ToggleFocusFullscreen;
+      SwitchToMode "normal";
+    }
+
+    bind "Alt n" {
+      Run "zsh" "-c" "open-notes" {
+        name "notes"
+        close_on_exit true
+      };
+      TogglePaneEmbedOrFloating;
+
+      // workaround to make the floating pane use the whole width
+      Resize "Increase";
+      Resize "Increase";
+      Resize "Increase";
+      Resize "Increase";
+      Resize "Increase";
+      Resize "Increase";
+      Resize "Increase";
+      Resize "Increase";
+      Resize "Increase";
+      Resize "Increase";
+      Resize "Increase";
+      Resize "Increase";
+      Resize "Increase";
+      Resize "Increase";
+      Resize "Increase";
+      Resize "Increase";
+      Resize "Increase";
+      Resize "Increase";
+      Resize "Increase";
+      Resize "Increase";
+      Resize "Increase";
+      Resize "Decrease";
+    }
+  }
+
+  tab {
+    bind "c" { SwitchToMode "RenameTab"; TabNameInput 0; }
+    bind "q" { GoToTab 1; SwitchToMode "Normal"; }
+    bind "w" { GoToTab 2; SwitchToMode "Normal"; }
+    bind "e" { GoToTab 3; SwitchToMode "Normal"; }
+    bind "r" { GoToTab 4; SwitchToMode "Normal"; }
+    bind "t" { GoToTab 5; SwitchToMode "Normal"; }
+    bind "y" { GoToTab 6; SwitchToMode "Normal"; }
+    bind "u" { GoToTab 7; SwitchToMode "Normal"; }
+    bind "i" { GoToTab 8; SwitchToMode "Normal"; }
+    bind "o" { GoToTab 9; SwitchToMode "Normal"; }
+  }
+
+  shared_except "locked" {
+    unbind "Ctrl q"
+    unbind "Alt n"
+    bind "Alt p" { NewPane; }
+  }
+}

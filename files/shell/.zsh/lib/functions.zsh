@@ -102,3 +102,39 @@ git-hooks-lazygit() {
 
   lazygit
 }
+
+open-notes() {
+  cd ~/notes
+  nvim -c "lua require('plugins.neorg').open_workspace()"
+}
+
+# zellij related functions
+# create new session
+zn() {
+  # this can be used inside of session
+  ZELLIJ_SESSION_CWD=$1
+  local DIRECTORY_BASENAME=$(basename $ZELLIJ_SESSION_CWD | tr -d '.')
+  local SESSION_NAME=${2:-$DIRECTORY_BASENAME}
+
+  zellij -s $SESSION_NAME options --default-cwd $ZELLIJ_SESSION_CWD
+}
+
+# find directory using fd and fzf then use that to create a new session
+zf() {
+  local DIRECTORY=$(fd . ~ --type d --hidden --exclude '.git' | fzf);
+
+  # if $DIRECTORY is not an empty string
+  if [[ -n "${DIRECTORY}" ]]; then
+    zn $DIRECTORY $1
+  fi
+}
+
+# list session then attach to it
+zs() {
+  local SESSION_NAME=$(zellij ls | fzf);
+
+  # if $SESSION_NAME is not an empty string
+  if [[ -n "${SESSION_NAME}" ]]; then
+    zellij a $SESSION_NAME $1
+  fi
+}
