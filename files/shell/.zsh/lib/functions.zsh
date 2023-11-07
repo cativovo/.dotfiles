@@ -113,19 +113,36 @@ open-notes() {
 zn() {
   # this can be used inside of session
   ZELLIJ_SESSION_CWD=$1
-  local DIRECTORY_BASENAME=$(basename $ZELLIJ_SESSION_CWD | tr -d '.')
-  local SESSION_NAME=${2:-$DIRECTORY_BASENAME}
+  local directory_basename=$(basename $ZELLIJ_SESSION_CWD | tr -d '.')
+  local session_name=${2:-$directory_basename}
+  local layout=${3:-default}
 
-  zellij -s $SESSION_NAME options --default-cwd $ZELLIJ_SESSION_CWD
+  zellij -s $session_name -l $layout options --default-cwd $ZELLIJ_SESSION_CWD
 }
 
 # find directory using fd and fzf then use that to create a new session
 zf() {
-  local DIRECTORY=$(fd . ~ --type d --hidden --exclude '.git' | fzf);
+  local directory=$(fd . ~ --type d --hidden --exclude '.git' | fzf);
 
-  # if $DIRECTORY is not an empty string
-  if [[ -n "${DIRECTORY}" ]]; then
-    zn $DIRECTORY $1
+  local layout=""
+
+  while getopts ":l:" opt; do
+    case "$opt" in
+      l)
+        layout="$OPTARG"  # Store the string argument after -l
+        ;;
+      \?)
+        echo "Invalid option: -$OPTARG" >&2
+        ;;
+    esac
+  done
+
+  # Shift to remove the processed options from the argument list
+  shift $((OPTIND - 1))
+  
+  # if $directory is not an empty string
+  if [[ -n "${directory}" ]]; then
+    zn $directory "$1" $layout
   fi
 }
 
