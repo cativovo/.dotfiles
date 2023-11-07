@@ -57,9 +57,22 @@ keybinds {
     bind "o" { GoToTab 9; SwitchToMode "Normal"; }
   }
 
+  scroll {
+    unbind "s"
+    bind "/" { SwitchToMode "EnterSearch"; SearchInput 0; }
+    bind "g" { ScrollToTop;}
+    bind "G" { ScrollToBottom;}
+  }
+
+  search {
+    unbind "d" "u"
+    bind "N" { Search "up"; }
+    bind "Ctrl d" { HalfPageScrollDown; }
+    bind "Ctrl u" { HalfPageScrollUp; }
+  }
+
   shared_except "locked" {
-    unbind "Ctrl q"
-    unbind "Alt n"
+    unbind "Ctrl q" "Alt n"
     bind "Alt p" { NewPane; }
   }
 }
