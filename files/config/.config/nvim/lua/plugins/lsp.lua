@@ -10,10 +10,6 @@ return {
     keys[#keys + 1] = { "]w", false }
     keys[#keys + 1] = { "[w", false }
     -- MY KEYS
-    -- macbook
-    keys[#keys + 1] = { "¬", vim.diagnostic.goto_next, "Next Diagnostic" }
-    keys[#keys + 1] = { "˙", vim.diagnostic.goto_prev, "Prev Diagnostic" }
-    -- linux
     keys[#keys + 1] = { "<A-l>", vim.diagnostic.goto_next, "Next Diagnostic" }
     keys[#keys + 1] = { "<Ah>", vim.diagnostic.goto_prev, "Prev Diagnostic" }
   end,
