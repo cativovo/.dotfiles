@@ -1,4 +1,4 @@
-theme "catppuccin-frappe"
+theme "catppuccin-mocha"
 
 // default keybindings https://github.com/zellij-org/zellij/blob/main/zellij-utils/assets/config/default.kdl
 keybinds {
