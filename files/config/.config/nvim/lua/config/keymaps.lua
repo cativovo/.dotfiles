@@ -42,3 +42,6 @@ vim.keymap.set("n", "<leader>qp", "<cmd>cprev<cr>", { desc = "Previous Item" })
 
 -- copy to clipboard
 vim.keymap.set("v", "<leader>y", '"+y', { desc = "Copy To Clipboard" })
+
+-- workaround; can't remove <c-t> keymap, <c-t> is used in zellij
+vim.keymap.set("n", "<c-t>", '<cmd>lua vim.api.nvim_err_writeln("Locked")<cr>')
