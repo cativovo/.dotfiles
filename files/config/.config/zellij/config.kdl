@@ -60,19 +60,22 @@ keybinds {
   scroll {
     unbind "s"
     bind "/" { SwitchToMode "EnterSearch"; SearchInput 0; }
-    bind "g" { ScrollToTop;}
-    bind "G" { ScrollToBottom;}
   }
 
   search {
-    unbind "d" "u"
     bind "N" { Search "up"; }
-    bind "Ctrl d" { HalfPageScrollDown; }
-    bind "Ctrl u" { HalfPageScrollUp; }
   }
 
   session {
     bind "q" { Quit; }
+  }
+
+  shared_among "scroll" "search" {
+    unbind "d" "u"
+    bind "Ctrl d" { HalfPageScrollDown; }
+    bind "Ctrl u" { HalfPageScrollUp; }
+    bind "g" { ScrollToTop;}
+    bind "G" { ScrollToBottom;}
   }
 
   shared_except "locked" {
