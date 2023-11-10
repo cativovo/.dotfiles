@@ -54,8 +54,13 @@ keybinds {
     bind "G" { ScrollToBottom;}
   }
 
+  locked {
+    bind "Insert" { GoToTab 2; SwitchToMode "normal";}
+  }
+
   shared_except "locked" {
     unbind "Ctrl q" "Alt n"
     bind "Alt p" { NewPane; }
+    bind "Insert" { GoToTab 1; SwitchToMode "locked";}
   }
 }
