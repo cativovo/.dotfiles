@@ -9,7 +9,7 @@ layout {
             plugin location="zellij:status-bar"
         }
     }
-    tab name="main" focus=true {
+    tab name="editor" focus=true {
       pane command="nvim"
     }
 }
