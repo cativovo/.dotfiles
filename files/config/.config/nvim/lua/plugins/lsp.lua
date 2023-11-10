@@ -11,7 +11,7 @@ return {
     keys[#keys + 1] = { "[w", false }
     -- MY KEYS
     keys[#keys + 1] = { "<A-l>", vim.diagnostic.goto_next, "Next Diagnostic" }
-    keys[#keys + 1] = { "<Ah>", vim.diagnostic.goto_prev, "Prev Diagnostic" }
+    keys[#keys + 1] = { "<A-h>", vim.diagnostic.goto_prev, "Prev Diagnostic" }
   end,
   opts = {
     diagnostics = {
