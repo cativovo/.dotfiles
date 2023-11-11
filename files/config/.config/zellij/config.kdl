@@ -2,59 +2,15 @@ theme "catppuccin-mocha"
 
 // default keybindings https://github.com/zellij-org/zellij/blob/main/zellij-utils/assets/config/default.kdl
 keybinds {
-  normal {
-    bind "Alt g" {
-      Run "zsh" "-c" "git-hooks-lazygit" {
-        close_on_exit true
-      };
-      ToggleFocusFullscreen;
-      SwitchToMode "normal";
-    }
-
-    bind "Alt n" {
-      Run "zsh" "-c" "open-notes" {
-        name "notes"
-        close_on_exit true
-      };
-      TogglePaneEmbedOrFloating;
-
-      // workaround to make the floating pane use the whole width
-      Resize "Increase";
-      Resize "Increase";
-      Resize "Increase";
-      Resize "Increase";
-      Resize "Increase";
-      Resize "Increase";
-      Resize "Increase";
-      Resize "Increase";
-      Resize "Increase";
-      Resize "Increase";
-      Resize "Increase";
-      Resize "Increase";
-      Resize "Increase";
-      Resize "Increase";
-      Resize "Increase";
-      Resize "Increase";
-      Resize "Increase";
-      Resize "Increase";
-      Resize "Increase";
-      Resize "Increase";
-      Resize "Increase";
-      Resize "Decrease";
-    }
+  tab {
+    unbind "1" "2" "3" "4" "5" "6" "7" "8" "9"
+    bind "c" { SwitchToMode "RenameTab"; TabNameInput 0; }
+    bind "q" { GoToTab 1; SwitchToMode "normal"; }
   }
 
-  tab {
-    bind "c" { SwitchToMode "RenameTab"; TabNameInput 0; }
-    bind "q" { GoToTab 1; SwitchToMode "Normal"; }
-    bind "w" { GoToTab 2; SwitchToMode "Normal"; }
-    bind "e" { GoToTab 3; SwitchToMode "Normal"; }
-    bind "r" { GoToTab 4; SwitchToMode "Normal"; }
-    bind "t" { GoToTab 5; SwitchToMode "Normal"; }
-    bind "y" { GoToTab 6; SwitchToMode "Normal"; }
-    bind "u" { GoToTab 7; SwitchToMode "Normal"; }
-    bind "i" { GoToTab 8; SwitchToMode "Normal"; }
-    bind "o" { GoToTab 9; SwitchToMode "Normal"; }
+  pane {
+    unbind "w"
+    bind "a" { ToggleFloatingPanes; SwitchToMode "normal"; }
   }
 
   scroll {
@@ -70,6 +26,31 @@ keybinds {
     bind "q" { Quit; }
   }
 
+  tmux {
+    unbind "[" "Ctrl b" "\"" "%" "z" "c" "," "p" "Left" "Right" "Down" "Up" "h" "l" "j" "k" "o" "d" "Space" "x"
+
+    bind "Ctrl c" "Esc" { SwitchToMode "normal"; }
+    bind "Tab" { ToggleTab; }
+    bind "q" { GoToTab 1; SwitchToMode "locked"; }
+    bind "a" { ToggleFloatingPanes; SwitchToMode "locked"; }
+    bind "n" {
+      NewTab { name "notes"; };
+      Run "zsh" "-c" "open-notes" {
+        name "notes"
+        close_on_exit true
+        in_place true
+      };
+      SwitchToMode "normal";
+    }
+    bind "g" {
+      Run "zsh" "-c" "git-hooks-lazygit" {
+        close_on_exit true
+        in_place true
+      };
+      SwitchToMode "locked";
+    }
+  }
+
   shared_among "scroll" "search" {
     unbind "d" "u"
     bind "Ctrl d" { HalfPageScrollDown; }
@@ -78,13 +59,30 @@ keybinds {
     bind "G" { ScrollToBottom;}
   }
 
-  locked {
-    bind "Insert" { GoToTab 2; SwitchToMode "normal";}
-  }
-
   shared_except "locked" {
-    unbind "Ctrl q" "Alt n"
+    unbind "Ctrl q" "Alt n" "Alt h" "Alt Left" "Alt l" "Alt Right"
+    bind "Alt h" "Alt Left" { MoveFocus "Left"; }
+    bind "Alt l" "Alt Right" { MoveFocus "Right"; }
     bind "Alt p" { NewPane; }
     bind "Insert" { GoToTab 1; SwitchToMode "locked";}
+  }
+
+  shared_except "tmux" "locked" {
+    unbind "Ctrl b"
+  }
+
+  shared_except "tmux" {
+    bind "Ctrl a" { SwitchToMode "tmux"; }
+  }
+
+  shared_among "tmux" "tab" {
+    bind "w" { GoToTab 2; SwitchToMode "normal"; }
+    bind "e" { GoToTab 3; SwitchToMode "normal"; }
+    bind "r" { GoToTab 4; SwitchToMode "normal"; }
+    bind "t" { GoToTab 5; SwitchToMode "normal"; }
+    bind "y" { GoToTab 6; SwitchToMode "normal"; }
+    bind "u" { GoToTab 7; SwitchToMode "normal"; }
+    bind "i" { GoToTab 8; SwitchToMode "normal"; }
+    bind "o" { GoToTab 9; SwitchToMode "normal"; }
   }
 }
