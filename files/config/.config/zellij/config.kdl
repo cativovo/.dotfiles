@@ -60,7 +60,7 @@ keybinds {
   }
 
   shared_except "locked" {
-    unbind "Ctrl q" "Alt n" "Alt h" "Alt Left" "Alt l" "Alt Right"
+    unbind "Ctrl q" "Alt n" "Alt Left" "Alt Right"
     bind "Alt h" "Alt Left" { MoveFocus "Left"; }
     bind "Alt l" "Alt Right" { MoveFocus "Right"; }
     bind "Alt p" { NewPane; }
