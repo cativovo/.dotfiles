@@ -4,9 +4,7 @@ return {
   keys = {
     {
       "<leader>o",
-      function()
-        require("oil.actions").open_cwd.callback()
-      end,
+      "<cmd>Oil<cr>",
       desc = "Oil",
     },
   },
