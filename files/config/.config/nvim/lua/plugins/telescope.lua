@@ -66,16 +66,6 @@ return {
         width = 0.90,
         height = 0.99,
       },
-      mappings = {
-        i = {
-          ["<Tab>"] = function(prompt_bufnr)
-            require("telescope.actions").move_selection_next(prompt_bufnr)
-          end,
-          ["<S-Tab>"] = function(prompt_bufnr)
-            require("telescope.actions").move_selection_previous(prompt_bufnr)
-          end,
-        },
-      },
       vimgrep_arguments = {
         "rg",
         "--vimgrep",
@@ -87,6 +77,15 @@ return {
       git_status = {
         previewer = false,
         theme = "dropdown",
+      },
+      buffers = {
+        mappings = {
+          i = {
+            ["<C-c>"] = function(prompt_bufnr)
+              require("telescope.actions").delete_buffer(prompt_bufnr)
+            end,
+          },
+        },
       },
     },
   },
