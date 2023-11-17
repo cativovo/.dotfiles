@@ -34,8 +34,8 @@ cduf() {
 }
 
 fzf-directory() {
-  cdf
-  zle reset-prompt;
+  cdf ~
+  zle reset-prompt
 }
 
 fzf-tmux-new-session() {
