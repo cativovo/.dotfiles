@@ -49,6 +49,13 @@ keybinds {
       };
       SwitchToMode "locked";
     }
+    bind "s" {
+      LaunchOrFocusPlugin "zellij:session-manager" {
+          floating true
+          move_to_focused_tab true
+      };
+      SwitchToMode "locked"
+    }
   }
 
   shared_among "scroll" "search" {
