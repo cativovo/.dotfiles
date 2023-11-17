@@ -1,38 +1,133 @@
 theme "catppuccin-mocha"
+default_mode "locked"
 
 // default keybindings https://github.com/zellij-org/zellij/blob/main/zellij-utils/assets/config/default.kdl
-keybinds {
-  tab {
-    unbind "1" "2" "3" "4" "5" "6" "7" "8" "9"
-    bind "c" { SwitchToMode "RenameTab"; TabNameInput 0; }
-    bind "q" { GoToTab 1; SwitchToMode "normal"; }
+keybinds clear-defaults=true {
+  resize {
+    bind "h" "Left" { Resize "Increase Left"; }
+    bind "j" "Down" { Resize "Increase Down"; }
+    bind "k" "Up" { Resize "Increase Up"; }
+    bind "l" "Right" { Resize "Increase Right"; }
+    bind "H" { Resize "Decrease Left"; }
+    bind "J" { Resize "Decrease Down"; }
+    bind "K" { Resize "Decrease Up"; }
+    bind "L" { Resize "Decrease Right"; }
+    bind "=" "+" { Resize "Increase"; }
+    bind "-" { Resize "Decrease"; }
   }
 
   pane {
-    unbind "w"
-    bind "a" { ToggleFloatingPanes; SwitchToMode "normal"; }
+    bind "h" "Left" { MoveFocus "Left"; }
+    bind "l" "Right" { MoveFocus "Right"; }
+    bind "j" "Down" { MoveFocus "Down"; }
+    bind "k" "Up" { MoveFocus "Up"; }
+    bind "p" { SwitchFocus; }
+    bind "n" { NewPane; SwitchToMode "Locked"; }
+    bind "d" { NewPane "Down"; SwitchToMode "Locked"; }
+    bind "r" { NewPane "Right"; SwitchToMode "Locked"; }
+    bind "x" { CloseFocus; SwitchToMode "Locked"; }
+    bind "f" { ToggleFocusFullscreen; SwitchToMode "Locked"; }
+    bind "z" { TogglePaneFrames; SwitchToMode "Locked"; }
+    bind "w" { ToggleFloatingPanes; SwitchToMode "Locked"; }
+    bind "e" { TogglePaneEmbedOrFloating; SwitchToMode "Locked"; }
+    bind "c" { SwitchToMode "RenamePane"; PaneNameInput 0;}
   }
 
+  move {
+    bind "n" "Tab" { MovePane; }
+    bind "p" { MovePaneBackwards; }
+    bind "h" "Left" { MovePane "Left"; }
+    bind "j" "Down" { MovePane "Down"; }
+    bind "k" "Up" { MovePane "Up"; }
+    bind "l" "Right" { MovePane "Right"; }
+  }
+
+  tab {
+    bind "c" { SwitchToMode "RenameTab"; TabNameInput 0; }
+    bind "r" { SwitchToMode "RenameTab"; TabNameInput 0; }
+    bind "h" "Left" "Up" "k" { GoToPreviousTab; }
+    bind "l" "Right" "Down" "j" { GoToNextTab; }
+    bind "n" { NewTab; SwitchToMode "Locked"; }
+    bind "x" { CloseTab; SwitchToMode "Locked"; }
+    bind "s" { ToggleActiveSyncTab; SwitchToMode "Locked"; }
+    bind "b" { BreakPane; SwitchToMode "Locked"; }
+    bind "]" { BreakPaneRight; SwitchToMode "Locked"; }
+    bind "[" { BreakPaneLeft; SwitchToMode "Locked"; }
+  }
+
+
   scroll {
-    unbind "s"
     bind "/" { SwitchToMode "EnterSearch"; SearchInput 0; }
+    bind "e" { EditScrollback; SwitchToMode "Locked"; }
+    bind "Ctrl c" { ScrollToBottom; SwitchToMode "Locked"; }
+    bind "j" "Down" { ScrollDown; }
+    bind "k" "Up" { ScrollUp; }
+    bind "Ctrl f" "PageDown" "Right" "l" { PageScrollDown; }
+    bind "Ctrl b" "PageUp" "Left" "h" { PageScrollUp; }
   }
 
   search {
     bind "N" { Search "up"; }
+    bind "Ctrl c" { ScrollToBottom; SwitchToMode "Locked"; }
+    bind "j" "Down" { ScrollDown; }
+    bind "k" "Up" { ScrollUp; }
+    bind "Ctrl f" "PageDown" "Right" "l" { PageScrollDown; }
+    bind "Ctrl b" "PageUp" "Left" "h" { PageScrollUp; }
+    bind "n" { Search "down"; }
+    bind "c" { SearchToggleOption "CaseSensitivity"; }
+    bind "w" { SearchToggleOption "Wrap"; }
+    bind "o" { SearchToggleOption "WholeWord"; }
+  }
+
+  entersearch {
+    bind "Ctrl c" "Esc" { SwitchToMode "Locked"; }
+    bind "Enter" { SwitchToMode "Search"; }
+  }
+
+  renametab {
+    bind "Ctrl c" { SwitchToMode "Locked"; }
+  }
+
+  renamepane {
+    bind "Ctrl c" { SwitchToMode "Locked"; }
   }
 
   session {
+    bind "Ctrl s" { SwitchToMode "Scroll"; }
+    bind "d" { Detach; }
+    bind "w" {
+        LaunchOrFocusPlugin "zellij:session-manager" {
+            floating true
+            move_to_focused_tab true
+        };
+        SwitchToMode "Locked"
+    }
     bind "q" { Quit; }
   }
 
-  tmux {
-    unbind "[" "Ctrl b" "\"" "%" "z" "c" "," "p" "Left" "Right" "Down" "Up" "h" "l" "j" "k" "o" "d" "Space" "x"
+  tmux clear-defaults=true {
+    // change modes
+    bind "p" { SwitchToMode "Pane"; }
+    bind "c" { SwitchToMode "Tab"; }
+    bind "z" { SwitchToMode "Resize"; }
+    bind "m" { SwitchToMode "Move"; }
+    bind "s" { SwitchToMode "Scroll"; }
+    bind "d" { SwitchToMode "Session"; }
 
-    bind "Ctrl c" "Esc" { SwitchToMode "normal"; }
+
+    bind "q" { GoToTab 1; SwitchToMode "Locked"; }
+    bind "w" { GoToTab 2; SwitchToMode "Locked"; }
+    bind "e" { GoToTab 3; SwitchToMode "Locked"; }
+    bind "r" { GoToTab 4; SwitchToMode "Locked"; }
+    bind "t" { GoToTab 5; SwitchToMode "Locked"; }
+    bind "y" { GoToTab 6; SwitchToMode "Locked"; }
+    bind "u" { GoToTab 7; SwitchToMode "Locked"; }
+    bind "i" { GoToTab 8; SwitchToMode "Locked"; }
+    bind "o" { GoToTab 9; SwitchToMode "Locked"; }
+    bind "Ctrl c" "Esc" { SwitchToMode "Locked"; }
     bind "Tab" { ToggleTab; }
-    bind "q" { GoToTab 1; SwitchToMode "locked"; }
-    bind "a" { ToggleFloatingPanes; SwitchToMode "locked"; }
+
+    // open nootes
     bind "n" {
       NewTab { name "notes"; };
       Run "zsh" "-c" "open-notes" {
@@ -40,26 +135,30 @@ keybinds {
         close_on_exit true
         in_place true
       };
-      SwitchToMode "normal";
+      SwitchToMode "Locked";
     }
+
+    // open lazygit
     bind "g" {
       Run "zsh" "-c" "git-hooks-lazygit" {
         close_on_exit true
         in_place true
       };
-      SwitchToMode "locked";
+      SwitchToMode "Locked";
     }
-    bind "s" {
-      LaunchOrFocusPlugin "zellij:session-manager" {
-          floating true
-          move_to_focused_tab true
+
+    // open zellij config
+    bind "?" {
+      Run "nvim" ".dotfiles/files/config/.config/zellij/config.kdl" {
+        cwd "$HOME"
+        close_on_exit true
+        in_place true
       };
-      SwitchToMode "locked"
+      SwitchToMode "Locked";
     }
   }
 
   shared_among "scroll" "search" {
-    unbind "d" "u"
     bind "Ctrl d" { HalfPageScrollDown; }
     bind "Ctrl u" { HalfPageScrollUp; }
     bind "g" { ScrollToTop;}
@@ -67,29 +166,13 @@ keybinds {
   }
 
   shared_except "locked" {
-    unbind "Ctrl q" "Alt n" "Alt Left" "Alt Right"
-    bind "Alt h" "Alt Left" { MoveFocus "Left"; }
-    bind "Alt l" "Alt Right" { MoveFocus "Right"; }
-    bind "Alt p" { NewPane; }
-    bind "Insert" { GoToTab 1; SwitchToMode "locked";}
-  }
-
-  shared_except "tmux" "locked" {
-    unbind "Ctrl b"
+    bind "Esc"  { SwitchToMode "Locked";}
   }
 
   shared_except "tmux" {
-    bind "Ctrl a" { SwitchToMode "tmux"; }
+    bind "Ctrl a" { SwitchToMode "Tmux"; }
   }
-
-  shared_among "tmux" "tab" {
-    bind "w" { GoToTab 2; SwitchToMode "normal"; }
-    bind "e" { GoToTab 3; SwitchToMode "normal"; }
-    bind "r" { GoToTab 4; SwitchToMode "normal"; }
-    bind "t" { GoToTab 5; SwitchToMode "normal"; }
-    bind "y" { GoToTab 6; SwitchToMode "normal"; }
-    bind "u" { GoToTab 7; SwitchToMode "normal"; }
-    bind "i" { GoToTab 8; SwitchToMode "normal"; }
-    bind "o" { GoToTab 9; SwitchToMode "normal"; }
+  shared_except "normal" "locked" {
+    bind "Enter" "Esc" { SwitchToMode "Locked"; }
   }
 }
