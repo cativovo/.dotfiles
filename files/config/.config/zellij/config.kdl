@@ -28,7 +28,6 @@ keybinds clear-defaults=true {
     bind "x" { CloseFocus; SwitchToMode "Locked"; }
     bind "f" { ToggleFocusFullscreen; SwitchToMode "Locked"; }
     bind "z" { TogglePaneFrames; SwitchToMode "Locked"; }
-    bind "w" { ToggleFloatingPanes; SwitchToMode "Locked"; }
     bind "e" { TogglePaneEmbedOrFloating; SwitchToMode "Locked"; }
     bind "c" { SwitchToMode "RenamePane"; PaneNameInput 0;}
   }
@@ -44,7 +43,6 @@ keybinds clear-defaults=true {
 
   tab {
     bind "c" { SwitchToMode "RenameTab"; TabNameInput 0; }
-    bind "r" { SwitchToMode "RenameTab"; TabNameInput 0; }
     bind "h" "Left" "Up" "k" { GoToPreviousTab; }
     bind "l" "Right" "Down" "j" { GoToNextTab; }
     bind "n" { NewTab; SwitchToMode "Locked"; }
@@ -86,10 +84,12 @@ keybinds clear-defaults=true {
 
   renametab {
     bind "Ctrl c" { SwitchToMode "Locked"; }
+    bind "Esc" { UndoRenameTab; SwitchToMode "Locked"; }
   }
 
   renamepane {
     bind "Ctrl c" { SwitchToMode "Locked"; }
+    bind "Esc" { UndoRenamePane; SwitchToMode "Locked"; }
   }
 
   session {
@@ -114,7 +114,18 @@ keybinds clear-defaults=true {
     bind "s" { SwitchToMode "Scroll"; }
     bind "d" { SwitchToMode "Session"; }
 
-
+    // panes
+    bind "a" { ToggleFloatingPanes; SwitchToMode "Locked"; }
+    bind "h" { MoveFocus "Left"; SwitchToMode "Locked"; }
+    bind "l" { MoveFocus "Right"; SwitchToMode "Locked"; }
+    bind "j"  { MoveFocus "Down"; SwitchToMode "Locked"; }
+    bind "k" { MoveFocus "Up"; SwitchToMode "Locked"; }
+    bind "Alt =" "Alt +" { Resize "Increase"; }
+    bind "Alt -" { Resize "Decrease"; }
+    bind "Alt [" { PreviousSwapLayout; }
+    bind "Alt ]" { NextSwapLayout; }
+    
+    // tabs
     bind "q" { GoToTab 1; SwitchToMode "Locked"; }
     bind "w" { GoToTab 2; SwitchToMode "Locked"; }
     bind "e" { GoToTab 3; SwitchToMode "Locked"; }
@@ -127,14 +138,14 @@ keybinds clear-defaults=true {
     bind "Ctrl c" "Esc" { SwitchToMode "Locked"; }
     bind "Tab" { ToggleTab; }
 
-    // open nootes
+    // open notes
     bind "n" {
-      NewTab { name "notes"; };
+      NewTab name="notes"
       Run "zsh" "-c" "open-notes" {
         name "notes"
         close_on_exit true
         in_place true
-      };
+      }
       SwitchToMode "Locked";
     }
 
@@ -149,7 +160,9 @@ keybinds clear-defaults=true {
 
     // open zellij config
     bind "?" {
-      Run "nvim" ".dotfiles/files/config/.config/zellij/config.kdl" {
+      // open config in readonly mode
+      Run "nvim" "-R" ".dotfiles/files/config/.config/zellij/config.kdl" {
+        name "zellij config"
         cwd "$HOME"
         close_on_exit true
         in_place true
