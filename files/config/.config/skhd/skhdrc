@@ -104,8 +104,10 @@ cmd - r : yabai -m window first --swap next && yabai -m window first --swap last
 cmd + shift - r : yabai -m window first --swap last && yabai -m window first --swap next
 
 # open terminal
-# cmd - return : open -na /Applications/Alacritty.app
-cmd - return : open -na /Applications/Kitty.app
+cmd - return [
+  *             : open -na /Applications/Kitty.app
+  "obsidian"    ~
+]
 
 # swap managed window
 shift + alt - h : yabai -m window --swap west
