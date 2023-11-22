@@ -142,17 +142,6 @@ keybinds clear-defaults=true {
     bind "Ctrl c" "Esc" { SwitchToMode "Locked"; }
     bind "Tab" { ToggleTab; }
 
-    // open notes
-    bind "n" {
-      NewTab name="notes"
-      Run "zsh" "-c" "open-notes" {
-        name "notes"
-        close_on_exit true
-        in_place true
-      }
-      SwitchToMode "Locked";
-    }
-
     // open lazygit
     bind "g" {
       Run "zsh" "-c" "git-hooks-lazygit" {
