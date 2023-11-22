@@ -35,6 +35,7 @@ cduf() {
 
 fzf-directory() {
   cdf ~
+  zle clear-screen
   zle reset-prompt
 }
 
