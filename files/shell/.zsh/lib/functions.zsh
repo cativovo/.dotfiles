@@ -104,11 +104,6 @@ git-hooks-lazygit() {
   lazygit
 }
 
-open-notes() {
-  cd ~/notes
-  nvim -c "lua require('plugins.neorg').open_workspace()"
-}
-
 # zellij related functions
 # create new session
 zn() {
