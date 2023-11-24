@@ -12,7 +12,6 @@ return {
       ["<leader>s"] = { name = "+search" },
       ["<leader>u"] = { name = "+ui" },
       ["<leader>w"] = { name = "+windows" },
-      ["<leader>n"] = { name = "+neorg" },
       ["<leader>q"] = { name = "+quickfix list" },
     },
   },
