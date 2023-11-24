@@ -1,7 +1,14 @@
+local grep_opts = {
+  additional_args = {
+    "--hidden",
+  },
+}
+
 return {
   "nvim-telescope/telescope.nvim",
   opts = {
     defaults = {
+      file_ignore_patterns = { ".git/" },
       sorting_strategy = "ascending",
       layout_strategy = "vertical",
       layout_config = {
@@ -19,6 +26,11 @@ return {
       git_status = {
         previewer = false,
         theme = "dropdown",
+      },
+      live_grep = grep_opts,
+      grep_string = grep_opts,
+      find_files = {
+        hidden = true,
       },
       buffers = {
         mappings = {
