@@ -128,6 +128,7 @@ keybinds clear-defaults=true {
     bind "Alt -" { Resize "Decrease"; }
     bind "Alt [" { PreviousSwapLayout; }
     bind "Alt ]" { NextSwapLayout; }
+    bind "x" { Clear; SwitchToMode "Locked"; }
     
     // tabs
     bind "q" { GoToTab 1; SwitchToMode "Locked"; }
