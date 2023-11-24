@@ -23,7 +23,7 @@ return {
       ["<C-v>"] = "actions.select_vsplit",
       ["<C-x>"] = "actions.select_split",
       ["<leader>r"] = "actions.refresh",
-      ["<leader>y"] = "actions.copy_entry_path",
+      ["<leader>Y"] = "actions.copy_entry_path",
     },
   },
   -- Optional dependencies
