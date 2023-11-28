@@ -10,7 +10,7 @@
 # to the user's home directory starting with `~/`.
 import:
   #  - /path/to/alacritty.yml
-  - ~/.config/alacritty/catppuccin/catppuccin-frappe.yml
+  - ~/.config/alacritty/catppuccin/catppuccin-mocha.yml
 
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables
@@ -189,8 +189,8 @@ font:
 colors:
   # Default colors
   primary:
-    background: "#000000"
-    foreground: "#c5c8c6"
+    # background: "#000000"
+    # foreground: "#c5c8c6"
 
     # Bright and dim foreground colors
     #
