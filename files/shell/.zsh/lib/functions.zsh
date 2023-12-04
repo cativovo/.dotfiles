@@ -12,7 +12,8 @@ cdu() {
 }
 
 cdf() {
-  local DIRECTORY=$(fd . ${1:=.} --type d --hidden --exclude '.git' | fzf);
+  # --height 99% - to make sure the terminal will use the 'insert mode cursor'
+  local DIRECTORY=$(fd . ${1:=.} --type d --hidden --exclude '.git' | fzf --height 99% --layout reverse);
 
     # if $DIRECTORY is an empty string
   if [[ -z "${DIRECTORY}" ]]; then
@@ -76,6 +77,26 @@ fzf-tmux-attach() {
   fi
 }
 
+# https://github.com/junegunn/fzf/blob/master/shell/key-bindings.zsh#L98
+fzf-history-widget() {
+  setopt localoptions noglobsubst noposixbuiltins pipefail no_aliases 2> /dev/null
+
+  local selected num
+
+  selected=( $(fc -rl 1 | awk '{ cmd=$0; sub(/^[ \t]*[0-9]+\**[ \t]+/, "", cmd); if (!seen[cmd]++) print $0 }' |
+    FZF_DEFAULT_OPTS="--height 50% --layout reverse  -n2..,.. --scheme=history --bind=ctrl-r:toggle-sort,ctrl-z:ignore --query=${(qqq)LBUFFER} +m" "fzf") )
+
+  local ret=$?
+  if [ -n "$selected" ]; then
+    num=$selected[1]
+    if [ -n "$num" ]; then
+      zle vi-fetch-history -n $num
+    fi
+  fi
+  zle reset-prompt
+  return $ret
+}
+
 show-my-zsh-functions() {
   rg '.*\(\)' -N -o $HOME/.dotfiles/files/shell/.zsh/lib/functions.zsh
 }
@@ -118,7 +139,7 @@ zn() {
 
 # find directory using fd and fzf then use that to create a new session
 zf() {
-  local directory=$(fd . ~ --type d --hidden --exclude '.git' | fzf);
+  local directory=$(fd . ~ --type d --hidden --exclude '.git' | fzf --height 50% --layout reverse);
 
   local layout=""
 
@@ -144,7 +165,7 @@ zf() {
 
 # list session then attach to it
 zs() {
-  local SESSION_NAME=$(zellij ls -n | fzf | rg -o '^[^ ]+');
+  local SESSION_NAME=$(zellij ls -n | fzf --height 50% --layout reverse | rg -o '^[^ ]+');
 
   # if $SESSION_NAME is not an empty string
   if [[ -n "${SESSION_NAME}" ]]; then
