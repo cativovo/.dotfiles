@@ -78,7 +78,6 @@ keybinds clear-defaults=true {
   }
 
   entersearch {
-    bind "Ctrl c" "Esc" { SwitchToMode "Locked"; }
     bind "Enter" { SwitchToMode "Search"; }
   }
 
@@ -161,6 +160,18 @@ keybinds clear-defaults=true {
     }
   }
 
+  shared_except "locked" "search" "entersearch" {
+    bind "Esc" { SwitchToMode "Locked"; }
+  }
+
+  shared_except "tmux" {
+    bind "Ctrl a" { SwitchToMode "Tmux"; }
+  }
+
+  shared_except "normal" "locked" {
+    bind "Enter" "Esc" { SwitchToMode "Locked"; }
+  }
+
   shared_among "scroll" "search" {
     bind "Ctrl d" { HalfPageScrollDown; }
     bind "Ctrl u" { HalfPageScrollUp; }
@@ -168,14 +179,7 @@ keybinds clear-defaults=true {
     bind "G" { ScrollToBottom;}
   }
 
-  shared_except "locked" {
-    bind "Esc"  { SwitchToMode "Locked";}
-  }
-
-  shared_except "tmux" {
-    bind "Ctrl a" { SwitchToMode "Tmux"; }
-  }
-  shared_except "normal" "locked" {
-    bind "Enter" "Esc" { SwitchToMode "Locked"; }
+  shared_among "search" "entersearch" {
+    bind "Esc" { SwitchToMode "Scroll"; }
   }
 }
