@@ -43,6 +43,13 @@ return {
     popupmenu = {
       enabled = false,
     },
+    views = {
+      confirm = {
+        position = {
+          row = "0%",
+        },
+      },
+    },
     presets = {
       lsp_doc_border = true,
     },
