@@ -12,3 +12,8 @@ vim.api.nvim_create_autocmd("BufReadPost", {
   pattern = "?*",
   command = "silent! loadview",
 })
+
+vim.api.nvim_create_autocmd("User", {
+  pattern = "TelescopePreviewerLoaded",
+  command = "setlocal number",
+})
