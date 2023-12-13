@@ -32,6 +32,9 @@ return {
       find_files = {
         hidden = true,
       },
+      lsp_references = {
+        show_line = false,
+      },
       buffers = {
         mappings = {
           i = {
