@@ -109,12 +109,18 @@ show-my-zsh-keymaps() {
   rg 'bindkey .*' -N -o $HOME/.dotfiles/files/shell/.zsh/lib/keymaps.zsh
 }
 
-clear-screen-and-tmux-history() {
-  zle clear-screen
-
+my-clear-screen() {
   if [[ -n "$TMUX" ]]; then
     tmux clear-history
   fi
+
+  if [[ -n "$ZELLIJ" ]]; then
+    zellij action clear
+  fi
+
+  zle clear-screen
+  zle reset-prompt
+  zle zle-keymap-select
 }
 
 # load dependencies for git hooks if there are any

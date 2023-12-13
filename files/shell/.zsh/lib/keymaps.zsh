@@ -20,8 +20,8 @@ bindkey "^?" backward-delete-char
 
 bindkey -M menuselect '^[[Z' reverse-menu-complete
 
-zle -N clear-screen-and-tmux-history
-bindkey "^l" clear-screen-and-tmux-history
+zle -N my-clear-screen
+bindkey "^l" my-clear-screen
 
 # https://github.com/zsh-users/zsh-history-substring-search#usage
 bindkey '^[[A' history-substring-search-up
