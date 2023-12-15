@@ -1,61 +1,56 @@
 return {
   "ThePrimeagen/harpoon",
   event = "VeryLazy",
-  config = true,
+  branch = "harpoon2",
+  config = function(_, opts)
+    require("harpoon"):setup(opts)
+  end,
+  opts = {
+    settings = {
+      save_on_toggle = true,
+    },
+  },
   keys = {
     {
       "<leader>fa",
       function()
-        require("harpoon.mark").add_file()
+        require("harpoon"):list():append()
       end,
       desc = "Add File to Harpoon",
     },
     {
       "<leader>fm",
       function()
-        require("harpoon.ui").toggle_quick_menu()
+        local harpoon = require("harpoon")
+        harpoon.ui:toggle_quick_menu(harpoon:list())
       end,
       desc = "Harpoon Menu",
     },
     {
-      "<leader>fn",
-      function()
-        require("harpoon.ui").nav_next()
-      end,
-      desc = "Next File",
-    },
-    {
-      "<leader>fp",
-      function()
-        require("harpoon.ui").nav_prev()
-      end,
-      desc = "Previous File",
-    },
-    {
       "<leader>fj",
       function()
-        require("harpoon.ui").nav_file(1)
+        require("harpoon"):list():select(1)
       end,
       desc = "First File",
     },
     {
       "<leader>fk",
       function()
-        require("harpoon.ui").nav_file(2)
+        require("harpoon"):list():select(2)
       end,
       desc = "Second File",
     },
     {
       "<leader>fl",
       function()
-        require("harpoon.ui").nav_file(3)
+        require("harpoon"):list():select(3)
       end,
       desc = "Third File",
     },
     {
       "<leader>f;",
       function()
-        require("harpoon.ui").nav_file(4)
+        require("harpoon"):list():select(4)
       end,
       desc = "Fourth File",
     },
