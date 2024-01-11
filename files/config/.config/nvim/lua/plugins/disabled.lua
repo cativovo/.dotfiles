@@ -17,6 +17,7 @@ local disabled_plugins = {
   "folke/tokyonight.nvim",
   -- coding
   "echasnovski/mini.pairs",
+  "echasnovski/mini.ai",
   -- lang
   "lukas-reineke/headlines.nvim",
 }
