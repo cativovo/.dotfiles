@@ -18,4 +18,4 @@ source $HOME/.zsh/lib/auto_install_dependencies.zsh
 
 # Start starship
 eval "$(starship init zsh)"
-eval "$(rtx activate zsh)"
+eval "$(mise activate zsh)"
