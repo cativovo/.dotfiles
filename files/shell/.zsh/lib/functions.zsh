@@ -125,8 +125,8 @@ my-clear-screen() {
 
 # load dependencies for git hooks if there are any
 git-hooks-lazygit() {
-  eval "$(rtx activate zsh)"
-  eval "$(rtx hook-env)"
+  eval "$(mise activate zsh)"
+  eval "$(mise hook-env)"
 
   lazygit
 }
