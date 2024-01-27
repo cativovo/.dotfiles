@@ -178,3 +178,18 @@ zs() {
     zellij a $SESSION_NAME $1
   fi
 }
+
+# git related functions
+# list worktree then cd
+gwf() {
+  local directory=$(git worktree list | fzf --height 50% --layout reverse | awk '{print $1}')
+  if [[ -n "${directory}" ]]; then
+    cd $directory
+  fi
+}
+
+# workaround to allow the use of zle reset-prompt
+gwf-widget() {
+  gwf
+  zle reset-prompt
+}
