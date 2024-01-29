@@ -11,16 +11,12 @@ cdu() {
   cd $LOCATION
 }
 
-cdf() {
+fzf-directory() {
   # --height 99% - to make sure the terminal will use the 'insert mode cursor'
   local DIRECTORY=$(fd . ${1:=.} --type d --hidden --exclude '.git' | fzf --height 99% --layout reverse);
 
-    # if $DIRECTORY is an empty string
-  if [[ -z "${DIRECTORY}" ]]; then
-    DIRECTORY=${1:=.}
-  fi
-
-  cd $DIRECTORY;
+  # 'return' the directory
+  echo $DIRECTORY
 }
 
 cduf() {
@@ -31,11 +27,25 @@ cduf() {
     LOCATION+="../"
   done
 
-  cdf $LOCATION
+  local DIRECTORY=$(fzf-directory $LOCATION)
+
+  # if $DIRECTORY is NOT an empty string
+  if [[ -n "${DIRECTORY}" ]]; then
+    cd $DIRECTORY
+  else
+    cd $LOCATION
+  fi
+
 }
 
-fzf-directory() {
-  cdf ~
+fzf-directory-widget() {
+  local DIRECTORY=$(fzf-directory $HOME)
+
+  # if $DIRECTORY is NOT an empty string
+  if [[ -n "${DIRECTORY}" ]]; then
+    cd $DIRECTORY
+  fi
+
   zle clear-screen
   zle reset-prompt
 }

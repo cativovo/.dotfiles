@@ -4,8 +4,8 @@
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
 
-zle -N fzf-directory
-bindkey '^p' fzf-directory
+zle -N fzf-directory-widget
+bindkey '^p' fzf-directory-widget
 
 zle -N fzf-history-widget
 bindkey '^r' fzf-history-widget
