@@ -15,3 +15,5 @@ export KEYTIMEOUT=1
 
 # change lazygit config directory
 export XDG_CONFIG_HOME="$HOME/.config"
+
+export FZF_DEFAULT_OPTS="--bind ctrl-u:preview-half-page-up,ctrl-d:preview-half-page-down"
