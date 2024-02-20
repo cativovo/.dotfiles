@@ -38,8 +38,20 @@ cduf() {
 
 }
 
-fzf-directory-widget() {
+fzf-home-widget() {
   local DIRECTORY=$(fzf-directory $HOME)
+
+  # if $DIRECTORY is NOT an empty string
+  if [[ -n "${DIRECTORY}" ]]; then
+    cd $DIRECTORY
+  fi
+
+  zle clear-screen
+  zle reset-prompt
+}
+
+fzf-cwd-widget() {
+  local DIRECTORY=$(fzf-directory $(pwd))
 
   # if $DIRECTORY is NOT an empty string
   if [[ -n "${DIRECTORY}" ]]; then
