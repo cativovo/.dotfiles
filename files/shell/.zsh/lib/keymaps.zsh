@@ -4,8 +4,11 @@
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
 
-zle -N fzf-directory-widget
-bindkey '^p' fzf-directory-widget
+zle -N fzf-home-widget
+bindkey '^p' fzf-home-widget
+
+zle -N fzf-cwd-widget
+bindkey '^[p' fzf-cwd-widget
 
 zle -N fzf-history-widget
 bindkey '^r' fzf-history-widget
