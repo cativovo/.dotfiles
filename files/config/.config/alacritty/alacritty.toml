@@ -1,0 +1,16 @@
+# theme
+import = ["~/.config/alacritty/themes/catppuccin-mocha.toml"]
+
+[window]
+decorations = "buttonless"
+opacity = 0.80
+blur = true
+padding = { x = 6, y = 6 }
+
+[font]
+normal = { family = "JetBrainsMono Nerd Font", style = "Regular" }
+bold = { family = "JetBrainsMono Nerd Font", style = "Bold" }
+italic = { family = "JetBrainsMono Nerd Font", style = "Italic" }
+bold_italic = { family = "JetBrainsMono Nerd Font", style = "Bold Italic" }
+size = 16.0
+offset = { x = 1 }
