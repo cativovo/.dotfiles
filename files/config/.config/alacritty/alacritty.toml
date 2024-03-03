@@ -15,3 +15,7 @@ italic = { family = "JetBrainsMono Nerd Font", style = "Italic" }
 bold_italic = { family = "JetBrainsMono Nerd Font", style = "Bold Italic" }
 size = 16.0
 offset = { x = 1 }
+
+[keyboard]
+# https://github.com/alacritty/alacritty/issues/7608#issuecomment-1975006973
+bindings = [{ key = "Slash", mods = "Control", chars = "\u001f" }]
