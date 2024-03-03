@@ -6,6 +6,7 @@ decorations = "buttonless"
 opacity = 0.80
 blur = true
 padding = { x = 6, y = 6 }
+option_as_alt = "Both"     # macos only
 
 [font]
 normal = { family = "JetBrainsMono Nerd Font", style = "Regular" }
