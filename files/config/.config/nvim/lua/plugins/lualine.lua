@@ -8,7 +8,7 @@ return {
     },
     sections = {
       lualine_c = {
-        { "filename", path = 1, symbols = { modified = " " } },
+        { "filename", path = 3, symbols = { modified = " " } },
         {
           "diagnostics",
           symbols = {
