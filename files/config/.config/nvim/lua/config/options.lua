@@ -11,4 +11,4 @@ vim.opt.splitbelow = false
 vim.opt.timeoutlen = 500
 vim.opt.conceallevel = 0
 vim.opt.pumblend = 0
-vim.opt.colorcolumn = "80"
+vim.opt.cursorline = false
