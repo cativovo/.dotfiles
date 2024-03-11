@@ -164,7 +164,7 @@ keybinds clear-defaults=true {
   }
 
   shared_except "tmux" {
-    bind "Ctrl a" { SwitchToMode "Tmux"; }
+    bind "Ctrl b" { SwitchToMode "Tmux"; }
   }
 
   shared_except "normal" "locked" {
