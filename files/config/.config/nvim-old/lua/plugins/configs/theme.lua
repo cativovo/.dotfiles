@@ -2,9 +2,8 @@ local M = {}
 
 M.setup = function()
 	local opts = {
-		flavour = "frappe", -- latte, frappe, macchiato, mocha
+		flavour = "mocha", -- latte, frappe, macchiato, mocha
 		background = { -- :h background
-			light = "latte",
 			dark = "mocha",
 		},
 		transparent_background = true,
