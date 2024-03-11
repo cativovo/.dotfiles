@@ -132,17 +132,18 @@ show-my-zsh-keymaps() {
 }
 
 clear-screen-widget() {
+  zle clear-screen
+
   if [[ -n "$TMUX" ]]; then
     tmux clear-history
   fi
 
   if [[ -n "$ZELLIJ" ]]; then
     zellij action clear
-  fi
 
-  zle clear-screen
-  zle reset-prompt
-  zle zle-keymap-select
+    zle reset-prompt
+    zle zle-keymap-select
+  fi
 }
 
 # load dependencies for git hooks if there are any
