@@ -131,7 +131,7 @@ show-my-zsh-keymaps() {
   rg 'bindkey .*' -N -o $HOME/.dotfiles/files/shell/.zsh/lib/keymaps.zsh
 }
 
-my-clear-screen() {
+clear-screen-widget() {
   if [[ -n "$TMUX" ]]; then
     tmux clear-history
   fi
