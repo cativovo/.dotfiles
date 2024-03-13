@@ -3,7 +3,7 @@ import = ["~/.config/alacritty/themes/catppuccin-mocha.toml"]
 
 [window]
 decorations = "buttonless"
-opacity = 0.80
+opacity = 0.78
 blur = true
 padding = { x = 2, y = 2 }
 option_as_alt = "Both"     # macos only
