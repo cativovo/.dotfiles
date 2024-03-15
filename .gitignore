@@ -8,3 +8,4 @@ debug
 foo.*
 *.log
 data
+.dbg_history
