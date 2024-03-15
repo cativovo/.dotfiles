@@ -4,6 +4,9 @@ local grep_opts = {
   },
 }
 
+-- for lsp_symbols pickers
+local symbol_width = 60
+
 return {
   "nvim-telescope/telescope.nvim",
   opts = {
@@ -34,6 +37,12 @@ return {
       },
       lsp_references = {
         show_line = false,
+      },
+      lsp_document_symbols = {
+        symbol_width = symbol_width,
+      },
+      lsp_dynamic_workspace_symbols = {
+        symbol_width = symbol_width,
       },
       buffers = {
         mappings = {
