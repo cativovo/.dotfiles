@@ -9,3 +9,5 @@ foo.*
 *.log
 data
 .dbg_history
+**/pgcli/history
+**/pgcli/log
