@@ -7,7 +7,6 @@ return {
   opts = {
     diagnostics = {
       float = { border = "rounded" },
-      virtual_text = false,
     },
   },
 }
