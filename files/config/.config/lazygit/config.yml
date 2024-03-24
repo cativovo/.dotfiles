@@ -6,4 +6,4 @@ gui:
 git:
   paging:
     colorArg: always
-    pager: delta --line-numbers --paging=never
+    pager: delta --line-numbers --paging=never --dark
