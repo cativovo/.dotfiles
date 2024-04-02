@@ -3,7 +3,7 @@ return {
   event = "VeryLazy",
   config = true,
   keys = {
-    { "<leader>fa", "<cmd>Grapple toggle<cr>", desc = "Tag a file" },
+    { "<leader>fa", "<cmd>Grapple tag<cr>", desc = "Tag a file" },
     { "<leader>fm", "<cmd>Grapple toggle_tags<cr>", desc = "Toggle tags menu" },
     { "<leader>fj", "<cmd>Grapple select index=1<cr>", desc = "Select first tag" },
     { "<leader>fk", "<cmd>Grapple select index=2<cr>", desc = "Select second tag" },
