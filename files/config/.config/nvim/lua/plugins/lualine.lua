@@ -10,12 +10,7 @@ return {
       lualine_c = {
         { "filename", path = 3, symbols = { modified = " " } },
         {
-          function()
-            return "󰛢[" .. require("grapple").name_or_index() .. "]"
-          end,
-          cond = function()
-            return package.loaded["grapple"] and require("grapple").exists()
-          end,
+          "grapple",
         },
         {
           "diagnostics",
