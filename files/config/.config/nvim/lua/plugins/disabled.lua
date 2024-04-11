@@ -8,6 +8,7 @@ local disabled_plugins = {
   -- editor
   "nvim-pack/nvim-spectre",
   "echasnovski/mini.bufremove",
+  "nvim-neo-tree/neo-tree.nvim",
   -- lsp
   "folke/neoconf.nvim",
   -- util
