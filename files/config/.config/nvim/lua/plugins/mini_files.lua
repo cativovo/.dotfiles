@@ -1,17 +1,45 @@
+local function copy_to_clipboard(contents)
+  vim.fn.setreg("+", contents)
+end
+
 local function copy_relative_path()
-  vim.fn.setreg("+", vim.fn.fnamemodify(require("mini.files").get_fs_entry().path, ":."))
+  copy_to_clipboard(vim.fn.fnamemodify(require("mini.files").get_fs_entry().path, ":."))
 end
 
 local function copy_absolute_path()
-  vim.fn.setreg("+", require("mini.files").get_fs_entry().path)
+  copy_to_clipboard(require("mini.files").get_fs_entry().path)
 end
 
 local function copy_filename()
-  vim.fn.setreg("+", require("mini.files").get_fs_entry().filename)
+  copy_to_clipboard(require("mini.files").get_fs_entry().name)
 end
 
 local function copy_extension()
-  vim.fn.setreg("+", vim.fn.fnamemodify(require("mini.files").get_fs_entry().filename, ":e"))
+  copy_to_clipboard(vim.fn.fnamemodify(require("mini.files").get_fs_entry().name, ":e"))
+end
+
+local function open_in_split(direction)
+  return function()
+    local is_file = require("mini.files").get_fs_entry().fs_type == "file"
+    if not is_file then
+      return
+    end
+
+    local new_target_window
+    vim.api.nvim_win_call(require("mini.files").get_target_window(), function()
+      vim.cmd(direction .. " split")
+      new_target_window = vim.api.nvim_get_current_win()
+    end)
+
+    require("mini.files").set_target_window(new_target_window)
+    require("mini.files").go_in({ close_on_file = true })
+  end
+end
+
+local function toggle_open(path, use_latest)
+  if not require("mini.files").close() then
+    require("mini.files").open(path, use_latest)
+  end
 end
 
 return {
@@ -31,14 +59,14 @@ return {
     {
       "<leader>e",
       function()
-        require("mini.files").open(vim.uv.cwd(), true)
+        toggle_open(vim.uv.cwd(), true)
       end,
       desc = "Open mini.files (cwd)",
     },
     {
       "<leader>E",
       function()
-        require("mini.files").open(vim.api.nvim_buf_get_name(0), true)
+        toggle_open(vim.api.nvim_buf_get_name(0), true)
       end,
       desc = "Open mini.files (Directory of Current File)",
     },
@@ -49,11 +77,17 @@ return {
     vim.api.nvim_create_autocmd("User", {
       pattern = "MiniFilesBufferCreate",
       callback = function(args)
-        local buf_id = args.data.buf_id
-        vim.keymap.set("n", "Yr", copy_relative_path, { buffer = buf_id, desc = "Copy relative path" })
-        vim.keymap.set("n", "Ya", copy_absolute_path, { buffer = buf_id, desc = "Copy absolute path" })
-        vim.keymap.set("n", "Yf", copy_filename, { buffer = buf_id, desc = "Copy filename" })
-        vim.keymap.set("n", "Ye", copy_extension, { buffer = buf_id, desc = "Copy extension" })
+        require("which-key").register({
+          ["<leader>y"] = {
+            name = "copy",
+            r = { copy_relative_path, "Copy relative path" },
+            a = { copy_absolute_path, "Copy absolute path" },
+            f = { copy_filename, "Copy filename" },
+            e = { copy_extension, "Copy extension" },
+          },
+          ["<C-v>"] = { open_in_split("vertical"), "Split right" },
+          ["<C-x>"] = { open_in_split("horizontal"), "Split above" },
+        }, { buffer = args.data.buf_id })
       end,
     })
 
