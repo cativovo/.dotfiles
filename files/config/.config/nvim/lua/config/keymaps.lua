@@ -37,8 +37,8 @@ vim.keymap.del("n", "<leader>qq")
 -- quickfix list
 vim.keymap.set("n", "<leader>qo", "<cmd>copen<cr>", { desc = "Open Quickfix List" })
 vim.keymap.set("n", "<leader>qc", "<cmd>cclose<cr>", { desc = "Close Quickfix List" })
-vim.keymap.set("n", "<leader>qn", "<cmd>cnext<cr>", { desc = "Next Item" })
-vim.keymap.set("n", "<leader>qp", "<cmd>cprev<cr>", { desc = "Previous Item" })
+vim.keymap.set("n", "<A-l>", "<cmd>cnext<cr>", { desc = "Next Item" })
+vim.keymap.set("n", "<A-h>", "<cmd>cprev<cr>", { desc = "Previous Item" })
 
 -- copy to clipboard
 vim.keymap.set("v", "<leader>y", '"+y', { desc = "Copy To Clipboard" })
