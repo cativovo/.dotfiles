@@ -88,13 +88,18 @@ fzf-tmux-new-session() {
 }
 
 fzf-tmux-attach() {
-  # if $TMUX is an empty string
-  if [[ -z "$TMUX"  ]]; then
-    local SESSION_NAME=$(tmux ls | fzf | rg -o "^\w+");
+  local SESSION_NAME=$(tmux ls | fzf | rg -o "^\w+");
 
-    # if $SESSION_NAME is not an empty string
-    if [[ -n "${SESSION_NAME}" ]]; then
-      tmux a -t $SESSION_NAME;
+  # if $SESSION_NAME is not an empty string
+  if [[ -n "${SESSION_NAME}" ]]; then
+    # if $TMUX is an empty string
+    if [[ -z "$TMUX"  ]]; then
+        tmux a -t $SESSION_NAME;
+    else
+      # if $SESSION_NAME is not an empty string
+      if [[ -n "${SESSION_NAME}" ]]; then
+        tmux switch-client -t $SESSION_NAME
+      fi
     fi
   fi
 }
