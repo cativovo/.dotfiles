@@ -45,3 +45,14 @@ vim.keymap.set("v", "<leader>y", '"+y', { desc = "Copy To Clipboard" })
 
 -- workaround; can't remove <c-t> keymap, <c-t> is used in zellij
 vim.keymap.set("n", "<c-t>", '<cmd>lua vim.api.nvim_err_writeln("Locked")<cr>')
+
+-- copy filepath
+vim.keymap.set("n", "<leader>fya", function()
+  vim.fn.setreg("+", vim.fn.expand("%:p"))
+end, { desc = "Copy absolute path" })
+vim.keymap.set("n", "<leader>fyr", function()
+  vim.fn.setreg("+", vim.fn.fnamemodify(vim.fn.expand("%"), ":."))
+end, { desc = "Copy relative path" })
+vim.keymap.set("n", "<leader>fyf", function()
+  vim.fn.setreg("+", vim.fn.expand("%:t"))
+end, { desc = "Copy filename" })
