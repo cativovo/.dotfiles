@@ -17,3 +17,13 @@ vim.api.nvim_create_autocmd("User", {
   pattern = "TelescopePreviewerLoaded",
   command = "setlocal number",
 })
+
+vim.api.nvim_create_autocmd("FocusLost", {
+  pattern = "*",
+  command = "setlocal nornu",
+})
+
+vim.api.nvim_create_autocmd("FocusGained", {
+  pattern = "*",
+  command = "setlocal rnu",
+})
