@@ -39,7 +39,12 @@ return {
     end
 
     -- setup dap config by VsCode launch.json file
-    require("dap.ext.vscode").load_launchjs()
+    if vim.fn.filereadable("launch.json") == 1 then
+      require("dap.ext.vscode").load_launchjs("launch.json")
+    else
+      require("dap.ext.vscode").load_launchjs()
+    end
+
     local enrich_config = function(finalConfig, on_config)
       local final_config = vim.deepcopy(finalConfig)
 
@@ -78,13 +83,25 @@ return {
         end,
       }
 
-      if final_config.envFile then
-        local filePath = final_config.envFile
-        for key, fn in pairs(placeholders) do
-          filePath = filePath:gsub(key, fn)
-        end
+      local filepath = nil
 
-        for line in io.lines(filePath) do
+      if final_config.envFile then
+        filepath = final_config.envFile
+        for key, fn in pairs(placeholders) do
+          filepath = filepath:gsub(key, fn)
+        end
+      elseif vim.fn.filereadable(".env.debug") == 1 then
+        filepath = ".env.debug"
+      elseif vim.fn.filereadable(".env.dev") == 1 then
+        filepath = ".env.dev"
+      elseif vim.fn.filereadable(".env.development") == 1 then
+        filepath = ".env.development"
+      elseif vim.fn.filereadable(".env") == 1 then
+        filepath = ".env"
+      end
+
+      if filepath ~= nil then
+        for line in io.lines(filepath) do
           local words = {}
           for word in string.gmatch(line, "[^=]+") do
             table.insert(words, word)
