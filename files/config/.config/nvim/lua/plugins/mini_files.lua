@@ -78,6 +78,12 @@ return {
       pattern = "MiniFilesBufferCreate",
       callback = function(args)
         require("which-key").register({
+          ["<cr>"] = {
+            function()
+              require("mini.files").go_in({ close_on_file = true })
+            end,
+            "Open file",
+          },
           ["<leader>y"] = {
             name = "copy",
             r = { copy_relative_path, "Copy relative path" },
