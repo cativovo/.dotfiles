@@ -43,15 +43,14 @@ return {
     popupmenu = {
       enabled = false,
     },
-    views = {
-      confirm = {
-        position = {
-          row = "0%",
-        },
-      },
-    },
     presets = {
       lsp_doc_border = true,
+    },
+    routes = {
+      {
+        view = "cmdline",
+        filter = { event = "msg_show", kind = "confirm_sub" },
+      },
     },
   },
 }
