@@ -8,7 +8,6 @@ return {
     },
     sections = {
       lualine_c = {
-        { "filename", path = 3, symbols = { modified = " " } },
         {
           "grapple",
         },
@@ -32,6 +31,16 @@ return {
             return "Lines: " .. vim.fn.line("$")
           end,
         },
+      },
+    },
+    winbar = {
+      lualine_c = {
+        { "filename", path = 3, symbols = { modified = " " } },
+      },
+    },
+    inactive_winbar = {
+      lualine_c = {
+        { "filename", path = 3, symbols = { modified = " " } },
       },
     },
     extensions = {
