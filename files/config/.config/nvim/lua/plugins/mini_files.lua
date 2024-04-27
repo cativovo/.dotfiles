@@ -2,22 +2,6 @@ local function copy_to_clipboard(contents)
   vim.fn.setreg("+", contents)
 end
 
-local function copy_relative_path()
-  copy_to_clipboard(vim.fn.fnamemodify(require("mini.files").get_fs_entry().path, ":."))
-end
-
-local function copy_absolute_path()
-  copy_to_clipboard(require("mini.files").get_fs_entry().path)
-end
-
-local function copy_filename()
-  copy_to_clipboard(require("mini.files").get_fs_entry().name)
-end
-
-local function copy_extension()
-  copy_to_clipboard(vim.fn.fnamemodify(require("mini.files").get_fs_entry().name, ":e"))
-end
-
 local function open_in_split(direction)
   return function()
     local is_file = require("mini.files").get_fs_entry().fs_type == "file"
@@ -57,14 +41,14 @@ return {
   },
   keys = {
     {
-      "<leader>e",
+      "<leader>E",
       function()
         toggle_open(vim.uv.cwd(), true)
       end,
       desc = "Open mini.files (cwd)",
     },
     {
-      "<leader>E",
+      "<leader>e",
       function()
         toggle_open(vim.api.nvim_buf_get_name(0), true)
       end,
@@ -86,10 +70,30 @@ return {
           },
           ["<leader>y"] = {
             name = "copy",
-            r = { copy_relative_path, "Copy relative path" },
-            a = { copy_absolute_path, "Copy absolute path" },
-            f = { copy_filename, "Copy filename" },
-            e = { copy_extension, "Copy extension" },
+            r = {
+              function()
+                copy_to_clipboard(vim.fn.fnamemodify(require("mini.files").get_fs_entry().path, ":."))
+              end,
+              "Copy relative path",
+            },
+            a = {
+              function()
+                copy_to_clipboard(require("mini.files").get_fs_entry().path)
+              end,
+              "Copy absolute path",
+            },
+            f = {
+              function()
+                copy_to_clipboard(require("mini.files").get_fs_entry().name)
+              end,
+              "Copy filename",
+            },
+            e = {
+              function()
+                copy_to_clipboard(vim.fn.fnamemodify(require("mini.files").get_fs_entry().name, ":e"))
+              end,
+              "Copy extension",
+            },
           },
           ["<C-v>"] = { open_in_split("vertical"), "Split right" },
           ["<C-x>"] = { open_in_split("horizontal"), "Split above" },
