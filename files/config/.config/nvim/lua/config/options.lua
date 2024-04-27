@@ -4,7 +4,7 @@
 vim.opt.clipboard = ""
 vim.opt.foldmethod = "manual"
 vim.opt.foldexpr = "0" -- default value
-vim.opt.undofile = false
+vim.opt.undofile = true
 vim.opt.scrolloff = 2
 vim.opt.winminwidth = 1
 vim.opt.splitbelow = false
