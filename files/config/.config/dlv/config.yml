@@ -21,7 +21,7 @@
 
 # Uncomment to change the number of lines printed above and below cursor when
 # listing source code.
-# source-list-line-count: 5
+source-list-line-count: 20
 
 # Provided aliases will be added to the default aliases for a given command.
 aliases:
