@@ -51,6 +51,10 @@ return {
         view = "cmdline",
         filter = { event = "msg_show", kind = "confirm_sub" },
       },
+      {
+        filter = { event = "msg_show", kind = "search_count" },
+        view = "cmdline",
+      },
     },
   },
 }
