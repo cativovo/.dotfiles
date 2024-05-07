@@ -221,3 +221,20 @@ gwf-widget() {
   gwf
   zle reset-prompt
 }
+
+# https://gist.github.com/reegnz/b9e40993d410b75c2d866441add2cb55
+jqi() {
+  local input=$1
+
+  if [[ -z $1 ]] || [[ $1 == "-" ]]; then
+    input=$(mktemp)
+    trap "rm -f $input" EXIT
+    cat /dev/stdin >$input
+  fi
+
+  echo '' |
+    fzf --phony \
+      --preview-window='up:90%' \
+      --print-query \
+      --preview "jq --color-output {q} $input"
+}
