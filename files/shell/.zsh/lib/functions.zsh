@@ -233,7 +233,7 @@ jqi() {
   fi
 
   echo '' |
-    fzf --phony \
+    fzf --disabled \
       --preview-window='up:90%' \
       --print-query \
       --preview "jq --color-output {q} $input"
