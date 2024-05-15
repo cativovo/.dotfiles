@@ -9,6 +9,7 @@ local symbol_width = 60
 
 return {
   "nvim-telescope/telescope.nvim",
+  commit = "02a60a83961cf9c80e471599171982a31d1cc853",
   opts = {
     defaults = {
       file_ignore_patterns = { ".git/" },
