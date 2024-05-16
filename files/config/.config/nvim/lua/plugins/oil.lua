@@ -20,8 +20,8 @@ return {
       ["<C-l>"] = false,
       ["<C-s>"] = false,
       ["<C-t>"] = false,
-      ["<C-v>"] = "actions.select_vsplit",
-      ["<C-x>"] = "actions.select_split",
+      ["|"] = "actions.select_vsplit",
+      ["<leader>-"] = "actions.select_split",
       ["<leader>r"] = "actions.refresh",
       ["<leader>fya"] = {
         callback = function()
