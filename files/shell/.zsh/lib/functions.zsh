@@ -88,7 +88,7 @@ fzf-tmux-new-session() {
 }
 
 fzf-tmux-attach() {
-  local SESSION_NAME=$(tmux ls | fzf | rg -o "^\w+");
+  local SESSION_NAME=$(tmux ls | fzf | awk -F ':' '{printf $1}');
 
   # if $SESSION_NAME is not an empty string
   if [[ -n "${SESSION_NAME}" ]]; then
