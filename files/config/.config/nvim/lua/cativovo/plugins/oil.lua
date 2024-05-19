@@ -5,7 +5,7 @@ return {
     {
       '<leader>e',
       '<cmd>Oil<cr>',
-      desc = 'Oil',
+      desc = 'oil',
     },
   },
   config = true,
@@ -25,8 +25,8 @@ return {
       ['<leader>r'] = 'actions.refresh',
       ['<leader>fya'] = {
         callback = function()
-          local oil = require 'oil'
-          local entry = oil.get_entry_on_line(0, vim.fn.line '.')
+          local oil = require('oil')
+          local entry = oil.get_entry_on_line(0, vim.fn.line('.'))
           vim.fn.setreg('+', oil.get_current_dir() .. entry.name)
         end,
         desc = 'Copy absolute path',
@@ -34,8 +34,8 @@ return {
       },
       ['<leader>fyr'] = {
         callback = function()
-          local oil = require 'oil'
-          local entry = oil.get_entry_on_line(0, vim.fn.line '.')
+          local oil = require('oil')
+          local entry = oil.get_entry_on_line(0, vim.fn.line('.'))
           vim.fn.setreg('+', vim.fn.fnamemodify(oil.get_current_dir() .. entry.name, ':.'))
         end,
         desc = 'Copy relative path',
@@ -43,8 +43,8 @@ return {
       },
       ['<leader>fyf'] = {
         callback = function()
-          local oil = require 'oil'
-          local entry = oil.get_entry_on_line(0, vim.fn.line '.')
+          local oil = require('oil')
+          local entry = oil.get_entry_on_line(0, vim.fn.line('.'))
           vim.fn.setreg('+', entry.name)
         end,
         desc = 'Copy file/directory name',

@@ -88,19 +88,15 @@ return {
     pcall(require('telescope').load_extension, 'ui-select')
 
     local builtin = require('telescope.builtin')
-    vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[s]earch [h]elp' })
-    vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[s]earch [k]eymaps' })
-    vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[s]earch [f]iles' })
-    vim.keymap.set('n', '<leader>sb', builtin.builtin, { desc = '[s]earch [b]uiltin telescope' })
-    vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[s]earch current [w]ord' })
-    vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[s]earch by [g]rep' })
-    vim.keymap.set('n', '<leader>sd', function()
-      builtin.diagnostics({ bufnr = 0 })
-    end, { desc = '[s]earch [d]iagnostics' })
-    vim.keymap.set('n', '<leader>sD', builtin.diagnostics, { desc = '[s]earch workspace [D]iagnostics' })
-    vim.keymap.set('n', '<leader>sr', builtin.oldfiles, { desc = '[s]earch recent files ("." for repeat)' })
-    vim.keymap.set('n', '<leader>sS', builtin.spell_suggest, { desc = '[s]earch [S]pelling' })
-    vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] find existing buffers' })
+    vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = 'search help' })
+    vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = 'search keymaps' })
+    vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = 'search files' })
+    vim.keymap.set('n', '<leader>sb', builtin.builtin, { desc = 'search builtin telescope' })
+    vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = 'search current word' })
+    vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = 'search by grep' })
+    vim.keymap.set('n', '<leader>sr', builtin.oldfiles, { desc = 'search recent files ("." for repeat)' })
+    vim.keymap.set('n', '<leader>sS', builtin.spell_suggest, { desc = 'search Spelling' })
+    vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = 'find existing buffers' })
 
     -- Slightly advanced example of overriding default behavior and theme
     vim.keymap.set('n', '<leader>/', function()
@@ -108,13 +104,13 @@ return {
       builtin.current_buffer_fuzzy_find({
         previewer = false,
       })
-    end, { desc = '[/] fuzzily search in current buffer' })
+    end, { desc = 'fuzzily search in current buffer' })
 
     vim.keymap.set('n', '<leader>s/', function()
       builtin.live_grep({
         grep_open_files = true,
-        prompt_title = 'Live Grep in Open Files',
+        prompt_title = 'live Grep in Open Files',
       })
-    end, { desc = '[S]earch [/] in Open Files' })
+    end, { desc = 'search in Open Files' })
   end,
 }

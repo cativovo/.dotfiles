@@ -58,8 +58,8 @@ return {
         map('n', '<leader>ghd', gitsigns.diffthis, { desc = 'git diff against index' })
         map('n', '<leader>ghD', function()
           gitsigns.diffthis('@')
-        end, { desc = 'git [D]iff against last commit' })
-        map('n', '<leader>ghq', gitsigns.setqflist, { desc = 'list hunks in [q]uickfix' })
+        end, { desc = 'git diff against last commit' })
+        map('n', '<leader>ghq', gitsigns.setqflist, { desc = 'list hunks in quickfix' })
       end,
     },
   },
@@ -67,7 +67,7 @@ return {
     'tpope/vim-fugitive',
     cmd = { 'Git' },
     keys = {
-      { '<leader>gf', '<cmd>Git<cr>', desc = '[f]ugitive' },
+      { '<leader>gf', '<cmd>Git<cr>', desc = 'fugitive' },
     },
   },
 }
