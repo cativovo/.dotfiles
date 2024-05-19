@@ -143,6 +143,10 @@ return {
     -- for you, so that they are available from within Neovim.
     require('mason-tool-installer').setup({ ensure_installed = ensure_installed })
 
+    -- add border to hover text
+    vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = 'rounded' })
+    vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = 'rounded' })
+
     require('mason-lspconfig').setup({
       handlers = {
         function(server_name)
