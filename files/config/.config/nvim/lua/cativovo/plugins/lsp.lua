@@ -147,6 +147,45 @@ return {
     vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = 'rounded' })
     vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = 'rounded' })
 
+    -- diagnostics
+    local icons = require('cativovo.config.icons')
+    local diagnostics = {
+      underline = true,
+      update_in_insert = false,
+      virtual_text = {
+        spacing = 4,
+        source = 'if_many',
+        prefix = '●',
+        -- this will set set the prefix to a function that returns the diagnostics icon based on the severity
+        -- this only works on a recent 0.10.0 build. Will be set to "●" when not supported
+        -- prefix = "icons",
+      },
+      severity_sort = true,
+      signs = {
+        [vim.diagnostic.severity.ERROR] = icons.diagnostics.Error,
+        [vim.diagnostic.severity.WARN] = icons.diagnostics.Warn,
+        [vim.diagnostic.severity.HINT] = icons.diagnostics.Hint,
+        [vim.diagnostic.severity.INFO] = icons.diagnostics.Info,
+      },
+    }
+
+    for severity, icon in pairs(diagnostics.signs) do
+      local name = vim.diagnostic.severity[severity]:lower():gsub('^%l', string.upper)
+      name = 'DiagnosticSign' .. name
+      vim.fn.sign_define(name, { text = icon, texthl = name, numhl = '' })
+    end
+
+    diagnostics.virtual_text.prefix = vim.fn.has('nvim-0.10.0') == 0 and '●'
+      or function(diagnostic)
+        for d, icon in pairs(require('cativovo.config.icons')) do
+          if diagnostic.severity == vim.diagnostic.severity[d:upper()] then
+            return icon
+          end
+        end
+      end
+
+    vim.diagnostic.config(diagnostics)
+
     require('mason-lspconfig').setup({
       handlers = {
         function(server_name)
