@@ -76,4 +76,6 @@ M.ensure_installed = {
   'impl',
 }
 
+M.linters = { 'golangcilint' }
+
 return M

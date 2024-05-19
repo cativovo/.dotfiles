@@ -5,8 +5,7 @@ return {
     config = function()
       local lint = require('lint')
       lint.linters_by_ft = {
-        markdown = { 'markdownlint' },
-        go = { 'golangcilint' },
+        go = require('cativovo.config.lang.go').linters,
       }
 
       -- Create autocommand which carries out the actual linting
