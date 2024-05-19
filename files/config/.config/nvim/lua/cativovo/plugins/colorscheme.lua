@@ -14,6 +14,7 @@ return {
       telescope = true,
       mason = true,
       flash = true,
+      fidget = true,
     },
   },
   init = function()
