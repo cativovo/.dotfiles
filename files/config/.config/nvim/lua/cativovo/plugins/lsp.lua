@@ -1,3 +1,12 @@
+local function get_opts(name)
+  local plugin = require('lazy.core.config').spec.plugins[name]
+  if not plugin then
+    return {}
+  end
+  local Plugin = require('lazy.core.plugin')
+  return Plugin.values(plugin, 'opts', false)
+end
+
 return {
   'neovim/nvim-lspconfig',
   dependencies = {
@@ -15,12 +24,11 @@ return {
         },
       },
     },
-
     -- `neodev` configures Lua LSP for your Neovim config, runtime and plugins
     -- used for completion, annotations and signatures of Neovim apis
     { 'folke/neodev.nvim', opts = {} },
   },
-  config = function()
+  config = function(_, opts)
     --  This function gets run when an LSP attaches to a particular buffer.
     --    That is to say, every time a new file is opened that is associated with
     --    an lsp (for example, opening `main.rs` is associated with `rust_analyzer`) this
@@ -142,19 +150,11 @@ return {
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
-    local go = require('cativovo.config.lang.go')
-    local lua = require('cativovo.config.lang.lua')
-    local servers = {
-      gopls = go.gopls.opts,
-      lua_ls = lua.lua_ls.opts,
-    }
-    local setups = {
-      gopls = go.gopls.setup,
-    }
-
+    local servers = opts.servers or {}
+    local setups = opts.setups or {}
     local ensure_installed = vim.tbl_keys(servers or {})
-    vim.list_extend(ensure_installed, go.ensure_installed)
-    vim.list_extend(ensure_installed, lua.ensure_installed)
+    local ensure_installed_from_opts = get_opts('mason-tool-installer.nvim').ensure_installed or {}
+    vim.list_extend(ensure_installed, ensure_installed_from_opts)
 
     -- You can add other tools here that you want Mason to install
     -- for you, so that they are available from within Neovim.

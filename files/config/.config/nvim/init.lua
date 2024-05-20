@@ -22,7 +22,12 @@ vim.opt.rtp:prepend(lazypath)
 --    :Lazy update
 --
 -- NOTE: Here is where you install your plugins.
-require('lazy').setup('cativovo/plugins', {
+require('lazy').setup({
+  spec = {
+    { import = 'cativovo.plugins' },
+    { import = 'cativovo.plugins.langs' },
+  },
+}, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
     -- default lazy.nvim defined Nerd Font icons, otherwise define a unicode icons table

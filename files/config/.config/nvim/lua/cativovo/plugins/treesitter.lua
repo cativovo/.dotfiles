@@ -6,6 +6,7 @@ return {
     opts = {
       -- Autoinstall languages that are not installed
       auto_install = true,
+      ensure_installed = { 'bash', 'diff', 'html', 'markdown', 'vim', 'vimdoc' },
       highlight = {
         enable = true,
       },
@@ -52,11 +53,6 @@ return {
       },
     },
     config = function(_, opts)
-      local ensure_installed = { 'bash', 'diff', 'html', 'markdown', 'vim', 'vimdoc' }
-      vim.list_extend(ensure_installed, require('cativovo.config.lang.go').parsers)
-      vim.list_extend(ensure_installed, require('cativovo.config.lang.lua').parsers)
-      opts.ensure_installed = ensure_installed
-
       -- Prefer git instead of curl in order to improve connectivity in some environments
       require('nvim-treesitter.install').prefer_git = true
       require('nvim-treesitter.configs').setup(opts)
