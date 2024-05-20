@@ -13,11 +13,11 @@ return {
     wk.register({
       ['<leader>c'] = { name = 'code', _ = 'which_key_ignore' },
       ['<leader>d'] = { name = 'document', _ = 'which_key_ignore' },
-      ['<leader>r'] = { name = 'rename', _ = 'which_key_ignore' },
       ['<leader>s'] = { name = 'search', _ = 'which_key_ignore' },
       ['<leader>w'] = { name = 'workspace', _ = 'which_key_ignore' },
       ['<leader>t'] = { name = 'toggle', _ = 'which_key_ignore' },
       ['<leader>f'] = { name = 'file', _ = 'which_key_ignore' },
+      ['<leader>q'] = { name = 'quickfixlist', _ = 'which_key_ignore' },
       ['<leader>g'] = git_keymaps,
     })
     -- visual mode
