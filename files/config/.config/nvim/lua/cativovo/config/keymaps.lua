@@ -5,14 +5,8 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'move focus to the upper win
 -- clear highlight from hlsearch
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
--- diagnostic keymaps
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'go to previous diagnostic message' })
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'go to next diagnostic message' })
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'show diagnostic error messages' })
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'open diagnostic quickfix list' })
-
-vim.keymap.set('n', '<leader>-', '<C-W>s', { desc = 'split Window Below', remap = true })
-vim.keymap.set('n', '<leader>|', '<C-W>v', { desc = 'split Window Right', remap = true })
+vim.keymap.set('n', '<leader>-', '<C-W>s', { desc = 'split window below', remap = true })
+vim.keymap.set('n', '<leader>|', '<C-W>v', { desc = 'split window right', remap = true })
 
 -- copy filepath
 vim.keymap.set('n', '<leader>fya', function()
@@ -30,7 +24,7 @@ vim.keymap.set('n', '<leader>fyb', function()
 end, { desc = 'copy relative path with line number' })
 
 -- copy to clipboard
-vim.keymap.set('v', '<leader>y', '"+y', { desc = 'Copy To Clipboard' })
+vim.keymap.set('v', '<leader>y', '"+y', { desc = 'copy to clipboard' })
 
 -- workaround; can't remove <c-t> keymap, <c-t> is used in zellij
 vim.keymap.set('n', '<c-t>', '<cmd>lua vim.api.nvim_err_writeln("Locked")<cr>')
