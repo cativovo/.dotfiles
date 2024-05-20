@@ -35,7 +35,7 @@ local function set_keymaps(map)
 
   -- Rename the variable under your cursor.
   --  Most Language Servers support renaming across files, etc.
-  map('<leader>rn', vim.lsp.buf.rename, 'rename')
+  map('<leader>cr', vim.lsp.buf.rename, 'rename')
 
   -- Execute a code action, usually your cursor needs to be on top of an error
   -- or a suggestion from your LSP for this to activate.
@@ -71,6 +71,9 @@ local function set_keymaps(map)
   map('[e', diagnostic_goto(false, 'ERROR'), 'prev error')
   map(']w', diagnostic_goto(true, 'WARN'), 'next warning')
   map('[w', diagnostic_goto(false, 'WARN'), 'prev warning')
+
+  -- Restart lsp
+  map('<leader>cR', '<cmd>LspRestart<cr>', 'restart LSP')
 end
 
 return {
