@@ -80,6 +80,8 @@ return {
           require('telescope.builtin').diagnostics({ bufnr = 0 })
         end, 'document diagnostics')
         map('<leader>wd', require('telescope.builtin').diagnostics, 'workspace diagnostics')
+        map('<leader>dl', vim.diagnostic.open_float, 'line diagnostics')
+        map('<leader>qd', vim.diagnostic.setqflist, 'open diagnostic quickfix list')
 
         local diagnostic_goto = function(next, severity)
           local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
@@ -89,7 +91,6 @@ return {
           end
         end
 
-        map('<leader>dl', vim.diagnostic.open_float, 'line diagnostics')
         map(']d', diagnostic_goto(true), 'next diagnostic')
         map('[d', diagnostic_goto(false), 'prev diagnostic')
         map(']e', diagnostic_goto(true, 'ERROR'), 'next error')
