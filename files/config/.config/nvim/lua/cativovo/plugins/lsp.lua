@@ -98,6 +98,8 @@ return {
     { 'folke/neodev.nvim', opts = {} },
   },
   config = function(_, opts)
+    local servers = opts.servers or {}
+
     --  This function gets run when an LSP attaches to a particular buffer.
     --    That is to say, every time a new file is opened that is associated with
     --    an lsp (for example, opening `main.rs` is associated with `rust_analyzer`) this
@@ -110,15 +112,26 @@ return {
         local map = function(keys, func, desc)
           vim.keymap.set('n', keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
         end
-
+        local client = vim.lsp.get_client_by_id(event.data.client_id)
         set_keymaps(map)
+        if client ~= nil then
+          local server = servers[client.name]
+          if server ~= nil then
+            local keys = servers[client.name].keys
+
+            if keys ~= nil then
+              for _, value in ipairs(keys) do
+                map(value[1], value[2], value.desc)
+              end
+            end
+          end
+        end
 
         -- The following two autocommands are used to highlight references of the
         -- word under your cursor when your cursor rests there for a little while.
         --    See `:help CursorHold` for information about when this is executed
         --
         -- When you move your cursor, the highlights will be cleared (the second autocommand).
-        local client = vim.lsp.get_client_by_id(event.data.client_id)
         if client and client.server_capabilities.documentHighlightProvider then
           local highlight_augroup = vim.api.nvim_create_augroup('lsp-highlight', { clear = false })
           vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
@@ -157,7 +170,6 @@ return {
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
-    local servers = opts.servers or {}
     local setups = opts.setups or {}
     local ensure_installed = vim.tbl_keys(servers or {})
     local ensure_installed_from_opts = get_opts('mason-tool-installer.nvim').ensure_installed or {}
