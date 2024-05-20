@@ -76,10 +76,26 @@ return {
         map('gD', vim.lsp.buf.declaration, 'goto declaration')
 
         -- Diagnostics
-        map('<leader>sd', function()
+        map('<leader>dd', function()
           require('telescope.builtin').diagnostics({ bufnr = 0 })
-        end, 'search diagnostics')
-        map('<leader>sD', require('telescope.builtin').diagnostics, 'search workspace diagnostics')
+        end, 'document diagnostics')
+        map('<leader>wd', require('telescope.builtin').diagnostics, 'workspace diagnostics')
+
+        local diagnostic_goto = function(next, severity)
+          local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
+          severity = severity and vim.diagnostic.severity[severity] or nil
+          return function()
+            go({ severity = severity })
+          end
+        end
+
+        map('<leader>dl', vim.diagnostic.open_float, 'line diagnostics')
+        map(']d', diagnostic_goto(true), 'next diagnostic')
+        map('[d', diagnostic_goto(false), 'prev diagnostic')
+        map(']e', diagnostic_goto(true, 'ERROR'), 'next error')
+        map('[e', diagnostic_goto(false, 'ERROR'), 'prev error')
+        map(']w', diagnostic_goto(true, 'WARN'), 'next warning')
+        map('[w', diagnostic_goto(false, 'WARN'), 'prev warning')
 
         -- The following two autocommands are used to highlight references of the
         -- word under your cursor when your cursor rests there for a little while.
