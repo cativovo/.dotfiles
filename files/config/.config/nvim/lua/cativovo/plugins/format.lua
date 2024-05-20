@@ -41,9 +41,5 @@ return {
         lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
       }
     end,
-    formatters_by_ft = {
-      lua = { 'stylua' },
-      go = { 'goimports', 'gofumpt' },
-    },
   },
 }
