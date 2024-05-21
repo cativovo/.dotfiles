@@ -1,5 +1,6 @@
 return {
   'nvim-lualine/lualine.nvim',
+  event = 'VeryLazy',
   opts = function()
     local icons = require('cativovo.config.icons')
 
