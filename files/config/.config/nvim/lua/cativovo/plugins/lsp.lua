@@ -201,6 +201,7 @@ return {
         [vim.diagnostic.severity.HINT] = icons.diagnostics.Hint,
         [vim.diagnostic.severity.INFO] = icons.diagnostics.Info,
       },
+      float = { border = 'rounded' },
     }
 
     for severity, icon in pairs(diagnostics.signs) do
