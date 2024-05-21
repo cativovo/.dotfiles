@@ -4,9 +4,7 @@ return {
     event = { 'BufReadPre', 'BufNewFile' },
     config = function(_, opts)
       local lint = require('lint')
-      lint.linters_by_ft = lint.linters_by_ft or {}
-      opts.linters_by_ft = opts.linters_by_ft or {}
-      lint.linters_by_ft = vim.tbl_extend('force', lint.linters_by_ft, opts.linters_by_ft)
+      lint.linters_by_ft = opts.linters_by_ft
 
       -- Create autocommand which carries out the actual linting
       -- on the specified events.
