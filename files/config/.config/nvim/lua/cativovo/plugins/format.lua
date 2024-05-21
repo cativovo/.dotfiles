@@ -8,11 +8,11 @@ return {
       '<leader>tf',
       function()
         autoformat = not autoformat
-        local label = 'off'
+        local status = 'off'
         if autoformat then
-          label = 'on'
+          status = 'on'
         end
-        vim.notify('autoformat: ' .. label)
+        vim.notify('autoformat: ' .. status)
       end,
       desc = 'toggle autoformat',
     },
@@ -26,7 +26,7 @@ return {
     },
   },
   opts = {
-    notify_on_error = false,
+    notify_on_error = true,
     format_on_save = function(bufnr)
       if not autoformat then
         return
@@ -37,7 +37,7 @@ return {
       -- languages here or re-enable it for the disabled ones.
       local disable_filetypes = {}
       return {
-        timeout_ms = 500,
+        timeout_ms = 3000,
         lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
       }
     end,
