@@ -214,17 +214,18 @@ return {
     require('mason-lspconfig').setup({
       handlers = {
         function(server_name)
-          local server = servers[server_name] or {}
+          local server_opts = servers[server_name] or {}
           -- This handles overriding only values explicitly passed
           -- by the server configuration above. Useful when disabling
           -- certain features of an LSP (for example, turning off formatting for tsserver)
-          server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
+          server_opts.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server_opts.capabilities or {})
 
           if setups[server_name] ~= nil then
-            setups[server_name](server)
+            -- may update server_opts
+            setups[server_name](server_opts)
           end
 
-          require('lspconfig')[server_name].setup(server)
+          require('lspconfig')[server_name].setup(server_opts)
         end,
       },
     })
