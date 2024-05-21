@@ -213,7 +213,7 @@ return {
 
     diagnostics.virtual_text.prefix = vim.fn.has('nvim-0.10.0') == 0 and '●'
       or function(diagnostic)
-        for d, icon in pairs(require('cativovo.config.icons')) do
+        for d, icon in pairs(icons.diagnostics) do
           if diagnostic.severity == vim.diagnostic.severity[d:upper()] then
             return icon
           end
