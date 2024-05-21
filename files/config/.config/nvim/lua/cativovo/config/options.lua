@@ -19,3 +19,5 @@ vim.opt.hlsearch = true
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.wrap = false
+-- prevent auto scroll to center when changing buffer using ctr^
+vim.opt.jumpoptions = 'view'
