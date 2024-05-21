@@ -54,22 +54,25 @@ return {
         },
       },
       setups = {
-        gopls = function(server)
+        gopls = function()
           -- workaround for gopls not supporting semanticTokensProvider
           -- https://github.com/golang/go/issues/54531#issuecomment-1464982242
-          if server.name == 'gopls' then
-            if not server.server_capabilities.semanticTokensProvider then
-              local semantic = server.config.capabilities.textDocument.semanticTokens
-              server.server_capabilities.semanticTokensProvider = {
-                full = true,
-                legend = {
-                  tokenTypes = semantic.tokenTypes,
-                  tokenModifiers = semantic.tokenModifiers,
-                },
-                range = true,
-              }
+          require('cativovo.utils.lsp').on_attach(function(client)
+            if client.name == 'gopls' then
+              if not client.server_capabilities.semanticTokensProvider then
+                local semantic = client.config.capabilities.textDocument.semanticTokens
+                client.server_capabilities.semanticTokensProvider = {
+                  full = true,
+                  legend = {
+                    tokenTypes = semantic.tokenTypes,
+                    tokenModifiers = semantic.tokenModifiers,
+                  },
+                  range = true,
+                }
+              end
             end
-          end -- end workaround
+          end, 'gopls')
+          -- end workaround
         end,
       },
     },
