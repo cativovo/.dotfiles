@@ -31,9 +31,11 @@ return {
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-path',
   },
-  config = function()
+  config = function(_, opts)
     -- See `:help cmp`
     local cmp = require('cmp')
+    local defaults = require('cmp.config.default')()
+
     local bordered = cmp.config.window.bordered
     local luasnip = require('luasnip')
     luasnip.config.setup({})
@@ -109,7 +111,9 @@ return {
         documentation = bordered(),
       },
       formatting = {
-        format = function(_, item)
+        fields = defaults.formatting.fields,
+        expandable_indicator = defaults.formatting.expandable_indicator,
+        format = function(entry, item)
           local icons = require('cativovo.config.icons').kinds
           if icons[item.kind] then
             item.kind = icons[item.kind] .. item.kind
@@ -125,6 +129,11 @@ return {
             item.menu = nil
           end
 
+          if opts and opts.formatting and opts.formatting.format then
+            -- apply custom format from other config e.g. lang/tailwind.lua
+            return opts.formatting.format(entry, item)
+          end
+
           return item
         end,
       },
@@ -133,6 +142,7 @@ return {
           hl_group = hl_group,
         },
       },
+      sorting = defaults.sorting,
     })
   end,
 }
