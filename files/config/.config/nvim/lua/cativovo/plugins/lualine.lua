@@ -7,6 +7,7 @@ return {
     return {
       options = {
         disabled_filetypes = { statusline = { 'lazy' } },
+        globalstatus = true,
       },
       sections = {
         lualine_c = {
