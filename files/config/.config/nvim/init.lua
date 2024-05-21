@@ -25,7 +25,8 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
   spec = {
     { import = 'cativovo.plugins' },
-    { import = 'cativovo.plugins.langs' },
+    { import = 'cativovo.plugins.lang' },
+    { import = 'cativovo.plugins.formatting' },
   },
 }, {
   ui = {
