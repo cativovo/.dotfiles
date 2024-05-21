@@ -41,7 +41,7 @@ return {
             preview_cutoff = 0,
             prompt_position = 'top',
             mirror = true,
-            preview_height = 0.70,
+            preview_height = 0.60,
           },
           width = 0.90,
           height = 0.99,
@@ -94,15 +94,23 @@ return {
     vim.keymap.set('n', '<leader>sb', builtin.builtin, { desc = 'search builtin telescope' })
     vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = 'search current word' })
     vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = 'search by grep' })
-    vim.keymap.set('n', '<leader>sr', builtin.oldfiles, { desc = 'search recent files ("." for repeat)' })
-    vim.keymap.set('n', '<leader>sS', builtin.spell_suggest, { desc = 'search Spelling' })
+    vim.keymap.set('n', '<leader>s.', function()
+      builtin.oldfiles({ cwd_only = true })
+    end, { desc = 'search recent files' })
+    vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = 'search resume' })
+    vim.keymap.set('n', '<leader>sS', builtin.spell_suggest, { desc = 'search spelling' })
+    vim.keymap.set('n', '<leader>sm', builtin.marks, { desc = 'search marks' })
     vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = 'find existing buffers' })
 
     -- Slightly advanced example of overriding default behavior and theme
     vim.keymap.set('n', '<leader>/', function()
       -- You can pass additional configuration to Telescope to change the theme, layout, etc.
       builtin.current_buffer_fuzzy_find({
-        previewer = false,
+        layout_config = {
+          vertical = {
+            preview_height = 0.40,
+          },
+        },
       })
     end, { desc = 'fuzzily search in current buffer' })
 
