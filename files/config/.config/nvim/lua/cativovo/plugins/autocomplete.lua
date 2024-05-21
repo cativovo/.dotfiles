@@ -15,15 +15,12 @@ return {
         return 'make install_jsregexp'
       end)(),
       dependencies = {
-        -- `friendly-snippets` contains a variety of premade snippets.
-        --    See the README about individual language/framework/plugin snippets:
-        --    https://github.com/rafamadriz/friendly-snippets
-        -- {
-        --   'rafamadriz/friendly-snippets',
-        --   config = function()
-        --     require('luasnip.loaders.from_vscode').lazy_load()
-        --   end,
-        -- },
+        {
+          'rafamadriz/friendly-snippets',
+          config = function()
+            require('luasnip.loaders.from_vscode').lazy_load()
+          end,
+        },
       },
     },
     'saadparwaiz1/cmp_luasnip',
@@ -37,8 +34,13 @@ return {
   config = function()
     -- See `:help cmp`
     local cmp = require('cmp')
+    local bordered = cmp.config.window.bordered
     local luasnip = require('luasnip')
     luasnip.config.setup({})
+
+    local hl_group = 'CmpGhostText'
+
+    vim.api.nvim_set_hl(0, hl_group, { link = 'Comment', default = true })
 
     cmp.setup({
       snippet = {
@@ -48,10 +50,7 @@ return {
       },
       completion = { completeopt = 'menu,menuone,noinsert' },
 
-      -- For an understanding of why these mappings were
-      -- chosen, you will need to read `:help ins-completion`
-      --
-      -- No, but seriously. Please read `:help ins-completion`, it is really good!
+      -- Please read `:help ins-completion`, it is really good!
       mapping = cmp.mapping.preset.insert({
         -- Select the [n]ext item
         ['<C-n>'] = cmp.mapping.select_next_item(),
@@ -59,8 +58,8 @@ return {
         ['<C-p>'] = cmp.mapping.select_prev_item(),
 
         -- Scroll the documentation window [b]ack / [f]orward
-        ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-        ['<C-f>'] = cmp.mapping.scroll_docs(4),
+        ['<C-u>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-d>'] = cmp.mapping.scroll_docs(4),
 
         -- Accept ([y]es) the completion.
         --  This will auto-import if your LSP supports it.
@@ -104,6 +103,35 @@ return {
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
         { name = 'path' },
+      },
+      window = {
+        completion = bordered(),
+        documentation = bordered(),
+      },
+      formatting = {
+        format = function(_, item)
+          local icons = require('cativovo.config.icons').kinds
+          if icons[item.kind] then
+            item.kind = icons[item.kind] .. item.kind
+          end
+
+          local max_text_length = 26
+
+          if #item.abbr > max_text_length then
+            item.abbr = string.sub(item.abbr, 1, max_text_length - 1) .. '…'
+          end
+
+          if item.menu ~= nil then
+            item.menu = nil
+          end
+
+          return item
+        end,
+      },
+      experimental = {
+        ghost_text = {
+          hl_group = hl_group,
+        },
       },
     })
   end,
