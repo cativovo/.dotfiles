@@ -87,6 +87,7 @@ return {
   },
   {
     'nvimtools/none-ls.nvim',
+    event = 'VeryLazy',
     dependencies = {
       {
         'WhoIsSethDaniel/mason-tool-installer.nvim',

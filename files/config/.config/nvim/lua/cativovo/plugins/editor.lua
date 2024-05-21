@@ -1,7 +1,7 @@
 return {
   {
     'lukas-reineke/indent-blankline.nvim',
-    config = true,
+    event = 'VimEnter',
     opts = {
       indent = {
         char = '│',
@@ -19,9 +19,6 @@ return {
     -- See `:help ibl`
     main = 'ibl',
   },
-
-  -- "gc" to comment visual regions/lines
-  -- { 'numToStr/Comment.nvim', config = true },
   {
     'JoosepAlviste/nvim-ts-context-commentstring',
     lazy = true,
@@ -37,7 +34,11 @@ return {
       end)
     end,
   },
-
   -- Highlight todo, notes, etc in comments
-  { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
+  {
+    'folke/todo-comments.nvim',
+    event = 'VimEnter',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    opts = { signs = false },
+  },
 }
