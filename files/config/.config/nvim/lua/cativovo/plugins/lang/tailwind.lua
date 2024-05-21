@@ -38,7 +38,6 @@ return {
       { 'roobert/tailwindcss-colorizer-cmp.nvim', config = true },
     },
     opts = function(_, opts)
-      vim.print(opts)
       -- original kind icon formatter
       opts.formatting = opts.formatting or {}
       opts.formatting.format = function(entry, item)
