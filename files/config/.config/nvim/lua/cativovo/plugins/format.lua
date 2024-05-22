@@ -2,7 +2,7 @@ local autoformat = true
 
 return {
   'stevearc/conform.nvim',
-  event = 'VeryLazy',
+  event = { 'BufReadPre', 'BufNewFile' },
   keys = {
     {
       '<leader>tf',

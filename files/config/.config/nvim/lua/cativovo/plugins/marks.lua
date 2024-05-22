@@ -1,6 +1,6 @@
 return {
   'chentoast/marks.nvim',
-  event = 'VeryLazy',
+  event = { 'BufReadPre', 'BufNewFile' },
   config = function()
     local marks = require('marks')
     vim.keymap.set('n', 'm', marks.set, { desc = 'sets a letter mark (will wait for input)' })
