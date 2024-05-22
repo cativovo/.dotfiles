@@ -5,6 +5,7 @@ return {
     vim.g.undotree_CustomUndotreeCmd = 'topleft vertical 30 new'
     vim.g.undotree_CustomDiffpanelCmd = 'botright 10 new'
     vim.g.undotree_SetFocusWhenToggle = 1
+    vim.g.undotree_HighlightChangedText = 0
   end,
   keys = {
     { '<leader>u', '<cmd>UndotreeToggle<cr>', desc = 'toggle undo tree' },
