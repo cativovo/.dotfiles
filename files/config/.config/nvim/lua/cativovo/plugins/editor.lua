@@ -1,7 +1,19 @@
 return {
   {
+    'stevearc/dressing.nvim',
+    event = { 'BufReadPre', 'BufNewFile' },
+    opts = {
+      input = {
+        -- When true, <Esc> will close the modal
+        insert_only = false,
+        -- When true, input will start in insert mode.
+        start_in_insert = false,
+      },
+    },
+  },
+  {
     'lukas-reineke/indent-blankline.nvim',
-    event = 'VimEnter',
+    event = { 'BufReadPre', 'BufNewFile' },
     opts = {
       indent = {
         char = '│',
@@ -37,7 +49,7 @@ return {
   -- Highlight todo, notes, etc in comments
   {
     'folke/todo-comments.nvim',
-    event = 'VimEnter',
+    event = { 'BufReadPre', 'BufNewFile' },
     dependencies = { 'nvim-lua/plenary.nvim' },
     opts = { signs = false },
   },

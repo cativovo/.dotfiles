@@ -81,19 +81,14 @@ return {
   event = 'VeryLazy',
   dependencies = {
     -- Automatically install LSPs and related tools to stdpath for Neovim
+    'WhoIsSethDaniel/mason-tool-installer.nvim',
+    'williamboman/mason-lspconfig.nvim',
     {
       'williamboman/mason.nvim',
-      event = 'VeryLazy',
       config = true,
     },
     {
-      'williamboman/mason-lspconfig.nvim',
-      event = 'VeryLazy',
-    },
-    'WhoIsSethDaniel/mason-tool-installer.nvim',
-    {
       'j-hui/fidget.nvim',
-      event = 'VeryLazy',
       opts = {
         notification = {
           window = {

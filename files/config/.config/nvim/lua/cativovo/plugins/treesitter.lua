@@ -60,14 +60,14 @@ return {
   },
   {
     'nvim-treesitter/nvim-treesitter-textobjects',
-    event = { 'VeryLazy' },
+    event = { 'BufReadPre', 'BufNewFile' },
     dependencies = {
       'nvim-treesitter/nvim-treesitter',
     },
   },
   {
     'nvim-treesitter/nvim-treesitter-context',
-    event = { 'VeryLazy' },
+    event = { 'BufReadPre', 'BufNewFile' },
     config = function(_, opts)
       vim.api.nvim_set_hl(0, 'TreesitterContextBottom', { link = 'Cursorline' })
       vim.api.nvim_set_hl(0, 'TreesitterContextLineNumberBottom', { link = 'Cursorline' })
