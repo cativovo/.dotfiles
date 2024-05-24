@@ -19,7 +19,7 @@ vim.keymap.set('n', '<leader>fyf', function()
   vim.fn.setreg('+', vim.fn.expand('%:t'))
 end, { desc = 'copy filename' })
 vim.keymap.set('n', '<leader>fyb', function()
-  local result = vim.fn.fnamemodify(vim.fn.expand('%'), ':.') .. ':' .. vim.fn.line('.')
+  local result = './' .. vim.fn.fnamemodify(vim.fn.expand('%'), ':.') .. ':' .. vim.fn.line('.')
   vim.fn.setreg('+', result)
 end, { desc = 'copy relative path with line number' })
 
