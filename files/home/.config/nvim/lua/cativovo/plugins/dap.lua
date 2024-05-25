@@ -87,6 +87,7 @@ return {
       keys = {
         { "<leader>du", function() require("dapui").toggle({ }) end, desc = key_desc_prefix .. "UI" },
         { "<leader>de", function() require("dapui").eval() end, desc = key_desc_prefix .. "eval", mode = {"n", "v"} },
+        { "<leader>td",  '<cmd>DapVirtualTextToggle<cr>', desc = key_desc_prefix .. "toggle inlay hints" },
       },
       config = function()
         local dap = require('dap')
@@ -131,11 +132,10 @@ return {
 
         dap.listeners.after.event_initialized.dapui_config = function()
           dapui.open({})
-          vim.keymap.set('n', '<leader>td', '<cmd>DapVirtualTextToggle<cr>', { desc = 'DAP: toggle inlay hints' })
         end
-        dap.listeners.before.event_terminated.dapui_config = function()
-          vim.keymap.del('n', '<leader>td', { desc = 'DAP: toggle inlay hints' })
-        end
+        -- dap.listeners.before.event_terminated.dapui_config = function()
+        --   vim.keymap.del('n', '<leader>td')
+        -- end
       end,
     },
     {
