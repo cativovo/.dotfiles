@@ -9,7 +9,6 @@ local symbol_width = 60
 
 return {
   'nvim-telescope/telescope.nvim',
-  event = 'VimEnter',
   branch = '0.1.x',
   dependencies = {
     'nvim-lua/plenary.nvim',
@@ -30,6 +29,52 @@ return {
     -- Useful for getting pretty icons, but requires a Nerd Font.
     { 'nvim-tree/nvim-web-devicons' },
   },
+  keys = function()
+    local builtin = require('telescope.builtin')
+    return {
+      { '<leader>sh', builtin.help_tags, desc = 'search help' },
+      { '<leader>sk', builtin.keymaps, desc = 'search keymaps' },
+      { '<leader>sf', builtin.find_files, desc = 'search files' },
+      { '<leader>sb', builtin.builtin, desc = 'search builtin telescope' },
+      { '<leader>sw', builtin.grep_string, desc = 'search current word' },
+      { '<leader>sg', builtin.live_grep, desc = 'search by grep' },
+      { '<leader>sr', builtin.resume, desc = 'search resume' },
+      { '<leader>sS', builtin.spell_suggest, desc = 'search spelling' },
+      { '<leader>sm', builtin.marks, desc = 'search marks' },
+      { '<leader><leader>', builtin.buffers, desc = 'find existing buffers' },
+      {
+        '<leader>s.',
+        function()
+          builtin.oldfiles({ cwd_only = true })
+        end,
+        desc = 'search recent files',
+      },
+      {
+        '<leader>/',
+        function()
+          -- You can pass additional configuration to Telescope to change the theme, layout, etc.
+          builtin.current_buffer_fuzzy_find({
+            layout_config = {
+              vertical = {
+                preview_height = 0.40,
+              },
+            },
+          })
+        end,
+        desc = 'fuzzily search in current buffer',
+      },
+      {
+        '<leader>s/',
+        function()
+          builtin.live_grep({
+            grep_open_files = true,
+            prompt_title = 'live Grep in Open Files',
+          })
+        end,
+        desc = 'search in open files',
+      },
+    }
+  end,
   config = function()
     require('telescope').setup({
       defaults = {
@@ -86,39 +131,5 @@ return {
     -- Enable Telescope extensions if they are installed
     pcall(require('telescope').load_extension, 'fzf')
     pcall(require('telescope').load_extension, 'ui-select')
-
-    local builtin = require('telescope.builtin')
-    vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = 'search help' })
-    vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = 'search keymaps' })
-    vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = 'search files' })
-    vim.keymap.set('n', '<leader>sb', builtin.builtin, { desc = 'search builtin telescope' })
-    vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = 'search current word' })
-    vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = 'search by grep' })
-    vim.keymap.set('n', '<leader>s.', function()
-      builtin.oldfiles({ cwd_only = true })
-    end, { desc = 'search recent files' })
-    vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = 'search resume' })
-    vim.keymap.set('n', '<leader>sS', builtin.spell_suggest, { desc = 'search spelling' })
-    vim.keymap.set('n', '<leader>sm', builtin.marks, { desc = 'search marks' })
-    vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = 'find existing buffers' })
-
-    -- Slightly advanced example of overriding default behavior and theme
-    vim.keymap.set('n', '<leader>/', function()
-      -- You can pass additional configuration to Telescope to change the theme, layout, etc.
-      builtin.current_buffer_fuzzy_find({
-        layout_config = {
-          vertical = {
-            preview_height = 0.40,
-          },
-        },
-      })
-    end, { desc = 'fuzzily search in current buffer' })
-
-    vim.keymap.set('n', '<leader>s/', function()
-      builtin.live_grep({
-        grep_open_files = true,
-        prompt_title = 'live Grep in Open Files',
-      })
-    end, { desc = 'search in Open Files' })
   end,
 }
