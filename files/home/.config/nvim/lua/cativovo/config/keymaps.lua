@@ -34,3 +34,9 @@ vim.keymap.set('n', '<leader>qo', '<cmd>copen<cr>', { desc = 'open quickfix list
 vim.keymap.set('n', '<leader>qc', '<cmd>cclose<cr>', { desc = 'close quickfix list' })
 vim.keymap.set('n', '<A-j>', '<cmd>cnext<cr>', { desc = 'next item' })
 vim.keymap.set('n', '<A-k>', '<cmd>cprev<cr>', { desc = 'previous item' })
+
+-- resize window
+vim.keymap.set('n', '<C-Up>', '<cmd>resize +2<cr>', { desc = 'increase window height' })
+vim.keymap.set('n', '<C-Down>', '<cmd>resize -2<cr>', { desc = 'decrease window height' })
+vim.keymap.set('n', '<C-Left>', '<cmd>vertical resize -2<cr>', { desc = 'decrease window width' })
+vim.keymap.set('n', '<C-Right>', '<cmd>vertical resize +2<cr>', { desc = 'increase window width' })
