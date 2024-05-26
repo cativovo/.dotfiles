@@ -26,6 +26,7 @@ config.keys = {
 }
 
 config.enable_tab_bar = false
-config.window_decorations = "NONE"
+-- https://github.com/ianyh/Amethyst/issues/1481
+config.window_decorations = "RESIZE"
 
 return config
