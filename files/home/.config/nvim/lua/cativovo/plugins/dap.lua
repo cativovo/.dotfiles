@@ -98,16 +98,16 @@ return {
             {
               elements = {
                 {
+                  id = 'watches',
+                  size = 0.25,
+                },
+                {
                   id = 'breakpoints',
                   size = 0.25,
                 },
                 {
-                  id = 'stacks',
+                  id = 'scopes',
                   size = 0.50,
-                },
-                {
-                  id = 'watches',
-                  size = 0.25,
                 },
               },
               position = 'left',
@@ -116,16 +116,16 @@ return {
             {
               elements = {
                 {
-                  id = 'scopes',
-                  size = 0.5,
+                  id = 'stacks',
+                  size = 0.50,
                 },
                 {
                   id = 'repl',
-                  size = 0.5,
+                  size = 0.50,
                 },
               },
               position = 'bottom',
-              size = 10,
+              size = 6,
             },
           },
         })
@@ -163,7 +163,10 @@ return {
     { "<leader>dL", dap.run_last, desc = key_desc_prefix .. "run last" },
     { "<leader>dp", dap.pause, desc = key_desc_prefix .. "pause" },
     { "<leader>dS", dap.session, desc = key_desc_prefix .. "session" },
-    { "<leader>dt", dap.terminate, desc = key_desc_prefix .. "terminate" },
+    { "<leader>dt", function ()
+    	dap.terminate()
+			require("dapui").close()
+    end, desc = key_desc_prefix .. "terminate" },
     { "<leader>dw", dap.hover, desc = key_desc_prefix .. "widgets" },
   }
   end,
