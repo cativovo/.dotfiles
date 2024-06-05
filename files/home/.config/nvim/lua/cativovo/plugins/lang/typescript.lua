@@ -1,14 +1,3 @@
-local inlay_hints_settings = {
-  includeInlayEnumMemberValueHints = true,
-  includeInlayFunctionLikeReturnTypeHints = true,
-  includeInlayFunctionParameterTypeHints = true,
-  includeInlayParameterNameHints = 'literal',
-  includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-  includeInlayPropertyDeclarationTypeHints = true,
-  includeInlayVariableTypeHints = false,
-  includeInlayVariableTypeHintsWhenTypeMatchesName = false,
-}
-
 return {
   {
     'nvim-treesitter/nvim-treesitter',
@@ -23,51 +12,111 @@ return {
     opts = {
       -- make sure mason installs the server
       servers = {
-        tsserver = {
+        vtsls = {
+          -- explicitly add default filetypes, so that we can extend
+          -- them in related extras
+          filetypes = {
+            'javascript',
+            'javascriptreact',
+            'javascript.jsx',
+            'typescript',
+            'typescriptreact',
+            'typescript.tsx',
+          },
+          settings = {
+            complete_function_calls = true,
+            vtsls = {
+              enableMoveToFileCodeAction = true,
+              autoUseWorkspaceTsdk = true,
+              experimental = {
+                completion = {
+                  enableServerSideFuzzyMatch = true,
+                },
+              },
+            },
+            typescript = {
+              updateImportsOnFileMove = { enabled = 'always' },
+              suggest = {
+                completeFunctionCalls = true,
+              },
+              inlayHints = {
+                enumMemberValues = { enabled = true },
+                functionLikeReturnTypes = { enabled = true },
+                parameterNames = { enabled = 'literals' },
+                parameterTypes = { enabled = true },
+                propertyDeclarationTypes = { enabled = true },
+                variableTypes = { enabled = false },
+              },
+            },
+          },
           keys = {
+            {
+              'gD',
+              function()
+                require('vtsls').commands.goto_source_definition(0)
+              end,
+              desc = 'Goto Source Definition',
+            },
+            {
+              'gR',
+              function()
+                require('vtsls').commands.file_references(0)
+              end,
+              desc = 'File References',
+            },
             {
               '<leader>co',
               function()
-                vim.lsp.buf.code_action({
-                  apply = true,
-                  context = {
-                    ---@diagnostic disable-next-line: assign-type-mismatch
-                    only = { 'source.organizeImports.ts' },
-                    diagnostics = {},
-                  },
-                })
+                require('vtsls').commands.organize_imports(0)
               end,
               desc = 'Organize Imports',
             },
             {
+              '<leader>cM',
+              function()
+                require('vtsls').commands.add_missing_imports(0)
+              end,
+              desc = 'Add missing imports',
+            },
+            {
               '<leader>cu',
               function()
-                vim.lsp.buf.code_action({
-                  apply = true,
-                  context = {
-                    ---@diagnostic disable-next-line: assign-type-mismatch
-                    only = { 'source.removeUnused.ts' },
-                    diagnostics = {},
-                  },
-                })
+                require('vtsls').commands.remove_unused_imports(0)
               end,
-              desc = 'Remove Unused Imports',
+              desc = 'Remove unused imports',
             },
-          },
-          settings = {
-            typescript = {
-              inlayHints = inlay_hints_settings,
+            {
+              '<leader>cD',
+              function()
+                require('vtsls').commands.fix_all(0)
+              end,
+              desc = 'Fix all diagnostics',
             },
-            javascript = {
-              inlayHints = inlay_hints_settings,
-            },
-            completions = {
-              completeFunctionCalls = true,
+            {
+              '<leader>cV',
+              function()
+                require('vtsls').commands.select_ts_version(0)
+              end,
+              desc = 'Select TS workspace version',
             },
           },
         },
       },
+      setups = {
+        vtsls = function(opts)
+          -- copy typescript settings to javascript
+          opts.settings.javascript = vim.tbl_deep_extend('force', {}, opts.settings.typescript, opts.settings.javascript or {})
+        end,
+      },
     },
+  },
+  {
+    'yioneko/nvim-vtsls',
+    lazy = true,
+    opts = {},
+    config = function(_, opts)
+      require('vtsls').config(opts)
+    end,
   },
   {
     'mfussenegger/nvim-dap',
