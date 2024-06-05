@@ -26,6 +26,7 @@ require('lazy').setup({
   spec = {
     { import = 'cativovo.plugins' },
     { import = 'cativovo.plugins.lang' },
+    { import = 'cativovo.plugins.linting' },
     { import = 'cativovo.plugins.formatting' },
   },
 }, {
