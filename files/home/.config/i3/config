@@ -209,3 +209,4 @@ gaps inner 6px
 gaps outer 4px
 
 exec --no-startup-id picom -bc
+hide_edge_borders smart
