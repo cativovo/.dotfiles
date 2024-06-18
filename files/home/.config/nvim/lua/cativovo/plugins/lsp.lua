@@ -214,7 +214,10 @@ return {
 
           if setups[server_name] ~= nil then
             -- may update server_opts
-            setups[server_name](server_opts)
+            local skip_setup = setups[server_name](server_opts)
+            if skip_setup == true then
+              return
+            end
           end
 
           require('lspconfig')[server_name].setup(server_opts)
