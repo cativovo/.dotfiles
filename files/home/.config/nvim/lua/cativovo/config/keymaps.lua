@@ -40,3 +40,8 @@ vim.keymap.set('n', '<C-Up>', '<cmd>resize +2<cr>', { desc = 'increase window he
 vim.keymap.set('n', '<C-Down>', '<cmd>resize -2<cr>', { desc = 'decrease window height' })
 vim.keymap.set('n', '<C-Left>', '<cmd>vertical resize -2<cr>', { desc = 'decrease window width' })
 vim.keymap.set('n', '<C-Right>', '<cmd>vertical resize +2<cr>', { desc = 'increase window width' })
+
+-- toggle maximize
+vim.keymap.set('n', '<leader>tz', function()
+  require('cativovo.utils.toggle').maximize()
+end, { desc = 'toggle maximize' })
