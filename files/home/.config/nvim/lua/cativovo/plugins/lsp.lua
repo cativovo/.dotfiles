@@ -91,7 +91,7 @@ return {
   config = function(_, opts)
     local servers = opts.servers or {}
 
-    require('cativovo.utils.lsp').on_attach(function(client, buffer)
+    require('cativovo.utils').on_lsp_attach(function(client, buffer)
       -- In this case, we create a function that lets us more easily define mappings specific
       -- for LSP related items. It sets the mode, buffer and description for us each time.
       local map = function(keys, func, desc)
