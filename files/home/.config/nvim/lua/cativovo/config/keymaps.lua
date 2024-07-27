@@ -43,5 +43,5 @@ vim.keymap.set('n', '<C-Right>', '<cmd>vertical resize +2<cr>', { desc = 'increa
 
 -- toggle maximize
 vim.keymap.set('n', '<leader>tz', function()
-  require('cativovo.utils.toggle').maximize()
+  require('cativovo.utils').maximize()
 end, { desc = 'toggle maximize' })

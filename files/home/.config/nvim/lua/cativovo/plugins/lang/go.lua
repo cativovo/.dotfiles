@@ -57,7 +57,7 @@ return {
         gopls = function()
           -- workaround for gopls not supporting semanticTokensProvider
           -- https://github.com/golang/go/issues/54531#issuecomment-1464982242
-          require('cativovo.utils.lsp').on_attach(function(client)
+          require('cativovo.utils').on_lsp_attach(function(client)
             if client.name == 'gopls' then
               if not client.server_capabilities.semanticTokensProvider then
                 local semantic = client.config.capabilities.textDocument.semanticTokens
