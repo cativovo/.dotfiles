@@ -16,6 +16,21 @@ return {
               hybridMode = true,
             },
           },
+          -- https://github.com/tailwindlabs/tailwindcss/discussions/5258#discussioncomment-9848843
+          settings = {
+            css = {
+              validate = true,
+              lint = {
+                unknownAtRules = 'ignore',
+              },
+            },
+            scss = {
+              validate = true,
+              lint = {
+                unknownAtRules = 'ignore',
+              },
+            },
+          },
         },
         vtsls = {},
       },
