@@ -10,7 +10,7 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.signcolumn = 'yes:2'
 vim.opt.updatetime = 250
-vim.opt.timeoutlen = 300
+-- vim.opt.timeoutlen = 300
 vim.opt.splitright = true
 vim.opt.list = true
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
