@@ -64,8 +64,22 @@ return {
   {
     'stevearc/conform.nvim',
     opts = function(_, opts)
-      opts.formatters_by_ft.vue = opts.formatters_by_ft.vue or {}
-      vim.list_extend(opts.formatters_by_ft.vue, { 'rustywind' })
+      local ft = {
+        'javascript',
+        'javascriptreact',
+        'typescript',
+        'typescriptreact',
+        'vue',
+        'css',
+        'scss',
+        'less',
+        'html',
+      }
+
+      for _, v in ipairs(ft) do
+        opts.formatters_by_ft[v] = opts.formatters_by_ft[v] or {}
+        vim.list_extend(opts.formatters_by_ft[v], { 'rustywind' })
+      end
     end,
   },
 }
