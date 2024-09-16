@@ -64,6 +64,23 @@ return {
   {
     'stevearc/conform.nvim',
     opts = function(_, opts)
+      local prettier_config_files = {
+        '.prettierrc',
+        '.prettierrc.json',
+        '.prettierrc.yaml',
+        '.prettierrc.yml',
+        '.prettierrc.js',
+        '.prettierrc.cjs',
+        'prettier.config.js',
+        'prettier.config.cjs',
+        '.prettierrc.toml',
+      }
+
+      local has_prettier_config = require('cativovo.utils').root_has_file(prettier_config_files)
+      if not has_prettier_config then
+        return
+      end
+
       local ft = {
         'javascript',
         'javascriptreact',
