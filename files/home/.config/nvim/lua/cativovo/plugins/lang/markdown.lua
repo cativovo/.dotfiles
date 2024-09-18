@@ -10,16 +10,8 @@ return {
     'WhoIsSethDaniel/mason-tool-installer.nvim',
     opts = function(_, opts)
       opts.ensure_installed = opts.ensure_installed or {}
-      vim.list_extend(opts.ensure_installed, { 'markdownlint', 'marksman' })
+      vim.list_extend(opts.ensure_installed, { 'marksman' })
     end,
-  },
-  {
-    'mfussenegger/nvim-lint',
-    opts = {
-      linters_by_ft = {
-        markdown = { 'markdownlint' },
-      },
-    },
   },
   {
     'neovim/nvim-lspconfig',
