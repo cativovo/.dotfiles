@@ -77,6 +77,7 @@ local function icon(sign, len)
   return sign.texthl and ('%#' .. sign.texthl .. '#' .. text .. '%*') or text
 end
 
+-- https://github.com/LazyVim/LazyVim/blob/39ca76c9607a7d92aff5b97c50b7ccbf1b2d46b6/lua/lazyvim/util/ui.lua#L94
 M.statuscolumn = function()
   local win = vim.g.statusline_winid
   local buf = vim.api.nvim_win_get_buf(win)
