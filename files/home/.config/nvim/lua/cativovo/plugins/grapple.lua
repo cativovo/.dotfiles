@@ -9,5 +9,9 @@ return {
     { '<leader>fk', '<cmd>Grapple select index=2<cr>', desc = 'select second tag' },
     { '<leader>fl', '<cmd>Grapple select index=3<cr>', desc = 'select third tag' },
     { '<leader>f;', '<cmd>Grapple select index=4<cr>', desc = 'select fourth tag' },
+    { '<leader>fu', '<cmd>Grapple select index=5<cr>', desc = 'select fifth tag' },
+    { '<leader>fi', '<cmd>Grapple select index=6<cr>', desc = 'select sixth tag' },
+    { '<leader>fo', '<cmd>Grapple select index=7<cr>', desc = 'select seventh tag' },
+    { '<leader>fp', '<cmd>Grapple select index=8<cr>', desc = 'select eighth tag' },
   },
 }
