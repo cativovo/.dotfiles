@@ -3,7 +3,14 @@ return {
   event = 'VimEnter',
   config = function()
     local wk = require('which-key')
-    wk.setup()
+
+    local opts = {
+      icons = {
+        mappings = false,
+      },
+    }
+    wk.setup(opts)
+
     local git_keymap = {
       { '<leader>g', group = 'git' },
       { '<leader>gh', group = 'hunk' },
