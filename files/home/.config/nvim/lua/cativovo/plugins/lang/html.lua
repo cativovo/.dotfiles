@@ -15,7 +15,7 @@ return {
     opts = {
       servers = {
         html = {
-          filetypes = { 'html', 'javascriptreact', 'typescriptreact' },
+          filetypes = { 'html', 'javascriptreact', 'typescriptreact', 'svelte', 'vue' },
         },
       },
     },
