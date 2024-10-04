@@ -1,4 +1,4 @@
-vim.g.user_emmet_leader_key = '<C-x>'
+vim.filetype.add({ extension = { templ = 'templ' } })
 
 return {
   {
@@ -6,7 +6,7 @@ return {
     opts = function(_, opts)
       opts.ensure_installed = opts.ensure_installed or {}
       vim.list_extend(opts.ensure_installed, {
-        'html',
+        'templ',
       })
     end,
   },
@@ -14,16 +14,14 @@ return {
     'neovim/nvim-lspconfig',
     opts = {
       servers = {
-        html = {
-          filetypes = { 'html', 'javascriptreact', 'typescriptreact', 'svelte', 'vue', 'templ' },
-        },
+        templ = {},
       },
     },
   },
   {
-    'mattn/emmet-vim',
-    keys = {
-      { '<C-x>', mode = { 'n', 'i', 'v' } },
-    },
+    'stevearc/conform.nvim',
+    opts = function(_, opts)
+      opts.formatters_by_ft.templ = { 'templ', 'rustywind' }
+    end,
   },
 }
