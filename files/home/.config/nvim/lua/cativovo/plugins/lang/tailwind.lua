@@ -23,7 +23,7 @@ return {
       },
       setups = {
         tailwindcss = function(opts)
-          local tw = require('lspconfig.server_configurations.tailwindcss')
+          local tw = require('cativovo.utils.lsp').get_raw_config('tailwindcss')
           opts.filetypes = opts.filetypes or {}
 
           -- Add default filetypes
