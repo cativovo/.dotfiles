@@ -27,4 +27,12 @@ M.on_lsp_attach = function(on_attach, id)
   })
 end
 
+M.get_raw_config = function(server)
+  local ok, ret = pcall(require, 'lspconfig.configs.' .. server)
+  if ok then
+    return ret
+  end
+  return require('lspconfig.server_configurations.' .. server)
+end
+
 return M
