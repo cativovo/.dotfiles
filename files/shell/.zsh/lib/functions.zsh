@@ -13,7 +13,7 @@ cdu() {
 
 fzf-directory() {
   # --height 99% - to make sure the terminal will use the 'insert mode cursor'
-  local DIRECTORY=$(fd . ${1:=.} --type d --hidden --exclude '.git' | fzf --height 99% --layout reverse --preview 'tree -F -I "node_modules|target|dist" -L 2 {}');
+  local DIRECTORY=$(fd . ${1:=.} --type d --hidden --exclude '.git' | fzf --height 99% --layout reverse);
 
   # 'return' the directory
   echo $DIRECTORY
