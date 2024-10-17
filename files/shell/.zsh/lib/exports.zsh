@@ -17,3 +17,8 @@ export KEYTIMEOUT=1
 export XDG_CONFIG_HOME="$HOME/.config"
 
 export FZF_DEFAULT_OPTS="--bind ctrl-u:preview-half-page-up,ctrl-d:preview-half-page-down"
+
+local private_env="$HOME/.private_env"
+if [ -f $private_env ]; then
+	source $private_env
+fi
