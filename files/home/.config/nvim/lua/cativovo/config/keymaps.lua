@@ -3,7 +3,7 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'move focus to the upper window' })
 -- clear highlight from hlsearch
-vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+-- vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 vim.keymap.set('n', '<leader>-', '<C-W>s', { desc = 'split window below', remap = true })
 vim.keymap.set('n', '<leader>|', '<C-W>v', { desc = 'split window right', remap = true })
