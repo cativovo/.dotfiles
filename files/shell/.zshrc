@@ -19,3 +19,4 @@ source $HOME/.zsh/lib/auto_install_dependencies.zsh
 # Start starship
 eval "$(starship init zsh)"
 eval "$(mise activate zsh)"
+eval "$(atuin init zsh --disable-up-arrow)"
