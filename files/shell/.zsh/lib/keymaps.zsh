@@ -10,9 +10,6 @@ bindkey '^p' fzf-home-widget
 zle -N fzf-cwd-widget
 bindkey '^[p' fzf-cwd-widget
 
-zle -N fzf-history-widget
-bindkey '^r' fzf-history-widget
-
 # workaround to call fzf-tmux-new-session function
  bindkey -s '^t' 'tfn\n'
 # workaround to call fzf-tmux-attach function
