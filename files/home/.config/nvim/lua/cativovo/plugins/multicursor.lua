@@ -4,7 +4,8 @@ return {
   config = function()
     local mc = require('multicursor-nvim')
 
-    mc.setup()
+    -- https://github.com/jake-stewart/multicursor.nvim/blob/cb8ee9dde77da5bf5ef7d3d2a3898fe2082834e8/lua/multicursor-nvim/cursor-manager.lua#L1765
+    mc.setup({ signs = false })
 
     local set = vim.keymap.set
 
