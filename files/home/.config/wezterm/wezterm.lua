@@ -4,7 +4,7 @@ local wezterm = require("wezterm")
 -- This will hold the configuration.
 local config = wezterm.config_builder()
 
-config.font_size = 16
+config.font_size = 12
 config.color_scheme = "Catppuccin Mocha"
 config.window_background_opacity = 0.9
 -- disable ligatures
