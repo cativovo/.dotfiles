@@ -31,10 +31,10 @@ exec --no-startup-id dex-autostart --autostart --environment i3
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
 # Load picom
-exec --no-startup-id picom -bc
+exec_always --no-startup-id picom -bc
 
 # Load wallpaper
-exec --no-startup-id ~/.fehbg
+exec_always --no-startup-id feh --bg-scale $HOME/.wallpaper/Cloudsday.png
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
