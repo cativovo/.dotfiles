@@ -9,11 +9,11 @@
 general {
         colors = true
         interval = 5
+				separator = ""
 }
 
 order += "battery all"
 order += "disk /"
-order += "load"
 order += "memory"
 order += "tztime local"
 
@@ -22,11 +22,11 @@ battery all {
 }
 
 disk "/" {
-        format = "%avail"
+        format = "Disk: %avail"
 }
 
 memory {
-        format = "%used / %total"
+        format = "Memory: %used / %total"
         threshold_degraded = "1G"
         format_degraded = "MEMORY < %available"
 }
