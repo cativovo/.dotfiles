@@ -16,7 +16,7 @@ run_rofi() {
 			reboot
 			;;
 		$lock)
-			i3lock
+			i3lock -c 1A73E8
 			;;
 		$suspend)
 			systemctl suspend
