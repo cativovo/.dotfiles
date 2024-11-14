@@ -119,7 +119,7 @@ return {
             item.kind = icons[item.kind] .. item.kind
           end
 
-          local max_text_length = 26
+          local max_text_length = 50
 
           if #item.abbr > max_text_length then
             item.abbr = string.sub(item.abbr, 1, max_text_length - 1) .. '…'
