@@ -15,6 +15,7 @@ general {
 order += "battery all"
 order += "disk /"
 order += "memory"
+order += "volume master"
 order += "tztime local"
 
 battery all {
@@ -29,6 +30,11 @@ memory {
         format = "Memory: %used / %total"
         threshold_degraded = "1G"
         format_degraded = "MEMORY < %available"
+}
+
+volume master {
+        format = "Volume: %volume"
+        format_muted = "Volume: muted (%volume)"
 }
 
 tztime local {
