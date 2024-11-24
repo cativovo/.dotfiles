@@ -30,6 +30,10 @@ exec --no-startup-id dex-autostart --autostart --environment i3
 # screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork -c 1A73E8
 
+# disable auto lock and suspend
+exec --no-startup-id xset -dpms
+exec --no-startup-id xset s off
+
 # Load picom
 exec_always --no-startup-id picom -bc
 
