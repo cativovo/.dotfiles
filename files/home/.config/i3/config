@@ -65,7 +65,7 @@ bindsym $mod+Return exec wezterm
 bindsym $mod+q kill
 
 # start rofi (a program launcher)
-bindsym $mod+d exec --no-startup-id rofi -show drun
+bindsym $mod+d exec "rofi -show drun -theme-str 'prompt { enabled: false; }'"
 
 # change focus
 bindsym $mod+h focus left
@@ -163,8 +163,12 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 
-# powermenu
-bindsym $mod+Shift+p exec $HOME/.scripts/powermenu.zsh
+# power menu
+bindsym $mod+Shift+p exec $HOME/.scripts/power_menu.zsh
+
+# choose display profile
+bindsym $mod+Shift+d exec $HOME/.scripts/display_menu.zsh
+
 
 # resize window (you can also use the mouse for that)
 mode "resize" {

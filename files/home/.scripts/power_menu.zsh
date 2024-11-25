@@ -1,12 +1,12 @@
 #!/bin/zsh
 
-run_rofi() {
+show_power_menu() {
 	local shutdown=' Shutdown'
 	local reboot=' Reboot'
 	local lock=' Lock'
 	local suspend='󰤄 Suspend'
 	local logout='󰍃 Logout'
-	local chosen=$(echo -e "$lock\n$suspend\n$logout\n$reboot\n$shutdown" | rofi -dmenu -i)
+	local chosen=$(echo -e "$lock\n$suspend\n$logout\n$reboot\n$shutdown" | rofi -dmenu -i -p 'Power Menu')
 
 	case ${chosen} in
 		$shutdown)
@@ -27,4 +27,4 @@ run_rofi() {
 	esac
 }
 
-run_rofi
+show_power_menu
