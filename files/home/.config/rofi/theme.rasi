@@ -16,14 +16,10 @@ window {
 }
 
 inputbar {
-	children: [entry];
+	children: [entry,prompt];
 }
 
 entry, prompt {
-	background-color: @background-alt;
-}
-
-entry {
 	background-color: @background-alt;
 	padding: 12px;
 	text-color: @foreground;
