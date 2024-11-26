@@ -13,23 +13,11 @@ general {
 }
 
 order += "battery all"
-order += "disk /"
-order += "memory"
 order += "volume master"
 order += "tztime local"
 
 battery all {
         format = "%status %percentage %remaining (%consumption)"
-}
-
-disk "/" {
-        format = "Disk: %avail"
-}
-
-memory {
-        format = "Memory: %used / %total"
-        threshold_degraded = "1G"
-        format_degraded = "MEMORY < %available"
 }
 
 volume master {
