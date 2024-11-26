@@ -12,12 +12,13 @@ general {
 				separator = ""
 }
 
-order += "battery all"
+order += "battery 0"
 order += "volume master"
 order += "tztime local"
 
-battery all {
+battery 0 {
         format = "%status %percentage %remaining (%consumption)"
+				last_full_capacity = true
 }
 
 volume master {
