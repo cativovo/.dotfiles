@@ -11,5 +11,7 @@ data
 .dbg_history
 **/pgcli/history
 **/pgcli/log
+**/litecli/history
+**/litecli/log
 spell/
 atuin-receipt.json
