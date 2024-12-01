@@ -1,8 +1,8 @@
 #!/bin/zsh
 
 show_display_menu() {
-	PATH="$HOME/.local/bin:$PATH"
-	local chosen=$(autorandr --list | rofi -dmenu -i -p "Display Profiles")
+	local profiles="$(autorandr --list)\nhorizontal\nvertical\ncommon"
+	local chosen=$(echo $profiles | rofi -dmenu -i -p "Display Profiles")
 
 	if [[ -z "$chosen" ]]; then
 		return
