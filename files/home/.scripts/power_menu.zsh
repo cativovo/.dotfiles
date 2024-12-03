@@ -16,7 +16,7 @@ show_power_menu() {
 			reboot
 			;;
 		$lock)
-			i3lock -c 1A73E8
+		  xset dpms force standby
 			;;
 		$suspend)
 			systemctl suspend
