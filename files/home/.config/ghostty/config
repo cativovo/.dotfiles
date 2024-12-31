@@ -1,0 +1,4 @@
+theme = catppuccin-mocha
+background-opacity = 0.95
+font-feature = -calt
+window-decoration = false
