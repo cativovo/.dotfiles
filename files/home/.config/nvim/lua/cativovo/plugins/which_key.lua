@@ -1,41 +1,39 @@
 return {
-  'folke/which-key.nvim',
-  event = 'VimEnter',
-  config = function()
-    local wk = require('which-key')
+    'folke/which-key.nvim',
+    event = 'VimEnter',
+    config = function()
+        local wk = require('which-key')
 
-    local opts = {
-      icons = {
-        mappings = false,
-      },
-    }
-    wk.setup(opts)
+        local opts = {
+            icons = {
+                mappings = false,
+            },
+        }
+        wk.setup(opts)
 
-    local git_keymap = {
-      { '<leader>g', group = 'git' },
-      { '<leader>gh', group = 'hunk' },
-    }
-    local file_keymap = {
-      { '<leader>f', group = 'file' },
-      { '<leader>fy', group = 'copy' },
-    }
+        local common_keymap = {
+            { '<leader>g', group = 'git' },
+            { '<leader>gh', group = 'hunk' },
+            { '<leader>f', group = 'file' },
+            { '<leader>fy', group = 'copy' },
+        }
 
-    local normal_keymaps = {
-      { '<leader>c', group = 'code' },
-      { '<leader>d', group = 'document/debugger' },
-      { '<leader>s', group = 'search' },
-      { '<leader>w', group = 'workspace' },
-      { '<leader>t', group = 'toggle' },
-      { '<leader>q', group = 'quickfixlist' },
-    }
+        local normal_keymaps = {
+            { '<leader>c', group = 'code' },
+            { '<leader>d', group = 'document/debugger' },
+            { '<leader>s', group = 'search' },
+            { '<leader>w', group = 'workspace' },
+            { '<leader>t', group = 'toggle' },
+            { '<leader>q', group = 'quickfixlist' },
+        }
 
-    normal_keymaps = vim.tbl_extend('force', normal_keymaps, git_keymap, file_keymap)
+        normal_keymaps = vim.tbl_extend('force', normal_keymaps, common_keymap)
 
-    wk.add(normal_keymaps)
+        wk.add(normal_keymaps)
 
-    -- visual mode
-    local visual_keymaps = vim.tbl_extend('force', { mode = 'v' }, git_keymap, file_keymap)
+        -- visual mode
+        local visual_keymaps = vim.tbl_extend('force', { mode = 'v' }, common_keymap)
 
-    wk.add(visual_keymaps)
-  end,
+        wk.add(visual_keymaps)
+    end,
 }
