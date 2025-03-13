@@ -25,6 +25,7 @@ return {
             { '<leader>w', group = 'workspace' },
             { '<leader>t', group = 'toggle' },
             { '<leader>q', group = 'quickfixlist' },
+            { '<leader>x', group = 'trouble' },
         }
 
         normal_keymaps = vim.tbl_extend('force', normal_keymaps, common_keymap)
