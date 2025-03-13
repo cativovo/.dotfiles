@@ -19,21 +19,6 @@ return {
         end,
     },
     {
-        'nvim-treesitter/nvim-treesitter-context',
-        dependencies = {
-            'nvim-treesitter/nvim-treesitter',
-        },
-        event = { 'BufReadPre', 'BufNewFile' },
-        opts = {
-            max_lines = 6,
-        },
-        config = function(_, opts)
-            vim.api.nvim_set_hl(0, 'TreesitterContextBottom', { bg = '#313244' })
-            vim.api.nvim_set_hl(0, 'TreesitterContextLineNumberBottom', { bg = '#313244' })
-            require('treesitter-context').setup(opts)
-        end,
-    },
-    {
         'nvim-treesitter/nvim-treesitter-textobjects',
         dependencies = {
             'nvim-treesitter/nvim-treesitter',
