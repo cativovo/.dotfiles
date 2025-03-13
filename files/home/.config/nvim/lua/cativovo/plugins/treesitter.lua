@@ -81,6 +81,34 @@ return {
                     -- and should return true or false
                     include_surrounding_whitespace = true,
                 },
+                move = {
+                    enable = true,
+                    set_jumps = true, -- whether to set jumps in the jumplist
+                    goto_next_start = {
+                        [']f'] = '@function.outer',
+                        [']c'] = { query = '@class.outer', desc = 'Next class start' },
+                        [']l'] = '@loop.outer',
+                    },
+                    goto_previous_start = {
+                        ['[f'] = '@function.outer',
+                        ['[c'] = '@class.outer',
+                        ['[l'] = '@loop.outer',
+                    },
+                    goto_next_end = {
+                        [']F'] = '@function.outer',
+                        [']C'] = '@class.outer',
+                    },
+                    goto_previous_end = {
+                        ['[F'] = '@function.outer',
+                        ['[C'] = '@class.outer',
+                    },
+                    goto_next = {
+                        [']i'] = '@conditional.outer',
+                    },
+                    goto_previous = {
+                        ['[i'] = '@conditional.outer',
+                    },
+                },
             },
         },
         config = function(_, opts)
