@@ -10,17 +10,17 @@ vim.keymap.set('n', '<leader>|', '<C-W>v', { desc = 'split window right', remap 
 
 -- copy filepath
 vim.keymap.set('n', '<leader>fya', function()
-  vim.fn.setreg('+', vim.fn.expand('%:p'))
+    vim.fn.setreg('+', vim.fn.expand('%:p'))
 end, { desc = 'copy absolute path' })
 vim.keymap.set('n', '<leader>fyr', function()
-  vim.fn.setreg('+', vim.fn.fnamemodify(vim.fn.expand('%'), ':.'))
+    vim.fn.setreg('+', vim.fn.fnamemodify(vim.fn.expand('%'), ':.'))
 end, { desc = 'copy relative path' })
 vim.keymap.set('n', '<leader>fyf', function()
-  vim.fn.setreg('+', vim.fn.expand('%:t'))
+    vim.fn.setreg('+', vim.fn.expand('%:t'))
 end, { desc = 'copy filename' })
 vim.keymap.set('n', '<leader>fyb', function()
-  local result = './' .. vim.fn.fnamemodify(vim.fn.expand('%'), ':.') .. ':' .. vim.fn.line('.')
-  vim.fn.setreg('+', result)
+    local result = './' .. vim.fn.fnamemodify(vim.fn.expand('%'), ':.') .. ':' .. vim.fn.line('.')
+    vim.fn.setreg('+', result)
 end, { desc = 'copy relative path with line number' })
 
 -- copy to clipboard
@@ -43,5 +43,5 @@ vim.keymap.set('n', '<C-Right>', '<cmd>vertical resize +2<cr>', { desc = 'increa
 
 -- toggle maximize
 vim.keymap.set('n', '<leader>tz', function()
-  require('cativovo.utils').maximize()
+    require('cativovo.utils').maximize()
 end, { desc = 'toggle maximize' })
