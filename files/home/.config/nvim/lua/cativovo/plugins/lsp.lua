@@ -185,8 +185,8 @@ return {
         vim.diagnostic.config(diagnostics)
 
         require('mason-lspconfig').setup({
-            automatic_installation = false,
-            ensure_installed = {},
+			automatic_enable = true,
+            ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
             handlers = {
                 function(server_name)
                     local server_opts = servers[server_name] or {}
