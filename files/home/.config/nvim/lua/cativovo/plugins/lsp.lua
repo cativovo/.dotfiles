@@ -83,12 +83,9 @@ return {
     'neovim/nvim-lspconfig',
     dependencies = {
         -- Automatically install LSPs and related tools to stdpath for Neovim
+        { 'mason-org/mason.nvim', config = true },
+        'mason-org/mason-lspconfig.nvim',
         'WhoIsSethDaniel/mason-tool-installer.nvim',
-        'williamboman/mason-lspconfig.nvim',
-        {
-            'williamboman/mason.nvim',
-            config = true,
-        },
     },
     config = function(_, opts)
         local servers = opts.servers or {}
@@ -161,10 +158,6 @@ return {
         -- for you, so that they are available from within Neovim.
         require('mason-tool-installer').setup({ ensure_installed = ensure_installed })
 
-        -- add border to hover text
-        vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = 'rounded' })
-        vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = 'rounded' })
-
         -- diagnostics
         local icons = require('cativovo.config.icons')
         local diagnostics = {
@@ -192,6 +185,8 @@ return {
         vim.diagnostic.config(diagnostics)
 
         require('mason-lspconfig').setup({
+            automatic_installation = false,
+            ensure_installed = {},
             handlers = {
                 function(server_name)
                     local server_opts = servers[server_name] or {}
