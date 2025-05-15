@@ -163,29 +163,26 @@ return {
         local diagnostics = {
             underline = true,
             update_in_insert = false,
-            virtual_lines = {
-                current_line = true,
+            virtual_text = {
+                source = 'if_many',
+                prefix = '',
             },
             severity_sort = true,
             signs = {
-                [vim.diagnostic.severity.ERROR] = icons.diagnostics.Error,
-                [vim.diagnostic.severity.WARN] = icons.diagnostics.Warn,
-                [vim.diagnostic.severity.HINT] = icons.diagnostics.Hint,
-                [vim.diagnostic.severity.INFO] = icons.diagnostics.Info,
+                text = {
+                    [vim.diagnostic.severity.ERROR] = icons.diagnostics.Error,
+                    [vim.diagnostic.severity.WARN] = icons.diagnostics.Warn,
+                    [vim.diagnostic.severity.HINT] = icons.diagnostics.Hint,
+                    [vim.diagnostic.severity.INFO] = icons.diagnostics.Info,
+                },
             },
             float = { border = 'rounded' },
         }
 
-        for severity, icon in pairs(diagnostics.signs) do
-            local name = vim.diagnostic.severity[severity]:lower():gsub('^%l', string.upper)
-            name = 'DiagnosticSign' .. name
-            vim.fn.sign_define(name, { text = icon, texthl = name, numhl = '' })
-        end
-
         vim.diagnostic.config(diagnostics)
 
         require('mason-lspconfig').setup({
-			automatic_enable = true,
+            automatic_enable = true,
             ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
             handlers = {
                 function(server_name)
