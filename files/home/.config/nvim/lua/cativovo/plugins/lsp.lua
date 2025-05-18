@@ -41,6 +41,7 @@ return {
         { 'mason-org/mason.nvim', config = true, version = '^1.0.0' },
         { 'mason-org/mason-lspconfig.nvim', version = '^1.0.0' },
         'WhoIsSethDaniel/mason-tool-installer.nvim',
+        'saghen/blink.cmp',
     },
     config = function(_, opts)
         local servers = opts.servers or {}
@@ -101,9 +102,6 @@ return {
             end
         end, 'init')
 
-        local capabilities = vim.lsp.protocol.make_client_capabilities()
-        capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
-
         local setups = opts.setups or {}
         local ensure_installed = vim.tbl_keys(servers or {})
         local ensure_installed_from_opts = get_opts('mason-tool-installer.nvim').ensure_installed or {}
@@ -137,25 +135,22 @@ return {
         vim.diagnostic.config(diagnostics)
 
         require('mason-lspconfig').setup({
-            automatic_enable = true,
+            automatic_installation = false,
             ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
             handlers = {
                 function(server_name)
-                    local server_opts = servers[server_name] or {}
-                    -- This handles overriding only values explicitly passed
-                    -- by the server configuration above. Useful when disabling
-                    -- certain features of an LSP (for example, turning off formatting for tsserver)
-                    server_opts.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server_opts.capabilities or {})
+                    local server = servers[server_name] or {}
+                    server.capabilities = require('blink.cmp').get_lsp_capabilities(server.capabilities or {}, true)
 
                     if setups[server_name] ~= nil then
                         -- may update server_opts
-                        local skip_setup = setups[server_name](server_opts)
+                        local skip_setup = setups[server_name](server)
                         if skip_setup == true then
                             return
                         end
                     end
 
-                    require('lspconfig')[server_name].setup(server_opts)
+                    require('lspconfig')[server_name].setup(server)
                 end,
             },
         })
