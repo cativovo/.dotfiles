@@ -2,21 +2,11 @@ return {
     {
         'Bekaboo/dropbar.nvim',
         event = { 'BufReadPre', 'BufNewFile' },
-        -- optional, but required for fuzzy finder support
-        dependencies = {
-            'nvim-telescope/telescope-fzf-native.nvim',
-            build = 'make',
-            -- `cond` is a condition used to determine whether this plugin should be
-            -- installed and loaded.
-            cond = function()
-                return vim.fn.executable('make') == 1
-            end,
-        },
         config = function()
             local dropbar_api = require('dropbar.api')
-            vim.keymap.set('n', '<Leader>;', dropbar_api.pick, { desc = 'Pick symbols in winbar' })
-            vim.keymap.set('n', '[;', dropbar_api.goto_context_start, { desc = 'Go to start of current context' })
-            vim.keymap.set('n', '];', dropbar_api.select_next_context, { desc = 'Select next context' })
+            vim.keymap.set('n', '<leader>;', dropbar_api.pick, { desc = 'pick symbols in winbar' })
+            vim.keymap.set('n', '[;', dropbar_api.goto_context_start, { desc = 'go to start of current context' })
+            vim.keymap.set('n', '];', dropbar_api.select_next_context, { desc = 'select next context' })
 
             local dropdown_utils = require('dropbar.utils')
             local dropbar_opts = require('dropbar.configs')

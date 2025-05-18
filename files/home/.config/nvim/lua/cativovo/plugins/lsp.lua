@@ -8,52 +8,7 @@ local function get_opts(name)
 end
 
 local function set_keymaps(map)
-    -- Jump to the definition of the word under your cursor.
-    --  This is where a variable was first declared, or where a function is defined, etc.
-    --  To jump back, press <C-t>.
-    map('gd', require('telescope.builtin').lsp_definitions, 'goto definition')
-
-    -- Find references for the word under your cursor.
-    map('gr', require('telescope.builtin').lsp_references, 'goto references')
-
-    -- Jump to the implementation of the word under your cursor.
-    --  Useful when your language has ways of declaring types without an actual implementation.
-    map('gI', require('telescope.builtin').lsp_implementations, 'goto implementation')
-
-    -- Jump to the type of the word under your cursor.
-    --  Useful when you're not sure what type a variable is and you want to see
-    --  the definition of its *type*, not where it was *defined*.
-    map('<leader>D', require('telescope.builtin').lsp_type_definitions, 'type definition')
-
-    -- Fuzzy find all the symbols in your current document.
-    --  Symbols are things like variables, functions, types, etc.
-    map('<leader>ds', require('telescope.builtin').lsp_document_symbols, 'document symbols')
-
-    -- Fuzzy find all the symbols in your current workspace.
-    --  Similar to document symbols, except searches over your entire project.
-    map('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'workspace symbols')
-
-    -- Rename the variable under your cursor.
-    --  Most Language Servers support renaming across files, etc.
-    map('<leader>cr', vim.lsp.buf.rename, 'rename')
-
-    -- Execute a code action, usually your cursor needs to be on top of an error
-    -- or a suggestion from your LSP for this to activate.
-    map('<leader>ca', vim.lsp.buf.code_action, 'code action')
-
-    -- Opens a popup that displays documentation about the word under your cursor
-    --  See `:help K` for why this keymap.
-    -- map('K', vim.lsp.buf.hover, 'Hover Documentation')
-
-    -- WARN: This is not Goto Definition, this is Goto Declaration.
-    --  For example, in C this would take you to the header.
-    map('gD', vim.lsp.buf.declaration, 'goto declaration')
-
-    -- Diagnostics
-    map('<leader>dd', function()
-        require('telescope.builtin').diagnostics({ bufnr = 0 })
-    end, 'document diagnostics')
-    map('<leader>wd', require('telescope.builtin').diagnostics, 'workspace diagnostics')
+    require('cativovo.plugins.fzf').register_lsp_keymaps(map)
     map('<leader>dl', vim.diagnostic.open_float, 'line diagnostics')
     map('<leader>qd', vim.diagnostic.setqflist, 'open diagnostic quickfix list')
 
@@ -64,7 +19,7 @@ local function set_keymaps(map)
             if not next then
                 count = -1
             end
-            vim.diagnostic.jump({ severity = severity, count = count })
+            vim.diagnostic.jump({ severity = severity, count = count, float = true })
         end
     end
 
