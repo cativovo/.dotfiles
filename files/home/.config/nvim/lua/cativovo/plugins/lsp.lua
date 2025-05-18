@@ -19,7 +19,7 @@ local function set_keymaps(map)
             if not next then
                 count = -1
             end
-            vim.diagnostic.jump({ severity = severity, count = count, float = true })
+            vim.diagnostic.jump({ severity = severity, count = count })
         end
     end
 
