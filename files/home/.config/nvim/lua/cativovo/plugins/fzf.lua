@@ -14,6 +14,11 @@ return {
                 ['ctrl-q'] = 'select-all+accept',
             },
         },
+        grep = {
+            -- https://github.com/ibhagwan/fzf-lua/blob/66e620a7a724364809e78a1ae4b5bfe73e37df49/doc/fzf-lua.txt#L958
+            rg_opts = '--column --line-number --no-heading --color=always --smart-case --max-columns=4096 --glob=!.git/ -e',
+            hidden = true,
+        },
     },
     keys = {
         { '<leader>sf', '<cmd>FzfLua files<cr>', desc = 'search files' },
