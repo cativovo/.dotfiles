@@ -38,18 +38,18 @@ return {
     'neovim/nvim-lspconfig',
     dependencies = {
         -- Automatically install LSPs and related tools to stdpath for Neovim
-        { 'mason-org/mason.nvim', config = true },
-        'mason-org/mason-lspconfig.nvim',
+        { 'mason-org/mason.nvim', config = true, version = '^1.0.0' },
+        { 'mason-org/mason-lspconfig.nvim', version = '^1.0.0' },
         'WhoIsSethDaniel/mason-tool-installer.nvim',
     },
     config = function(_, opts)
         local servers = opts.servers or {}
 
-        require('cativovo.utils').on_lsp_attach(function(client, buffer)
+        require('cativovo.utils').on_lsp_attach(function(client, bufnr)
             -- In this case, we create a function that lets us more easily define mappings specific
             -- for LSP related items. It sets the mode, buffer and description for us each time.
             local map = function(keys, func, desc)
-                vim.keymap.set('n', keys, func, { buffer = buffer, desc = 'LSP: ' .. desc })
+                vim.keymap.set('n', keys, func, { buffer = bufnr, desc = 'LSP: ' .. desc })
             end
 
             set_keymaps(map)
@@ -70,13 +70,13 @@ return {
             if client and client.server_capabilities.documentHighlightProvider then
                 local highlight_augroup = vim.api.nvim_create_augroup('lsp-highlight', { clear = false })
                 vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
-                    buffer = buffer,
+                    buffer = bufnr,
                     group = highlight_augroup,
                     callback = vim.lsp.buf.document_highlight,
                 })
 
                 vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
-                    buffer = buffer,
+                    buffer = bufnr,
                     group = highlight_augroup,
                     callback = vim.lsp.buf.clear_references,
                 })
