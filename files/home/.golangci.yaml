@@ -13,3 +13,6 @@ linters:
         # errcheck do this better
         - name: unhandled-error
           disabled: true
+run:
+  allow-parallel-runners: true
+  allow-serial-runners: true
