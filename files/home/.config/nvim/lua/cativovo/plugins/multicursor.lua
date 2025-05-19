@@ -38,20 +38,11 @@ return {
         end)
 
         -- Rotate the main cursor.
-        set({ 'n', 'v' }, '<A-up>', mc.nextCursor)
-        set({ 'n', 'v' }, '<A-down>', mc.prevCursor)
-
-        -- Delete the main cursor.
-        -- set({ 'n', 'v' }, '<leader>x', mc.deleteCursor)
+        set({ 'n', 'v' }, '<A-up>', mc.prevCursor)
+        set({ 'n', 'v' }, '<A-down>', mc.nextCursor)
 
         -- Add and remove cursors with control + left click.
         set('n', '<c-leftmouse>', mc.handleMouse)
-
-        -- Easy way to add and remove cursors using the main cursor.
-        -- set({ 'n', 'v' }, '<A-q>', mc.toggleCursor)
-
-        -- Clone every cursor and disable the originals.
-        -- set({ 'n', 'v' }, '<leader><c-q>', mc.duplicateCursors)
 
         set('n', '<esc>', function()
             if not mc.cursorsEnabled() then
@@ -64,9 +55,6 @@ return {
             end
         end)
 
-        -- Align cursor columns.
-        set('v', '<leader>ma', mc.alignCursors)
-
         -- Split visual selections by regex.
         set('v', 'S', mc.splitCursors)
 
@@ -77,14 +65,6 @@ return {
 
         -- match new cursors within visual selections by regex.
         set('v', 'M', mc.matchCursors)
-
-        -- Rotate visual selection contents.
-        set('v', '<leader>mt', function()
-            mc.transposeCursors(1)
-        end)
-        set('v', '<leader>mT', function()
-            mc.transposeCursors(-1)
-        end)
 
         -- Customize how cursors look.
         local hl = vim.api.nvim_set_hl
