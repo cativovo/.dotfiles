@@ -94,14 +94,22 @@ return {
     },
     {
         'nvimtools/none-ls.nvim',
+        ft = 'go',
         opts = function(_, opts)
             local null_ls = require('null-ls')
             opts.sources = opts.sources or {}
             opts.sources = vim.list_extend(opts.sources, {
                 null_ls.builtins.code_actions.gomodifytags,
                 null_ls.builtins.code_actions.impl,
-                null_ls.builtins.diagnostics.golangci_lint,
             })
         end,
+    },
+    {
+        'mfussenegger/nvim-lint',
+        opts = {
+            linters_by_ft = {
+                go = { 'golangcilint' },
+            },
+        },
     },
 }
