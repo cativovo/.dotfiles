@@ -37,7 +37,7 @@ return {
     dependencies = { 'folke/which-key.nvim' },
     ft = java_filetypes,
     opts = function()
-      return {
+      local opts = {
         -- How to find the root dir for a given filename. The default comes from
         -- lspconfig which provides a function specifically for java projects.
         root_dir = require('cativovo.utils.lsp').get_raw_config('jdtls').default_config.root_dir,
@@ -88,6 +88,13 @@ return {
           },
         },
       }
+
+      -- https://github.com/LazyVim/LazyVim/discussions/275#discussioncomment-7457295
+      local install_path = require('mason-registry').get_package('jdtls'):get_install_path()
+      local jvmArg = '-javaagent:' .. install_path .. '/lombok.jar'
+      table.insert(opts.cmd, '--jvm-arg=' .. jvmArg)
+
+      return opts
     end,
     config = function(_, opts)
       -- Find the extra bundles that should be passed on the jdtls command-line
