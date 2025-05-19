@@ -28,13 +28,11 @@ return {
             { '<leader>x', group = 'trouble' },
         }
 
-        normal_keymaps = vim.tbl_extend('force', normal_keymaps, common_keymap)
-
+        normal_keymaps = vim.list_extend(normal_keymaps, common_keymap)
         wk.add(normal_keymaps)
 
         -- visual mode
-        local visual_keymaps = vim.tbl_extend('force', { mode = 'v' }, common_keymap)
-
+        local visual_keymaps = vim.list_extend({ mode = 'v' }, common_keymap)
         wk.add(visual_keymaps)
     end,
 }
