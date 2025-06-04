@@ -49,22 +49,6 @@ button:hover {
 	box-shadow: inset 0 -3px #ffffff;
 }
 
-/* #clock, */
-/* #battery, */
-/* #cpu, */
-/* #memory, */
-/* #temperature, */
-/* #backlight, */
-/* #network, */
-/* #pulseaudio, */
-/* #tray, */
-/* #mode, */
-/* #idle_inhibitor, */
-/* #scratchpad { */
-/* 	padding-right: 15px; */
-/* 	color: #ffffff; */
-/* } */
-
 #window,
 #workspaces {
 	margin: 0 4px;
@@ -126,4 +110,8 @@ label:focus {
 
 #scratchpad.empty {
 	background-color: transparent;
+}
+
+tooltip {
+	background-color: #24273a;
 }
