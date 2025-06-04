@@ -93,8 +93,8 @@
 		},
 		"format-time": "{H:02}:{M:02}",
 		"format": "{icon} {capacity}% ({power:0.2f}W|{time})",
-		"format-full": "{icon} {capacity}% {time}",
-		"format-charging": " {capacity}%",
+		"format-full": "{icon} {capacity}% (({power:0.2f}W|{time}))",
+		"format-charging": " {capacity}% ({power:0.2f}W|{time})",
 		"format-plugged": " {capacity}%",
 		// "format-good": "", // An empty format will hide the module
 		// "format-full": "",
