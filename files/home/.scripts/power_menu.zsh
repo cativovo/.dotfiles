@@ -6,7 +6,7 @@ show_power_menu() {
 	local lock=' Lock'
 	local suspend='󰤄 Suspend'
 	local logout='󰍃 Logout'
-	local chosen=$(echo -e "$lock\n$suspend\n$logout\n$reboot\n$shutdown" | rofi -dmenu -i -p 'Power Menu')
+	local chosen=$(echo -e "$lock\n$suspend\n$logout\n$reboot\n$shutdown" | fuzzel -d -i -p '󱐋 ')
 
 	case ${chosen} in
 		$shutdown)
@@ -16,13 +16,13 @@ show_power_menu() {
 			reboot
 			;;
 		$lock)
-			i3lock -c 1A73E8
+			swaylock -f
 			;;
 		$suspend)
 			systemctl suspend
 			;;
 		$logout)
-			i3-msg exit
+			swaymsg exit
 			;;
 	esac
 }

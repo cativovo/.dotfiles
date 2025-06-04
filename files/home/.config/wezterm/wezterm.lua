@@ -4,7 +4,7 @@ local wezterm = require("wezterm")
 -- This will hold the configuration.
 local config = wezterm.config_builder()
 
-config.font = wezterm.font("JetBrains Mono", { weight = "Book", stretch = "Expanded" })
+config.font = wezterm.font("JetBrains Mono", { weight = "Light" })
 config.font_size = 14
 config.color_scheme = "Catppuccin Mocha"
 config.window_background_opacity = 0.94
@@ -27,7 +27,6 @@ config.keys = {
 }
 
 config.enable_tab_bar = false
--- https://github.com/ianyh/Amethyst/issues/1481
-config.window_decorations = "RESIZE"
+config.window_decorations = "NONE"
 
 return config
