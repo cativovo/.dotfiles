@@ -72,13 +72,11 @@ button:hover {
 
 @keyframes blink {
 	to {
-		background-color: #ffffff;
-		color: #000000;
+		color: #f38ba8;
 	}
 }
 
 #battery.critical:not(.charging) {
-	background-color: #f53c3c;
 	color: #ffffff;
 	animation-name: blink;
 	animation-duration: 0.5s;
