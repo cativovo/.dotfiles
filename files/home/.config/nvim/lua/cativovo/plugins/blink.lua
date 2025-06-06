@@ -35,6 +35,7 @@ return {
             nerd_font_variant = 'mono',
         },
         completion = {
+            accept = { auto_brackets = { enabled = false } },
             documentation = { auto_show = true, auto_show_delay_ms = 100 },
             ghost_text = { enabled = true, show_with_menu = true },
         },
