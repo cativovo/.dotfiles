@@ -9,14 +9,13 @@
 	"modules-left": ["sway/workspaces", "sway/mode", "sway/scratchpad"],
 	"modules-right": [
 		"idle_inhibitor",
-		"clock",
-		"network",
-		"pulseaudio",
-		"cpu",
 		"memory",
 		"temperature",
 		"backlight",
+		"pulseaudio",
+		"network",
 		"battery",
+		"clock",
 		"tray"
 	],
 	"sway/mode": {
@@ -62,14 +61,10 @@
 			"on-scroll-down": "shift_down"
 		}
 	},
-	"cpu": {
-		"format": " {usage}%",
-		"tooltip": false
-	},
 	"memory": {
 		"format": "{used:0.2f}/{total:0.2f} GiB",
 		"tooltip": false,
-		"interval": 10
+		"interval": 5
 	},
 	"temperature": {
 		// "thermal-zone": 2,
@@ -100,7 +95,7 @@
 		// "format-full": "",
 		"format-icons": ["", "", "", "", ""],
 		"tooltip": false,
-		"interval": 10
+		"interval": 5
 	},
 	"network": {
 		// "interface": "wlp2*", // (Optional) To force the use of this interface
@@ -113,12 +108,10 @@
 	},
 	"pulseaudio": {
 		// "scroll-step": 1, // %, can be a float
-		"format": "{icon} {volume}% {format_source}",
+		"format": "{icon} {volume}%",
 		"format-bluetooth": "{icon} {volume}% {format_source}",
 		"format-bluetooth-muted": " {icon} {volume}% {format_source}",
 		"format-muted": " {volume}% {format_source}",
-		"format-source": " {volume}%",
-		"format-source-muted": "",
 		"format-icons": {
 			"headphone": "",
 			"hands-free": "",
