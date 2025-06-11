@@ -66,7 +66,7 @@ button:hover {
 	padding: 0 12px;
 }
 
-.modules-right > widget:not(:last-child) > * {
+.modules-right > widget:not(:last-child) > .module:not(#custom-fan) {
 	margin-right: 12px;
 }
 
@@ -90,7 +90,20 @@ label:focus {
 }
 
 #temperature.critical {
-	background-color: #eb4d4b;
+	color: #ffffff;
+	animation-name: blink;
+	animation-duration: 0.5s;
+	animation-timing-function: steps(12);
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+}
+
+#custom-fan.off {
+	color: #7f7f7f;
+}
+
+#custom-fan.on {
+	color: #ffffff;
 }
 
 #tray > .passive {
