@@ -3,47 +3,37 @@ return {
         'WhoIsSethDaniel/mason-tool-installer.nvim',
         opts = function(_, opts)
             opts.ensure_installed = opts.ensure_installed or {}
-            table.insert(opts.ensure_installed, 'prettier')
+            table.insert(opts.ensure_installed, 'prettierd')
         end,
     },
     {
         'stevearc/conform.nvim',
         opts = function(_, opts)
-            local prettier_config_files = {
-                '.prettierrc',
-                '.prettierrc.json',
-                '.prettierrc.yaml',
-                '.prettierrc.yml',
-                '.prettierrc.js',
-                '.prettierrc.cjs',
-                'prettier.config.js',
-                'prettier.config.cjs',
-                '.prettierrc.toml',
-            }
-
-            local has_prettier_config = require('cativovo.utils').root_has_file(prettier_config_files)
-            if not has_prettier_config then
-                return
-            end
-
             local formatters_by_ft = {
-                javascript = { 'prettier' },
-                javascriptreact = { 'prettier' },
-                typescript = { 'prettier' },
-                typescriptreact = { 'prettier' },
-                vue = { 'prettier' },
-                css = { 'prettier' },
-                scss = { 'prettier' },
-                less = { 'prettier' },
-                html = { 'prettier' },
-                json = { 'prettier' },
-                jsonc = { 'prettier' },
-                yaml = { 'prettier' },
-                markdown = { 'prettier' },
-                ['markdown.mdx'] = { 'prettier' },
-                graphql = { 'prettier' },
-                handlebars = { 'prettier' },
+                javascript = { 'prettierd' },
+                javascriptreact = { 'prettierd' },
+                typescript = { 'prettierd' },
+                typescriptreact = { 'prettierd' },
+                vue = { 'prettierd' },
+                css = { 'prettierd' },
+                scss = { 'prettierd' },
+                less = { 'prettierd' },
+                html = { 'prettierd' },
+                json = { 'prettierd' },
+                jsonc = { 'prettierd' },
+                yaml = { 'prettierd' },
+                markdown = { 'prettierd' },
+                ['markdown.mdx'] = { 'prettierd' },
+                graphql = { 'prettierd' },
+                handlebars = { 'prettierd' },
             }
+
+            -- killall instances of prettierd when the last instance of nvim is closed
+            vim.api.nvim_create_autocmd('VimLeavePre', {
+                callback = function()
+                    vim.fn.jobstart('[ "$(pgrep -c nvim)" = 0 ] && killall prettierd', { detach = true })
+                end,
+            })
 
             for ft, formatters in pairs(formatters_by_ft) do
                 if opts.formatters_by_ft[ft] == nil then
