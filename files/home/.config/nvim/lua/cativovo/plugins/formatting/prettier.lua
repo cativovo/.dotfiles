@@ -31,7 +31,7 @@ return {
             -- killall instances of prettierd when the last instance of nvim is closed
             vim.api.nvim_create_autocmd('VimLeavePre', {
                 callback = function()
-                    vim.fn.jobstart('[ "$(pgrep -c nvim)" = 0 ] && killall prettierd', { detach = true })
+                    vim.fn.jobstart('killall prettierd', { detach = true })
                 end,
             })
 
