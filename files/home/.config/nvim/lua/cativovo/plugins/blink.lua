@@ -30,6 +30,16 @@ return {
     opts = {
         keymap = {
             preset = 'default',
+            ['<C-d>'] = { 'scroll_documentation_up', 'fallback' },
+            ['<C-u>'] = { 'scroll_documentation_down', 'fallback' },
+            ['<Right>'] = { 'snippet_forward', 'fallback' },
+            ['<Left>'] = { 'snippet_backward', 'fallback' },
+
+            -- disable
+            ['<C-b>'] = false,
+            ['<C-f>'] = false,
+            ['<Tab>'] = false,
+            ['<S-Tab>'] = false,
         },
         appearance = {
             nerd_font_variant = 'mono',
