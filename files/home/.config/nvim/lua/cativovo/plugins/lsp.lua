@@ -10,7 +10,6 @@ end
 local function set_keymaps(map)
     require('cativovo.plugins.fzf').register_lsp_keymaps(map)
     map('<leader>dl', vim.diagnostic.open_float, 'line diagnostics')
-    map('<leader>qd', vim.diagnostic.setqflist, 'open diagnostic quickfix list')
 
     local diagnostic_goto = function(next, severity)
         severity = severity and vim.diagnostic.severity[severity] or nil
