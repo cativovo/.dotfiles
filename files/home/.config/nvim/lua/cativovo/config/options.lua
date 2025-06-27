@@ -10,7 +10,6 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.statuscolumn = [[%!v:lua.require'cativovo.utils'.statuscolumn()]]
 vim.opt.updatetime = 250
--- vim.opt.timeoutlen = 300
 vim.opt.splitright = true
 vim.opt.list = true
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
