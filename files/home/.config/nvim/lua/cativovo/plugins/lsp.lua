@@ -112,7 +112,6 @@ return {
         require('mason-tool-installer').setup({ ensure_installed = ensure_installed })
 
         -- diagnostics
-        local icons = require('cativovo.config.icons')
         local diagnostics = {
             underline = true,
             update_in_insert = false,
@@ -121,14 +120,7 @@ return {
                 prefix = '',
             },
             severity_sort = true,
-            signs = {
-                text = {
-                    [vim.diagnostic.severity.ERROR] = icons.diagnostics.Error,
-                    [vim.diagnostic.severity.WARN] = icons.diagnostics.Warn,
-                    [vim.diagnostic.severity.HINT] = icons.diagnostics.Hint,
-                    [vim.diagnostic.severity.INFO] = icons.diagnostics.Info,
-                },
-            },
+            signs = false,
             float = { border = 'rounded' },
         }
 
