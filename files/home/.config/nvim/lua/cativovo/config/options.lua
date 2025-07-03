@@ -20,3 +20,4 @@ vim.opt.wrap = false
 -- prevent auto scroll to center when changing buffer using ctr^
 vim.opt.jumpoptions = 'view'
 vim.opt.winborder = 'single'
+vim.opt.scrolloff = 4
