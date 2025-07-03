@@ -11,7 +11,6 @@ return {
         local dropbar_opts = require('dropbar.configs')
 
         dropbar_opts.opts.icons.kinds.dir_icon = ''
-        dropbar_opts.opts.icons.kinds.file_icon = ''
         dropbar_opts.opts.sources.path.preview = false
 
         dropbar_opts.opts.menu.keymaps['o'] = function()
