@@ -20,10 +20,6 @@ return {
             lualine_a = { 'branch' },
             lualine_b = { 'diagnostics' },
             lualine_c = {
-                {
-                    'filename',
-                    path = 1,
-                },
                 'grapple',
             },
             lualine_x = {
