@@ -24,6 +24,23 @@ config.keys = {
 		mods = "CTRL|SHIFT",
 		action = wezterm.action.PasteFrom("Clipboard"),
 	},
+	{
+		key = "+",
+		mods = "CTRL|SHIFT",
+		action = "IncreaseFontSize",
+	},
+	-- ctrl shift -
+	{
+		key = "_",
+		mods = "CTRL|SHIFT",
+		action = "DecreaseFontSize",
+	},
+	-- ctrl shift 0
+	{
+		key = ")",
+		mods = "CTRL|SHIFT",
+		action = "ResetFontSize",
+	},
 }
 
 config.enable_tab_bar = false
