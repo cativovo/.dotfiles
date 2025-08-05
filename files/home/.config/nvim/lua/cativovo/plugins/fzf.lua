@@ -24,7 +24,7 @@ return {
     keys = {
         { '<leader>sf', '<cmd>FzfLua files<cr>', desc = 'search files' },
         { '<leader>sw', '<cmd>FzfLua grep_cword<cr>', desc = 'grep current word' },
-        { '<leader>sg', '<cmd>FzfLua live_grep_glob<cr>', desc = 'live grep' },
+        { '<leader>sg', '<cmd>FzfLua live_grep<cr>', desc = 'live grep' },
         { '<leader>sr', '<cmd>FzfLua resume<cr>', desc = 'search resume' },
         { '<leader>sS', '<cmd>FzfLua spell_suggest<cr>', desc = 'search spelling' },
         { '<leader><leader>', '<cmd>FzfLua buffers<cr>', desc = 'find existing buffers' },
