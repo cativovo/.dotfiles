@@ -12,6 +12,7 @@
 		"battery",
 		"pulseaudio",
 		"clock",
+		"privacy",
 		"tray"
 	],
 	"sway/mode": {
