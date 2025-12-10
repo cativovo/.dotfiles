@@ -16,7 +16,13 @@ source $HOME/.zsh/lib/keymaps.zsh
 # AUTO INSTALL SOME OF DEPENDENCIES
 source $HOME/.zsh/lib/auto_install_dependencies.zsh
 
-# Start starship
-eval "$(starship init zsh)"
-eval "$(mise activate zsh)"
-eval "$(atuin init zsh --disable-up-arrow)"
+
+# https://github.com/jeffreytse/zsh-vi-mode?tab=readme-ov-file#execute-extra-commands
+function init() {
+	eval "$(starship init zsh)"
+	eval "$(mise activate zsh)"
+	eval "$(atuin init zsh --disable-up-arrow)"
+	keymap_init
+}
+
+zvm_after_init_commands+=(init)
