@@ -27,7 +27,6 @@ return {
                 require('cativovo.plugins.grapple').lualine_component,
             },
             lualine_x = {
-                'filetype',
                 'lsp_status',
             },
             lualine_y = {
