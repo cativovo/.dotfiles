@@ -25,7 +25,7 @@ return {
         },
         event = { 'BufReadPre', 'BufNewFile' },
         opts = {
-            max_lines = 4,
+            max_lines = 6,
         },
         config = function(_, opts)
             local hi = { sp = 'Grey', underline = true }
