@@ -20,6 +20,10 @@ return {
             lualine_a = { 'branch' },
             lualine_b = { 'diagnostics' },
             lualine_c = {
+                {
+                    'filename',
+                    path = 1,
+                },
                 require('cativovo.plugins.grapple').lualine_component,
             },
             lualine_x = {
