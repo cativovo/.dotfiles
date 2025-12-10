@@ -5,9 +5,13 @@ return {
     opts = {
         winopts = {
             fullscreen = true,
+            border = 'border-top',
+            title_pos = 'left',
+            title_flags = false,
             preview = {
-                vertical = 'down:60%',
+                vertical = 'up:70%',
                 layout = 'vertical',
+                border = 'none',
             },
         },
         keymap = {
