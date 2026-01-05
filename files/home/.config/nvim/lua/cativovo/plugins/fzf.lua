@@ -41,7 +41,11 @@ return {
         fzf.register_ui_select(function()
             return {
                 winopts = {
+                    border = 'rounded',
                     fullscreen = false,
+                    preview = {
+                        border = 'rounded',
+                    },
                 },
             }
         end)
